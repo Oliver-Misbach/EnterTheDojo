@@ -1,0 +1,23 @@
+# Initial Concept Document
+https://drive.google.com/drive/folders/1p2LiPm3LVRYIls0AtLyLSyJ2EqMFiVDL
+
+# Game Design Spec for Fivr
+https://docs.google.com/document/d/1JcSItWMWWNV5nrL4Jk8UwQNZl1oSIU_S52EaGwrYfWM/edit?tab=t.0
+
+# Project Tracking
+https://app.clickup.com/9011382639/v/l/8chxjbf-371
+
+# Website Design Ideas
+- www.yachtclubgames.com/games/cyber-shadow/
+- stardewvalley.net
+- drinkboxstudios.com
+
+- wildboystudios.com
+- thunderlotusgames.com
+- teamcherry.com.au
+- supergiantgames.com
+- playdead.com
+- oddworld.com
+- playtonicgames.com
+- re-logic.com
+- orithegame.com/moon-studios
