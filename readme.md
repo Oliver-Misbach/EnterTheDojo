@@ -7,6 +7,13 @@ https://docs.google.com/document/d/1JcSItWMWWNV5nrL4Jk8UwQNZl1oSIU_S52EaGwrYfWM/
 # Project Tracking
 https://app.clickup.com/9011382639/v/l/8chxjbf-371
 
+# Royalty-free sound effects
+https://pixabay.com/sound-effects/search/
+https://mixkit.co/free-sound-effects/game/
+
+# Listing game on Steam
+https://partner.steamgames.com/steamdirect
+
 # Website Design Ideas
 - www.yachtclubgames.com/games/cyber-shadow/
 - stardewvalley.net
