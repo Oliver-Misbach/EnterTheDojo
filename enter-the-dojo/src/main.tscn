@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=3 uid="uid://csq0r4i000xch"]
+
+[ext_resource type="Script" path="res://src/player.gd" id="1_i2jgg"]
+[ext_resource type="Script" path="res://src/main.gd" id="1_se8uo"]
+[ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://icon.svg" id="2_bwxvi"]
+[ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character.tscn" id="2_qyqrv"]
+[ext_resource type="PackedScene" uid="uid://cvv3c8j6ugdft" path="res://assets/models/Player_Character.glb" id="3_6m0m7"]
+[ext_resource type="Script" path="res://src/enemy.gd" id="4_2qhl0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_knbie"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fwevs"]
+sky_material = SubResource("ProceduralSkyMaterial_knbie")
+
+[sub_resource type="Environment" id="Environment_cnr5b"]
+background_mode = 2
+sky = SubResource("Sky_fwevs")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvxvk"]
+size = Vector2(1024, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoqkm"]
+size = Vector2(256, 32)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_se8uo")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cnr5b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(522, 569)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_wvxvk")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(8, 0.25)
+texture = ExtResource("2_bwxvi")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(522, 441)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_hoqkm")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(2, 0.25)
+texture = ExtResource("2_bwxvi")
+
+[node name="Player" parent="." instance=ExtResource("2_qyqrv")]
+position = Vector2(254, 333)
+script = ExtResource("1_i2jgg")
+
+[node name="Player_Character" parent="Player" instance=ExtResource("3_6m0m7")]
+
+[node name="Karate_Man" parent="Player/Player_Character" index="0"]
+transform = Transform3D(-3.32785e-08, 0, 0.761324, 0, 0.761324, 0, -0.761324, 0, -3.32785e-08, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Player_Character"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4, 6)
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_qyqrv")]
+position = Vector2(855, 333)
+script = ExtResource("4_2qhl0")
+target = NodePath("../Player")
+health = 10
+
+[node name="Player_Character" parent="Enemy" instance=ExtResource("3_6m0m7")]
+
+[node name="Karate_Man" parent="Enemy/Player_Character" index="0"]
+transform = Transform3D(-3.32785e-08, 0, 0.761324, 0, 0.761324, 0, -0.761324, 0, -3.32785e-08, 0, 0, 0)
+
+[node name="PointTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 100.0
+one_shot = true
+autostart = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 264.0
+offset_bottom = 184.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Health: "
+
+[node name="HealthBar" type="ProgressBar" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "A - Left
+D - Right
+E - Punch
+Q - Kick
+␣ - Jump
+⇧ - Crouch"
+
+[editable path="Player/Player_Character"]
+[editable path="Enemy/Player_Character"]
