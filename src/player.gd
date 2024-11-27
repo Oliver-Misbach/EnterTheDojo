@@ -13,8 +13,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		punch = event.is_pressed()
 	if event.is_action(&"kick"):
 		kick = event.is_pressed()
-	if event.is_action(&"jump"):
-		jump = event.is_pressed()
+	#if event.is_action(&"jump"):
+		#jump = event.is_pressed()
 	if event.is_action(&"crouch"):
 		crouch = event.is_pressed()
 

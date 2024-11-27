@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dntrwboi076dv"]
+
+[ext_resource type="Texture2D" uid="uid://brlvm3uuen2lo" path="res://assets/TitleScreen.png" id="1_f6fvg"]
+[ext_resource type="Script" path="res://src/menu/main_menu.gd" id="1_vrjmm"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_vrjmm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.282353, 0.0862745, 0.160784, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_f6fvg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 45.0
+grow_horizontal = 2
+text = "Press any key to continue..."
+horizontal_alignment = 1
