@@ -5,7 +5,7 @@ extends "res://src/character.gd"
 func _physics_process(delta: float) -> void:
 	if target != null:
 		var offset := target.position.x - position.x
-		if abs(offset) < 24.0:
+		if abs(offset) < 33.0:
 			#movement = 0.0
 			punch = true
 			

@@ -1,14 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://csmkwv7sbo713"]
+[gd_scene load_steps=14 format=3 uid="uid://csmkwv7sbo713"]
 
 [ext_resource type="Script" path="res://src/character.gd" id="1_feilg"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="2_l4r3p"]
 [ext_resource type="PackedScene" uid="uid://mnj15h0sy3t8" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character.glb" id="3_f6hel"]
+[ext_resource type="Texture2D" uid="uid://begp75ina37qx" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_skin.png" id="4_fofl8"]
+[ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="4_ufrtj"]
+[ext_resource type="Texture2D" uid="uid://dwhurebebltbi" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_black.png" id="5_3867m"]
+[ext_resource type="Texture2D" uid="uid://8nkd0yxej538" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_headband.png" id="7_kf584"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2bci"]
-size = Vector2(16, 16)
+size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2d0kn"]
 radius = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbi8i"]
+resource_name = "Skin"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_fofl8")
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ufw53"]
+resource_name = "Black"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_3867m")
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_883cs"]
+resource_name = "Gi"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_ufrtj")
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fap7"]
+resource_name = "Headband"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_kf584")
+roughness = 0.5
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_feilg")
@@ -18,13 +46,13 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_f2bci")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_l4r3p")
 
 [node name="HurtArea" type="Area2D" parent="."]
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+position = Vector2(32, 0)
 shape = SubResource("CircleShape2D_2d0kn")
 
 [node name="HurtTimer" type="Timer" parent="."]
@@ -97,5 +125,11 @@ bones/42/rotation = Quaternion(-0.205818, 0.000150173, -0.000132899, 0.97859)
 bones/43/rotation = Quaternion(-0.529375, 0.396972, 0.616752, 0.42637)
 bones/44/rotation = Quaternion(-0.358863, -0.000172035, 0.00029953, 0.93339)
 bones/45/rotation = Quaternion(-0.205818, -0.000150184, 0.000132895, 0.97859)
+
+[node name="Karate_Man" parent="Player_Character/Karate_Man_Rig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dbi8i")
+surface_material_override/1 = SubResource("StandardMaterial3D_ufw53")
+surface_material_override/2 = SubResource("StandardMaterial3D_883cs")
+surface_material_override/3 = SubResource("StandardMaterial3D_7fap7")
 
 [editable path="Player_Character"]
