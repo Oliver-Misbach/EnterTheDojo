@@ -67,8 +67,8 @@ script = ExtResource("4_5wrnn")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 0.884, 0, 1, 0, 4.37114e-08, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Player_Character" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 3)
-fov = 60.0
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 5)
+fov = 30.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -436)
@@ -79,8 +79,11 @@ script = ExtResource("6_12vbv")
 target = NodePath("../Player")
 health = 10
 
+[node name="Player_Character" parent="Enemy" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
 [node name="Karate_Man_Rig" parent="Enemy/Player_Character" index="0"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.884017, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.884, 0, -1, 0, 4.37114e-08, 0, 0, 0)
 
 [node name="NextLevel" type="Area2D" parent="."]
 position = Vector2(1000, 0)
