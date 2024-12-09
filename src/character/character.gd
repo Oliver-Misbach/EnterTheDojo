@@ -48,9 +48,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			anim.play(&"walk_backward")
 	
-	if not is_zero_approx(velocity.x):
-		hurt_area.scale.x = -1.0 if velocity.x < 0.0 else 1.0
-		#model.get_child(0).rotation.y = PI * 1.5 if velocity.x < 0.0 else PI * 0.5
 	model.position = Vector3(position.x / 64.0, -position.y / 64.0, 0.0)
 	
 	if punch or kick:

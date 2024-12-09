@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ksdjb1tbboha"]
+
+[ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_qn703"]
+[ext_resource type="Script" path="res://src/character/player.gd" id="2_ngffm"]
+
+[node name="Player" instance=ExtResource("1_qn703")]
+script = ExtResource("2_ngffm")
+
+[node name="Karate_Man_Rig" parent="Player_Character" index="0"]
+transform = Transform3D(7.54979e-08, 5.83461e-15, 1, -8.74228e-08, 0.884, 0, 1, 7.72817e-08, -7.54979e-08, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player_Character" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 3, 7)
+fov = 30.0
+
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
+position = Vector2(0, -436)
+
+[editable path="Player_Character"]

@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://csq0r4i000xch"]
+[gd_scene load_steps=12 format=3 uid="uid://csq0r4i000xch"]
 
 [ext_resource type="Script" path="res://src/world.gd" id="1_3klmo"]
 [ext_resource type="PackedScene" uid="uid://c2aj5tgumrbpo" path="res://src/menu/finish_menu.tscn" id="2_1x2xs"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="2_o4qr1"]
-[ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character.tscn" id="3_vmbo1"]
-[ext_resource type="Script" path="res://src/player.gd" id="4_5wrnn"]
-[ext_resource type="Script" path="res://src/enemy.gd" id="6_12vbv"]
+[ext_resource type="PackedScene" uid="uid://ksdjb1tbboha" path="res://src/character/player.tscn" id="5_45di6"]
 [ext_resource type="Texture2D" uid="uid://u56fn0gs47h0" path="res://assets/Floor1.png" id="6_g7tw4"]
+[ext_resource type="PackedScene" uid="uid://bcqe81pkyl74u" path="res://src/character/enemy.tscn" id="6_oa04e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_knbie"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -59,38 +58,19 @@ modulate = Color(0, 0, 0, 1)
 scale = Vector2(8, 0.25)
 texture = ExtResource("2_o4qr1")
 
-[node name="Player" parent="." instance=ExtResource("3_vmbo1")]
-position = Vector2(254, 333)
-script = ExtResource("4_5wrnn")
-
-[node name="Karate_Man_Rig" parent="Player/Player_Character" index="0"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 0.884, 0, 1, 0, 4.37114e-08, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player/Player_Character" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 5)
-fov = 30.0
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -436)
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_vmbo1")]
-position = Vector2(855, 333)
-script = ExtResource("6_12vbv")
-target = NodePath("../Player")
-health = 10
-
-[node name="Player_Character" parent="Enemy" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="Karate_Man_Rig" parent="Enemy/Player_Character" index="0"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.884, 0, -1, 0, 4.37114e-08, 0, 0, 0)
-
 [node name="NextLevel" type="Area2D" parent="."]
 position = Vector2(1000, 0)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
 shape = SubResource("RectangleShape2D_s4duf")
+
+[node name="Player" parent="." instance=ExtResource("5_45di6")]
+position = Vector2(200, 968)
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_oa04e")]
+position = Vector2(600, 968)
+target = NodePath("../Player")
 
 [node name="PointTimer" type="Timer" parent="."]
 process_callback = 0
@@ -128,8 +108,3 @@ Q - Kick
 ⇧ - Crouch"
 
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered" flags=3]
-
-[editable path="Player"]
-[editable path="Player/Player_Character"]
-[editable path="Enemy"]
-[editable path="Enemy/Player_Character"]
