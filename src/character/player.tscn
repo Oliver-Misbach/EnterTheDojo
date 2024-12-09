@@ -13,7 +13,7 @@ transform = Transform3D(7.54979e-08, 5.83461e-15, 1, -8.74228e-08, 0.884, 0, 1, 
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 3, 7)
 fov = 30.0
 
-[node name="Camera2D" type="Camera2D" parent="." index="6"]
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
 position = Vector2(0, -436)
 
 [editable path="Player_Character"]

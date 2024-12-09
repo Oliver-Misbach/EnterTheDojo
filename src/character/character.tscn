@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://8nkd0yxej538" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_headband.png" id="7_kf584"]
 [ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="8_un5e1"]
 [ext_resource type="Script" path="res://src/character/state/idle.gd" id="9_cxhtl"]
-[ext_resource type="Script" path="res://src/state_machine/state.gd" id="9_s8ppa"]
 [ext_resource type="Script" path="res://src/character/state/attack.gd" id="10_32dq6"]
+[ext_resource type="Script" path="res://src/character/state/hurt.gd" id="11_f23wp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2bci"]
 size = Vector2(32, 32)
@@ -138,24 +138,27 @@ current = NodePath("Idle")
 script = ExtResource("9_cxhtl")
 character = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine"]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
 script = ExtResource("10_32dq6")
+character = NodePath("../..")
 
-[node name="AttackTimer" type="Timer" parent="StateMachine/Attack"]
+[node name="HitTimer" type="Timer" parent="StateMachine/Attack"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="StateMachine/Attack"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Hurt" type="Node" parent="StateMachine"]
-script = ExtResource("9_s8ppa")
+[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
+script = ExtResource("11_f23wp")
+character = NodePath("../..")
 
-[node name="HurtTimer" type="Timer" parent="StateMachine/Hurt"]
+[node name="Timer" type="Timer" parent="StateMachine/Hurt"]
 one_shot = true
 
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="HurtTimer" type="Timer" parent="."]
-one_shot = true
+[connection signal="timeout" from="StateMachine/Attack/HitTimer" to="StateMachine/Attack" method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Hurt/Timer" to="StateMachine/Hurt" method="_on_timer_timeout"]
 
 [editable path="Player_Character"]
