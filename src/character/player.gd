@@ -1,10 +1,13 @@
 class_name Player
-extends "res://src/character.gd"
+extends "res://src/character/character.gd"
 
 var left: float
 var right: float
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_echo():
+		return
+	
 	if event.is_action(&"left"):
 		left = event.get_action_strength(&"left")
 	if event.is_action(&"right"):

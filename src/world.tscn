@@ -3,10 +3,9 @@
 [ext_resource type="Script" path="res://src/world.gd" id="1_3klmo"]
 [ext_resource type="PackedScene" uid="uid://c2aj5tgumrbpo" path="res://src/menu/finish_menu.tscn" id="2_1x2xs"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="2_o4qr1"]
-[ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character.tscn" id="3_vmbo1"]
-[ext_resource type="Script" path="res://src/player.gd" id="4_5wrnn"]
-[ext_resource type="Script" path="res://src/enemy.gd" id="6_12vbv"]
+[ext_resource type="PackedScene" uid="uid://ksdjb1tbboha" path="res://src/character/player.tscn" id="5_45di6"]
 [ext_resource type="Texture2D" uid="uid://u56fn0gs47h0" path="res://assets/Floor1.png" id="6_g7tw4"]
+[ext_resource type="PackedScene" uid="uid://bcqe81pkyl74u" path="res://src/character/enemy.tscn" id="6_oa04e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_knbie"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,6 +27,17 @@ size = Vector2(1024, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4duf"]
 size = Vector2(256, 1e+06)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sadtw"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.498039)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="World" type="Node"]
 script = ExtResource("1_3klmo")
 next_scene = ExtResource("2_1x2xs")
@@ -36,7 +46,7 @@ next_scene = ExtResource("2_1x2xs")
 environment = SubResource("Environment_cnr5b")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 3, 0)
 shadow_enabled = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -59,31 +69,19 @@ modulate = Color(0, 0, 0, 1)
 scale = Vector2(8, 0.25)
 texture = ExtResource("2_o4qr1")
 
-[node name="Player" parent="." instance=ExtResource("3_vmbo1")]
-position = Vector2(254, 333)
-script = ExtResource("4_5wrnn")
-
-[node name="Camera3D" type="Camera3D" parent="Player/Player_Character" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 3)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -436)
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_vmbo1")]
-position = Vector2(855, 333)
-script = ExtResource("6_12vbv")
-target = NodePath("../Player")
-health = 10
-
-[node name="Player_Character" parent="Enemy" index="5"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
 [node name="NextLevel" type="Area2D" parent="."]
 position = Vector2(1000, 0)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
 shape = SubResource("RectangleShape2D_s4duf")
+
+[node name="Player" parent="." instance=ExtResource("5_45di6")]
+position = Vector2(200, 968)
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_oa04e")]
+position = Vector2(600, 968)
+target = NodePath("../Player")
 
 [node name="PointTimer" type="Timer" parent="."]
 process_callback = 0
@@ -94,11 +92,15 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_right = 264.0
-offset_bottom = 186.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 347.0
+offset_bottom = 222.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sadtw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -117,12 +119,6 @@ text = "A - Left
 D - Right
 E - Punch
 Q - Kick
-␣ - Jump (disabled)
-⇧ - Crouch"
+S - Crouch"
 
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered" flags=3]
-
-[editable path="Player"]
-[editable path="Player/Player_Character"]
-[editable path="Enemy"]
-[editable path="Enemy/Player_Character"]
