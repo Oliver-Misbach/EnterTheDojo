@@ -17,16 +17,20 @@ config/icon="res://src/icon.svg"
 
 [autoload]
 
-Global="*res://src/global/global.gd"
+Global="*res://src/global/global.tscn"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 
-window/size/viewport_width=1080
+window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/window_width_override=1152
 window/size/window_height_override=648
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_width"
 
 [gui]
 

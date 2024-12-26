@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://csq0r4i000xch"]
+[gd_scene load_steps=15 format=3 uid="uid://csq0r4i000xch"]
 
 [ext_resource type="Script" path="res://src/world.gd" id="1_3klmo"]
-[ext_resource type="PackedScene" uid="uid://c2aj5tgumrbpo" path="res://src/menu/finish_menu.tscn" id="2_1x2xs"]
-[ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="2_o4qr1"]
-[ext_resource type="PackedScene" uid="uid://ksdjb1tbboha" path="res://src/character/player.tscn" id="5_45di6"]
+[ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/blue.tscn" id="4_2xdc0"]
+[ext_resource type="PackedScene" uid="uid://ksdjb1tbboha" path="res://src/character/player/player.tscn" id="5_45di6"]
+[ext_resource type="Script" path="res://src/enemy_spawner.gd" id="5_q0b4x"]
+[ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/yellow.tscn" id="5_q1qhn"]
 [ext_resource type="Texture2D" uid="uid://u56fn0gs47h0" path="res://assets/Floor1.png" id="6_g7tw4"]
-[ext_resource type="PackedScene" uid="uid://bcqe81pkyl74u" path="res://src/character/enemy.tscn" id="6_oa04e"]
+[ext_resource type="PackedScene" uid="uid://w3xuec13fpgc" path="res://src/character/enemy/green.tscn" id="6_vcgl2"]
+[ext_resource type="PackedScene" uid="uid://b5qtj00q0awjg" path="res://src/character/enemy/red.tscn" id="7_obe8y"]
+[ext_resource type="PackedScene" uid="uid://c6hat4xli5ja1" path="res://src/character/enemy/black.tscn" id="8_vgjmd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_knbie"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -21,9 +24,6 @@ ambient_light_source = 3
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvxvk"]
-size = Vector2(1024, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4duf"]
 size = Vector2(256, 1e+06)
 
@@ -38,9 +38,9 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="World" type="Node"]
+[node name="World" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_3klmo")
-next_scene = ExtResource("2_1x2xs")
+player = NodePath("Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cnr5b")
@@ -57,20 +57,23 @@ scale = Vector2(1.076, 1.076)
 texture = ExtResource("6_g7tw4")
 centered = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(512, 1000)
-metadata/_edit_group_ = true
+[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("world")]
+script = ExtResource("5_q0b4x")
+world = NodePath("..")
+types = Array[PackedScene]([ExtResource("4_2xdc0"), ExtResource("5_q1qhn"), ExtResource("6_vcgl2"), ExtResource("7_obe8y"), ExtResource("8_vgjmd")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_wvxvk")
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+one_shot = true
+autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(8, 0.25)
-texture = ExtResource("2_o4qr1")
+[node name="PointTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 100.0
+one_shot = true
+autostart = true
 
 [node name="NextLevel" type="Area2D" parent="."]
-position = Vector2(1000, 0)
+position = Vector2(2000, 0)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
@@ -78,16 +81,7 @@ shape = SubResource("RectangleShape2D_s4duf")
 
 [node name="Player" parent="." instance=ExtResource("5_45di6")]
 position = Vector2(200, 968)
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_oa04e")]
-position = Vector2(600, 968)
-target = NodePath("../Player")
-
-[node name="PointTimer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 100.0
-one_shot = true
-autostart = true
+health = 10
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -112,6 +106,7 @@ text = "Health: "
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+max_value = 10.0
 
 [node name="Label" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -121,4 +116,8 @@ E - Punch
 Q - Kick
 S - Crouch"
 
+[node name="LevelName" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered" flags=3]
