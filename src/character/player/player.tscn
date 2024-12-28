@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ksdjb1tbboha"]
+[gd_scene load_steps=4 format=3 uid="uid://ksdjb1tbboha"]
 
 [ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_qn703"]
-[ext_resource type="Script" path="res://src/character/player.gd" id="2_ngffm"]
+[ext_resource type="Script" uid="uid://cjvib1i32olk4" path="res://src/character/player/player.gd" id="2_ngffm"]
+[ext_resource type="Script" uid="uid://c0w8p2a1xkxw5" path="res://src/character/player/idle.gd" id="3_6pkay"]
 
 [node name="Player" instance=ExtResource("1_qn703")]
 script = ExtResource("2_ngffm")
@@ -11,45 +12,42 @@ transform = Transform3D(7.54979e-08, 5.83461e-15, 1, -8.74228e-08, 0.884, 0, 1, 
 
 [node name="Skeleton3D" parent="Player_Character/Karate_Man_Rig" index="0"]
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.409336, -1.2273e-14, 0.912384, -3.25311e-07)
-bones/3/rotation = Quaternion(0.999839, 8.21331e-16, -0.0179412, -2.48313e-07)
+bones/3/rotation = Quaternion(0.999839, 7.79543e-16, -0.0179412, -2.48313e-07)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.999839, 2.80857e-16, 0.0179408, -2.48313e-07)
 bones/5/rotation = Quaternion(-3.89808e-16, 0.016635, 1.63694e-16, 0.999862)
 bones/6/rotation = Quaternion(1.98655e-07, -0.0166347, -3.30501e-09, 0.999862)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(-0.390549, 0.194111, 0.805839, 0.400519)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.614749, 0.374673, -0.36419, 0.590821)
-bones/12/rotation = Quaternion(0.0653163, -0.174705, 0.0449408, 0.981424)
 bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.00214492, 0.00414676, 0.0192383, 0.999804)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.0700262, 0.723847, -0.198022, 0.657213)
-bones/16/rotation = Quaternion(0.899018, 0.0128434, -0.0140329, 0.437499)
 bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(0.189815, -0.208595, -0.000803837, 0.959405)
 bones/18/scale = Vector3(1, 1, 1)
-bones/21/rotation = Quaternion(0.00704693, -0.0732666, -0.501332, 0.862119)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/scale = Vector3(1, 1, 1)
 bones/25/scale = Vector3(1, 1, 1)
-bones/26/rotation = Quaternion(0.00170273, 0.479046, -0.0390809, 0.876918)
 bones/26/scale = Vector3(1, 1, 1)
-bones/27/rotation = Quaternion(0.00836631, -0.0147731, 0.564276, 0.825411)
-bones/30/rotation = Quaternion(0.00704697, 0.0732666, 0.501332, 0.862119)
+bones/30/rotation = Quaternion(0.00704693, 0.0732666, 0.501332, 0.862118)
 bones/31/scale = Vector3(1, 1, 1)
+bones/32/scale = Vector3(1, 1, 1.00001)
 bones/35/scale = Vector3(1, 1, 1)
-bones/36/rotation = Quaternion(0.603619, -0.490607, 0.18138, 0.601706)
-bones/37/rotation = Quaternion(0.922563, -0.000385357, -0.0153485, 0.385541)
+bones/36/scale = Vector3(0.999999, 1, 1.00001)
 bones/39/rotation = Quaternion(-0.043032, 0.936373, -0.347492, 0.024581)
 bones/39/scale = Vector3(1, 1, 1)
 bones/40/scale = Vector3(1, 1, 1)
+bones/41/rotation = Quaternion(-0.358863, 0.000172028, -0.00029943, 0.93339)
+bones/42/rotation = Quaternion(-0.205818, 0.000150178, -0.000132899, 0.97859)
+bones/44/rotation = Quaternion(-0.358863, -0.000172049, 0.000299536, 0.93339)
+bones/45/rotation = Quaternion(-0.205818, -0.000150205, 0.000132897, 0.97859)
 
 [node name="Camera3D" type="Camera3D" parent="Player_Character" index="2"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 3, 7)
 fov = 30.0
+
+[node name="Idle" parent="StateMachine" index="0"]
+script = ExtResource("3_6pkay")
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 position = Vector2(0, -436)

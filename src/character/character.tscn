@@ -7,16 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://dwhurebebltbi" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_black.png" id="5_daxvm"]
 [ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="6_agcg2"]
 [ext_resource type="Texture2D" uid="uid://8nkd0yxej538" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_headband.png" id="7_d24hr"]
-[ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="8_un5e1"]
+[ext_resource type="Script" uid="uid://cj7ordcdln8n" path="res://src/state_machine/state_machine.gd" id="8_un5e1"]
 [ext_resource type="Script" path="res://src/character/state/idle.gd" id="9_cxhtl"]
 [ext_resource type="Script" path="res://src/character/state/attack.gd" id="10_32dq6"]
 [ext_resource type="Script" path="res://src/character/state/hurt.gd" id="11_f23wp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2bci"]
-size = Vector2(32, 32)
+size = Vector2(56, 56)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2d0kn"]
-radius = 8.0
+radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7576j"]
 resource_name = "Skin"
@@ -50,11 +50,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_f2bci")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.438, 0.438)
 texture = ExtResource("2_l4r3p")
 
 [node name="HurtArea" type="Area2D" parent="."]
-position = Vector2(32, 0)
+position = Vector2(28, 0)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
@@ -133,6 +133,10 @@ surface_material_override/3 = SubResource("StandardMaterial3D_xfpa7")
 [node name="AnimationPlayer" parent="Player_Character" index="1"]
 playback_default_blend_time = 0.2
 
+[node name="Label3D" type="Label3D" parent="Player_Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+billboard = 2
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current")]
 script = ExtResource("8_un5e1")
 current = NodePath("Idle")
@@ -146,11 +150,9 @@ script = ExtResource("10_32dq6")
 character = NodePath("../..")
 
 [node name="HitTimer" type="Timer" parent="StateMachine/Attack"]
-wait_time = 0.2
 one_shot = true
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
-wait_time = 0.5
 one_shot = true
 
 [node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
@@ -158,6 +160,7 @@ script = ExtResource("11_f23wp")
 character = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Hurt"]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="StateMachine/Attack/HitTimer" to="StateMachine/Attack" method="_on_hit_timer_timeout"]

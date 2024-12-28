@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfi5vtrehbrf6"]
+[gd_scene load_steps=5 format=3 uid="uid://c8so6f73lvass"]
 
-[ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world.tscn" id="1_8fvjr"]
-[ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/blue.tscn" id="2_ad4m2"]
-[ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/yellow.tscn" id="3_fpwj5"]
-[ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="3_h2ag2"]
+[ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world.tscn" id="1_w30c4"]
+[ext_resource type="Texture2D" uid="uid://bh6lok01v6bfp" path="res://assets/Floor3.png" id="2_d6cbw"]
+[ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="3_en1hx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ji1a"]
 size = Vector2(4096, 32)
 
-[node name="Level 1" instance=ExtResource("1_8fvjr")]
+[node name="DebugEmpty" instance=ExtResource("1_w30c4")]
+
+[node name="Sprite2D" parent="Parallax2D" index="0"]
+texture = ExtResource("2_d6cbw")
 
 [node name="EnemySpawner" parent="." index="3"]
-types = Array[PackedScene]([ExtResource("2_ad4m2"), ExtResource("3_fpwj5")])
+max_enemies = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="6"]
 position = Vector2(512, 1000)
@@ -23,7 +25,7 @@ shape = SubResource("RectangleShape2D_7ji1a")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" index="1"]
 texture_repeat = 2
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_h2ag2")
+texture = ExtResource("3_en1hx")
 region_enabled = true
 region_rect = Rect2(0, 0, 16384, 128)
 
