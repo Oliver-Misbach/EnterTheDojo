@@ -1,7 +1,7 @@
 # Initial Concept Document
 https://drive.google.com/drive/folders/1p2LiPm3LVRYIls0AtLyLSyJ2EqMFiVDL
 
-# Game Design Spec for Fivr
+# Game Design Spec for Fiverr
 https://docs.google.com/document/d/1JcSItWMWWNV5nrL4Jk8UwQNZl1oSIU_S52EaGwrYfWM/edit?tab=t.0
 
 # Project Tracking
@@ -28,3 +28,12 @@ https://partner.steamgames.com/steamdirect
 - playtonicgames.com
 - re-logic.com
 - orithegame.com/moon-studios
+
+# Color Scheme: Legendary Samurai
+https://www.schemecolor.com/legendary-samurai.php
+Rich Black #04373A
+Red #661f3a
+Aztec Gold #C09554
+Pale Goldenrod #E5DFA3
+Eton Blue #91BF9F
+Deep Aquamarine #378673
