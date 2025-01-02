@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcqe81pkyl74u"]
+
+[ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_i6inj"]
+[ext_resource type="Script" path="res://src/character/enemy/enemy.gd" id="2_aqljf"]
+[ext_resource type="Script" uid="uid://b4jaxghp2t581" path="res://src/character/enemy/attack.gd" id="3_wwe7y"]
+
+[node name="Enemy" instance=ExtResource("1_i6inj")]
+script = ExtResource("2_aqljf")
+
+[node name="HurtArea" parent="." index="2"]
+position = Vector2(-28, 0)
+
+[node name="Karate_Man_Rig" parent="Player_Character" index="0"]
+transform = Transform3D(7.54979e-08, 0, -1, 0, 0.884, 0, 1, 0, 7.54979e-08, 0, 0, 0)
+
+[node name="Attack" parent="StateMachine" index="1"]
+script = ExtResource("3_wwe7y")
+
+[node name="EnemyAttackTimer" type="Timer" parent="." index="5"]
+wait_time = 2.0
+one_shot = true
+
+[editable path="Player_Character"]

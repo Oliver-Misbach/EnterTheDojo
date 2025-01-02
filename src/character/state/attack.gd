@@ -4,48 +4,50 @@ extends State
 @export var character: Character
 
 
-var crouch: bool
-var punch: bool
-
-
 @onready var hit_timer: Timer = $HitTimer
 @onready var timer: Timer = $Timer
 
 
 func _enter() -> void:
-	print(character, ": ATTACK")
+	#print("Attack state: ", character.punch, "; ", character.crouch)
+	super._enter()
 	
-	# Alternatively, only let these update from Idle.
-	crouch = character.crouch
-	punch = character.punch
+	# Fix same animation not repeating.
+	character.anim.seek(0.0)
 	
-	hit_timer.start()
-	timer.start()
-	
-	if punch:
-		if crouch:
+	if character.punch:
+		hit_timer.start(0.2) # Punch hit time: 200ms
+		if character.crouch:
+			timer.start(0.5) # Punch crouch: 500ms
 			character.anim.play(&"punch_crouch")
 		else:
+			timer.start(0.4) # Punch standing: 400ms
 			character.anim.play(&"punch_standing")
 	else:
-		if crouch:
+		hit_timer.start(0.3) # Kick hit time: 300ms
+		if character.crouch:
+			timer.start(0.8) # Kick crouch: 800ms
 			character.anim.play(&"kick_crouch")
 		else:
+			timer.start(0.667) # Kick standing: 667ms
 			character.anim.play(&"kick_standing")
 
 
 func _exit() -> void:
+	super._exit()
+	
 	hit_timer.stop()
 	timer.stop()
 
 
 func _on_hit_timer_timeout() -> void:
 	for body in character.hurt_area.get_overlapping_bodies():
-		if body != self and body is Character:
-			if crouch == body.crouch:
+		if body != character and body is Character:
+			#print(character.name, " try hurt... ", body.name, "; ", character.crouch, ", ", body.crouch)
+			if character.crouch == body.crouch:
 				body.damage()
 			break
 
 
 func _on_timer_timeout() -> void:
-	state_changed.emit($"../Idle")
+	state_changed.emit(character.state_idle)

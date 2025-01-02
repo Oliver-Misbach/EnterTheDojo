@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://y0w2stynro0i"]
+
+[ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world.tscn" id="1_jhhjc"]
+[ext_resource type="PackedScene" uid="uid://w3xuec13fpgc" path="res://src/character/enemy/green.tscn" id="2_u8upv"]
+[ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="3_0av1w"]
+[ext_resource type="PackedScene" uid="uid://b5qtj00q0awjg" path="res://src/character/enemy/red.tscn" id="3_x00qo"]
+[ext_resource type="Texture2D" uid="uid://cr5ypkis76ngo" path="res://assets/Floor2.png" id="4_hryqa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ji1a"]
+size = Vector2(4096, 32)
+
+[node name="Level 2" instance=ExtResource("1_jhhjc")]
+
+[node name="Sprite2D" parent="Parallax2D" index="0"]
+texture = ExtResource("4_hryqa")
+
+[node name="EnemySpawner" parent="." index="3"]
+types = Array[PackedScene]([ExtResource("2_u8upv"), ExtResource("3_x00qo")])
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="6"]
+position = Vector2(512, 1000)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_7ji1a")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" index="1"]
+texture_repeat = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_0av1w")
+region_enabled = true
+region_rect = Rect2(0, 0, 16384, 128)
+
+[node name="Player" parent="." index="7"]
+position = Vector2(200, 956)

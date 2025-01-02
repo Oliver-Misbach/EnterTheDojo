@@ -8,4 +8,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.pressed:
 			Global.state = GameState.new()
-			get_tree().change_scene_to_packed(load("res://src/level/level1.tscn"))
+			Global.current_level = 0
+			Global.change_level()

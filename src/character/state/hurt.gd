@@ -8,19 +8,22 @@ extends State
 
 
 func _enter() -> void:
-	print(character, ": HURT")
+	super._enter()
 	
+	character.health -= 1
 	timer.start()
 	
 	if character.crouch:
 		character.anim.play(&"hit_react_crouching")
 	else:
 		character.anim.play(&"hit_react_standing")
-	
-	character.health -= 10
+
+
+func _exit() -> void:
+	super._exit()
 	if character.health <= 0:
 		character.queue_free()
 
 
 func _on_timer_timeout() -> void:
-	state_changed.emit($"../Idle")
+	state_changed.emit(character.state_idle)
