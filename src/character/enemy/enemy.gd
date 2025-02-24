@@ -72,8 +72,8 @@ func _physics_process(delta: float) -> void:
 	
 	super._physics_process(delta)
 	
-	var dodge_chance: float = _compute_dodge_chance(target.punch, target.crouch)
-	debug_label.text += "\nDodge: %d%%" % (dodge_chance * 100.0)
+	#var dodge_chance: float = _compute_dodge_chance(target.punch, target.crouch)
+	#debug_label.text += "\nDodge: %d%%" % (dodge_chance * 100.0)
 
 
 func _enemy_attack() -> void:

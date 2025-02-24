@@ -127,7 +127,8 @@ surface_material_override/3 = SubResource("StandardMaterial3D_xfpa7")
 [node name="AnimationPlayer" parent="Player_Character" index="1"]
 playback_default_blend_time = 0.2
 
-[node name="Label3D" type="Label3D" parent="Player_Character"]
+[node name="DebugLabel" type="Label3D" parent="Player_Character"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 billboard = 2
 

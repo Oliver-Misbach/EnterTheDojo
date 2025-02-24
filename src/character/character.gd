@@ -24,7 +24,8 @@ var crouch: bool
 @onready var state_idle: State = $StateMachine/Idle
 @onready var state_attack: State = $StateMachine/Attack
 @onready var state_hurt: State = $StateMachine/Hurt
-@onready var debug_label: Label3D = $Player_Character/Label3D
+
+#@onready var debug_label: Label3D = $Player_Character/DebugLabel
 
 
 func _process(_delta: float) -> void:
@@ -34,10 +35,9 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	#print(name, " physics process: ", state_machine.current.name)
 	
-	# For some reason, not visible when used in _process.
-	debug_label.text = "State: %s" % state_machine.current.name
-	if state_machine.current == state_attack:
-		debug_label.text += "\n" + ("wind down" if state_attack.hit_timer.is_stopped() else "wind up")
+	#debug_label.text = "State: %s" % state_machine.current.name
+	#if state_machine.current == state_attack:
+		#debug_label.text += "\n" + ("wind down" if state_attack.hit_timer.is_stopped() else "wind up")
 	
 	velocity += get_gravity() * delta
 	
