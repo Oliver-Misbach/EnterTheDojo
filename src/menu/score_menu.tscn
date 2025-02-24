@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c56d1w4yo8uu6"]
 
-[ext_resource type="Script" uid="uid://ds7hi6ts0jgtm" path="res://src/menu/score_menu.gd" id="1_5ltut"]
+[ext_resource type="Script" path="res://src/menu/score_menu.gd" id="1_5ltut"]
 [ext_resource type="Texture2D" uid="uid://bctdxtksa3qmf" path="res://assets/ScoreScreen.png" id="2_m312k"]
 
 [node name="ScoreMenu" type="Node"]

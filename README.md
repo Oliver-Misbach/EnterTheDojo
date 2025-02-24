@@ -2,12 +2,12 @@
 
 ## Tasks
 
-- [ ] Testing and feedback
 - [ ] Clean up and comment code once behavior is finalized.
 - [ ] Multiple resolution support (currently expects 16:9)
 - [ ] Save/load, last level, high score
 - [ ] Clean up state machine handling (e.g. enemy AI)
-- [ ] Upgrading to Godot 4.4-beta might fix "invalid UID" warnings.
+- [ ] UID warnings can be ignored. Should be fixed in Godot 4.4.
+- [ ] Test .blend import with Godot 4.3+
 
 # Initial Concept Document
 https://drive.google.com/drive/folders/1p2LiPm3LVRYIls0AtLyLSyJ2EqMFiVDL
