@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://csmkwv7sbo713"]
+[gd_scene load_steps=19 format=3 uid="uid://csmkwv7sbo713"]
 
 [ext_resource type="Script" path="res://src/character/character.gd" id="1_feilg"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="2_l4r3p"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://src/character/state/idle.gd" id="9_cxhtl"]
 [ext_resource type="Script" path="res://src/character/state/attack.gd" id="10_32dq6"]
 [ext_resource type="Script" path="res://src/character/state/hurt.gd" id="11_f23wp"]
+[ext_resource type="Script" path="res://src/character/state/death.gd" id="12_u8qc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2bci"]
 size = Vector2(56, 56)
@@ -158,8 +159,17 @@ character = NodePath("../..")
 wait_time = 0.5
 one_shot = true
 
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
+script = ExtResource("12_u8qc8")
+character = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Death"]
+wait_time = 0.9
+one_shot = true
+
 [connection signal="timeout" from="StateMachine/Attack/HitTimer" to="StateMachine/Attack" method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Hurt/Timer" to="StateMachine/Hurt" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Death/Timer" to="StateMachine/Death" method="_on_timer_timeout"]
 
 [editable path="Player_Character"]

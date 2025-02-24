@@ -10,11 +10,9 @@ extends State
 func _enter() -> void:
 	timer.start()
 	
-	if character.crouch:
-		character.anim.play(&"hit_react_crouching")
-	else:
-		character.anim.play(&"hit_react_standing")
+	character.anim.play(&"death")
 
 
 func _on_timer_timeout() -> void:
-	state_changed.emit(character.state_idle)
+	character.death.emit()
+	character.process_mode = Node.PROCESS_MODE_DISABLED

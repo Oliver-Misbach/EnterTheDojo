@@ -6,12 +6,10 @@ extends State
 
 
 func _enter() -> void:
-	super._enter()
 	_try_attack()
 
 
 func _exit() -> void:
-	super._exit()
 	character.velocity.x = 0.0
 
 

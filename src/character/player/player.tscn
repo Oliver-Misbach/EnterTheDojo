@@ -6,37 +6,17 @@
 
 [node name="Player" instance=ExtResource("1_qn703")]
 script = ExtResource("2_ngffm")
+health = 10.0
 
 [node name="Karate_Man_Rig" parent="Player_Character" index="0"]
 transform = Transform3D(7.54979e-08, 5.83461e-15, 1, -8.74228e-08, 0.884, 0, 1, 7.72817e-08, -7.54979e-08, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player_Character/Karate_Man_Rig" index="0"]
-bones/0/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.999839, 7.79543e-16, -0.0179412, -2.48313e-07)
-bones/3/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-3.89808e-16, 0.016635, 1.63694e-16, 0.999862)
-bones/6/rotation = Quaternion(1.98655e-07, -0.0166347, -3.30501e-09, 0.999862)
-bones/7/scale = Vector3(1, 1, 1)
-bones/8/scale = Vector3(1, 1, 1)
-bones/12/scale = Vector3(1, 1, 1)
 bones/13/rotation = Quaternion(0.00214492, 0.00414676, 0.0192383, 0.999804)
-bones/13/scale = Vector3(1, 1, 1)
-bones/14/scale = Vector3(1, 1, 1)
-bones/16/scale = Vector3(1, 1, 1)
-bones/18/scale = Vector3(1, 1, 1)
-bones/21/scale = Vector3(1, 1, 1)
-bones/22/scale = Vector3(1, 1, 1)
-bones/23/scale = Vector3(1, 1, 1)
-bones/25/scale = Vector3(1, 1, 1)
-bones/26/scale = Vector3(1, 1, 1)
 bones/30/rotation = Quaternion(0.00704693, 0.0732666, 0.501332, 0.862118)
-bones/31/scale = Vector3(1, 1, 1)
 bones/32/scale = Vector3(1, 1, 1.00001)
-bones/35/scale = Vector3(1, 1, 1)
 bones/36/scale = Vector3(0.999999, 1, 1.00001)
-bones/39/rotation = Quaternion(-0.043032, 0.936373, -0.347492, 0.024581)
-bones/39/scale = Vector3(1, 1, 1)
-bones/40/scale = Vector3(1, 1, 1)
 bones/41/rotation = Quaternion(-0.358863, 0.000172028, -0.00029943, 0.93339)
 bones/42/rotation = Quaternion(-0.205818, 0.000150178, -0.000132899, 0.97859)
 bones/44/rotation = Quaternion(-0.358863, -0.000172049, 0.000299536, 0.93339)

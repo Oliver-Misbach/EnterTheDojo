@@ -13,7 +13,8 @@ func _enter() -> void:
 	super._enter()
 	
 	# Fix same animation not repeating.
-	character.anim.seek(0.0)
+	character.anim.stop()
+	#character.anim.seek(0.0)
 	
 	if character.punch:
 		hit_timer.start(0.2) # Punch hit time: 200ms

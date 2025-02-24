@@ -2,11 +2,15 @@ class_name Character
 extends CharacterBody2D
 
 
+signal death()
+
+
 const SPEED = 200.0
 #const JUMP_VELOCITY = -400.0
 
 
-@export var health := 1
+@export var health := 1.0
+@export var crouch_damage_multiplier := 1.3
 
 
 var movement: float
@@ -24,6 +28,7 @@ var crouch: bool
 @onready var state_idle: State = $StateMachine/Idle
 @onready var state_attack: State = $StateMachine/Attack
 @onready var state_hurt: State = $StateMachine/Hurt
+@onready var state_death: State = $StateMachine/Death
 
 #@onready var debug_label: Label3D = $Player_Character/DebugLabel
 
@@ -57,4 +62,12 @@ func try_damage() -> void:
 
 
 func damage() -> void:
-	state_machine.current = state_hurt
+	if crouch:
+		health -= crouch_damage_multiplier
+	else:
+		health -= 1.0
+	
+	if health <= 0.0:
+		state_machine.current = state_death
+	else:
+		state_machine.current = state_hurt
