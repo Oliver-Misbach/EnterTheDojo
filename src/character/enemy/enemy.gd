@@ -1,5 +1,5 @@
 class_name Enemy
-extends "res://src/character/character.gd"
+extends Character
 
 
 const HIT_FRAMES := int(0.2 * 60.0)
@@ -15,7 +15,7 @@ var last_hurt_style: Array # [punch, crouch]
 
 
 func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
-	# TODO: These could be overridden scripts like boss.gd.
+	# Note: This is overridden in boss.gd.
 	match scene_file_path:
 		#"res://src/character/enemy.tscn":
 			## Testing. Block punches and crouching.
@@ -40,7 +40,7 @@ func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
 func _physics_process(delta: float) -> void:
 	assert(is_instance_valid(target), "Expected a valid player.")
 	
-	# TODO: Use proper state handling for enemy behavior.
+	# TODO: Use state machine for enemy behavior.
 	var offset := target.position.x - position.x
 	if abs(offset) > abs(hurt_area.position.x * 2.0) + 1.0:
 		movement = signf(offset)
@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 		kick = false
 	else:
 		movement = 0.0
-		# Dodge if enemy winding up and player isn't attacking.
+		# Dodge if attack winding up and player isn't attacking.
 		if target.state_machine.current == target.state_attack \
 				and not target.state_attack.hit_timer.is_stopped() \
 				and state_machine.current != state_attack:

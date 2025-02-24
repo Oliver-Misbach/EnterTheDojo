@@ -45,7 +45,7 @@ func _on_hit_timer_timeout() -> void:
 		if body != character and body is Character:
 			#print(character.name, " try hurt... ", body.name, "; ", character.crouch, ", ", body.crouch)
 			if character.crouch == body.crouch:
-				body.damage()
+				body.try_damage()
 			break
 
 

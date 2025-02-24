@@ -1,5 +1,5 @@
 class_name Player
-extends "res://src/character/character.gd"
+extends Character
 
 var left: float
 var right: float

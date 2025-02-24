@@ -19,8 +19,8 @@ var crouch: bool
 @onready var hurt_area: Area2D = $HurtArea
 @onready var model: Node3D = $Player_Character
 @onready var anim: AnimationPlayer = $Player_Character/AnimationPlayer
+
 @onready var state_machine: StateMachine = $StateMachine
-# TODO: Decouple state machine completely.
 @onready var state_idle: State = $StateMachine/Idle
 @onready var state_attack: State = $StateMachine/Attack
 @onready var state_hurt: State = $StateMachine/Hurt
@@ -48,9 +48,13 @@ func _physics_process(delta: float) -> void:
 	
 	model.position = Vector3(position.x / 64.0, -position.y / 64.0, 0.0)
 
-func damage() -> void:
+func try_damage() -> void:
 	#print("Damage ", name, ": ", state_attack.hit_timer.is_stopped())
 	
-	# You can be damaged during wind up.
+	# You can be damaged during idle and attack wind up.
 	if state_machine.current == state_idle or not state_attack.hit_timer.is_stopped():
-		state_machine.current = state_hurt
+		damage()
+
+
+func damage() -> void:
+	state_machine.current = state_hurt
