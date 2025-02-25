@@ -17,14 +17,10 @@ func _exit() -> void:
 	character.velocity.x = 0.0
 
 
-func _process_frame(delta: float) -> void:
-	super._process_frame(delta)
-	
-	_update_animation()
-
-
 func _physics_frame(delta: float) -> void:
 	super._physics_frame(delta)
+	
+	_update_animation()
 	
 	#if character.is_on_floor():
 	if character.crouch:
