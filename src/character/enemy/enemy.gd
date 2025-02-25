@@ -6,6 +6,7 @@ const HIT_FRAMES := int(0.2 * 60.0)
 
 
 @export var target: Player
+@export var dodge_style: DodgeStyle
 
 
 @onready var enemy_crouch_timer: Timer = %EnemyCrouchTimer
@@ -26,25 +27,22 @@ func damage() -> void:
 
 func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
 	# Note: This is overridden in boss.gd.
-	match scene_file_path:
-		#"res://src/character/enemy.tscn":
-			## Testing. Block punches and crouching.
-			#return 1.0 if is_punch or is_crouch else 0.0
-		"res://src/character/enemy/type/blue.tscn":
-			pass # Blue: No blocking.
-		"res://src/character/enemy/type/yellow.tscn":
-			if is_punch:
-				return 0.6 # Yellow: 60% of punches.
-		"res://src/character/enemy/type/green.tscn":
-			if not is_punch:
-				return 0.6 # Green: 60% of kicks.
-		"res://src/character/enemy/type/red.tscn":
-			if not is_crouch:
-				return 0.8 # Red: 80% of standing attacks.
-		"res://src/character/enemy/type/black.tscn":
-			if last_hurt_style == [is_punch, is_crouch]:
-				return 1.0 # Black: 100% of same style attacks.
-	return 0.0
+	
+	var chance: float
+	match [is_punch, is_crouch]:
+		[false, false]:
+			chance = dodge_style.kick_standing
+		[false, true]:
+			chance = dodge_style.kick_crouch
+		[true, false]:
+			chance = dodge_style.punch_standing
+		[true, true]:
+			chance = dodge_style.punch_crouch
+	
+	if last_hurt_style == [is_punch, is_crouch]:
+		chance = maxf(chance, dodge_style.repeat_attack)
+	
+	return chance
 
 
 func _physics_process(delta: float) -> void:

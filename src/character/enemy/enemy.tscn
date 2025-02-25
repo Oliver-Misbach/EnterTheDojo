@@ -7,6 +7,7 @@
 
 [node name="Enemy" instance=ExtResource("1_i6inj")]
 script = ExtResource("2_aqljf")
+dodge_style = null
 
 [node name="HurtArea" parent="." index="2"]
 position = Vector2(-28, 0)

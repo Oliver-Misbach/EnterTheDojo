@@ -16,6 +16,7 @@ roughness = 0.5
 
 [node name="BossEnemy" instance=ExtResource("1_c8mn7")]
 script = ExtResource("2_yx13e")
+dodge_style = null
 health = 10.0
 
 [node name="Karate_Man" parent="Player_Character/Karate_Man_Rig/Skeleton3D" index="0"]
