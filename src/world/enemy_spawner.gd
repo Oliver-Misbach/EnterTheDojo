@@ -8,6 +8,10 @@ extends Node
 @export var max_enemies := 1
 
 
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var interval_min := 1.0
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var interval_max := 3.0
+
+
 @onready var timer: Timer = $Timer
 
 
@@ -22,7 +26,7 @@ func _on_timer_timeout() -> void:
 	if types.is_empty():
 		return
 	
-	timer.start(randf_range(1.0, 3.0))
+	timer.start(randf_range(interval_min, interval_max))
 	
 	if enemies.size() >= max_enemies:
 		return
