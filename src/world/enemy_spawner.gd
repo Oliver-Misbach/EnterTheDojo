@@ -38,9 +38,17 @@ func _on_timer_timeout() -> void:
 		]
 	
 	var enemy: Enemy = types.pick_random().instantiate()
+	enemy.world = world
 	enemy.target = world.player
 	enemy.position = world.player.position + Vector2.RIGHT * spawn_distance
 	add_child(enemy)
 	
 	enemies.push_back(enemy)
-	enemy.death.connect(enemies.erase.bind(enemy))
+	enemy.death.connect(_on_enemy_death.bind(enemy))
+
+
+func _on_enemy_death(enemy: Enemy) -> void:
+	enemies.erase(enemy)
+	if enemy is Boss:
+		var complete_timer := get_tree().create_timer(1.0)
+		Global.ok(complete_timer.timeout.connect(world.complete_level))

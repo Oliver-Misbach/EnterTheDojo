@@ -43,7 +43,8 @@ func change_to_level() -> void:
 		get_tree().change_scene_to_packed(levels[encrypted.state.level])
 
 
-func reset_game_state() -> void:
+func finalize_game() -> void:
+	encrypted.high_score = maxi(encrypted.high_score, encrypted.state.score)
 	encrypted.state = GameState.new()
 	save_enc()
 

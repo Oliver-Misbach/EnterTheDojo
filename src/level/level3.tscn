@@ -7,3 +7,6 @@
 
 [node name="Sprite2D" parent="Background" index="0"]
 texture = ExtResource("2_3ukqg")
+
+[node name="CollisionShape2D" parent="NextLevel" index="0"]
+disabled = true

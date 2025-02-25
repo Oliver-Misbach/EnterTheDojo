@@ -1,13 +1,15 @@
 extends "res://src/character/state/hurt.gd"
 
 
+var _last_crouch: bool
+
+
 func _enter() -> void:
 	super._enter()
 	
-	# character.target.crouch is still the same.
-	if character.last_crouch == character.crouch:
-		character.crouch_repeats += 1
-	else:
-		character.crouch_repeats = 1
-	character.last_crouch = character.crouch #character.target.crouch
+	if _last_crouch != character.crouch:
+		# Player changed their crouching.
+		character.crouch_repeats = 0
 	
+	character.crouch_repeats += 1
+	_last_crouch = character.crouch

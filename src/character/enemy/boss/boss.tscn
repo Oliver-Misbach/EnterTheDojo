@@ -1,11 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgvns2h8ilclv"]
+[gd_scene load_steps=16 format=3 uid="uid://cgvns2h8ilclv"]
 
 [ext_resource type="PackedScene" uid="uid://bcqe81pkyl74u" path="res://src/character/enemy/enemy.tscn" id="1_c8mn7"]
+[ext_resource type="Script" path="res://src/character/enemy/boss/boss.gd" id="2_04r6m"]
 [ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="2_e2i23"]
-[ext_resource type="Script" path="res://src/character/enemy/boss/boss.gd" id="2_yx13e"]
+[ext_resource type="Script" path="res://src/character/enemy/dodge_style.gd" id="3_0nmul"]
+[ext_resource type="Script" path="res://src/character/enemy/boss/combo/combo.gd" id="3_a1thx"]
 [ext_resource type="Script" path="res://src/character/enemy/boss/state/idle.gd" id="4_1ucil"]
+[ext_resource type="Resource" uid="uid://dc3m6peqqdwji" path="res://src/character/enemy/boss/combo/type/ps_ks_ps.tres" id="4_53mqb"]
 [ext_resource type="Script" path="res://src/character/enemy/boss/state/hurt.gd" id="5_jl5eq"]
+[ext_resource type="Resource" uid="uid://cpaap3ftu6nv2" path="res://src/character/enemy/boss/combo/type/kc_ps.tres" id="5_n7kis"]
+[ext_resource type="Resource" uid="uid://cfcgoyuj05lw" path="res://src/character/enemy/boss/combo/type/ps_ps.tres" id="6_8m0cv"]
 [ext_resource type="PackedScene" uid="uid://dr5i6cxu3i8mm" path="res://src/character/enemy/boss/interface.tscn" id="6_arb2w"]
+[ext_resource type="Resource" uid="uid://ben86pv3e85uk" path="res://src/character/enemy/boss/combo/type/kc_kc.tres" id="7_kikcv"]
+[ext_resource type="Resource" uid="uid://srd8q7sbri86" path="res://src/character/enemy/boss/combo/type/ks_pc.tres" id="8_pkukm"]
+
+[sub_resource type="Resource" id="Resource_6sq2e"]
+resource_local_to_scene = true
+script = ExtResource("3_0nmul")
+repeat_attack = 0.0
+punch_standing = 0.0
+punch_crouch = 0.0
+kick_standing = 0.0
+kick_crouch = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cje4w"]
 resource_name = "Gi"
@@ -15,9 +31,19 @@ albedo_texture = ExtResource("2_e2i23")
 roughness = 0.5
 
 [node name="BossEnemy" instance=ExtResource("1_c8mn7")]
-script = ExtResource("2_yx13e")
-dodge_style = null
+script = ExtResource("2_04r6m")
+combo_types = Array[ExtResource("3_a1thx")]([ExtResource("4_53mqb"), ExtResource("5_n7kis"), ExtResource("6_8m0cv"), ExtResource("7_kikcv"), ExtResource("8_pkukm")])
+dodge_chance = 0.3
+repeat_dodge_chance = 1.0
+dodge_after_repeats = 3
+dodge_style = SubResource("Resource_6sq2e")
 health = 10.0
+
+[node name="Interface" parent="." index="0" node_paths=PackedStringArray("boss") instance=ExtResource("6_arb2w")]
+boss = NodePath("..")
+
+[node name="Sprite2D" parent="." index="2"]
+scale = Vector2(0.438, 0.438)
 
 [node name="Karate_Man" parent="Player_Character/Karate_Man_Rig/Skeleton3D" index="0"]
 surface_material_override/2 = SubResource("StandardMaterial3D_cje4w")
@@ -27,8 +53,5 @@ script = ExtResource("4_1ucil")
 
 [node name="Hurt" parent="StateMachine" index="2"]
 script = ExtResource("5_jl5eq")
-
-[node name="Interface" parent="." index="6" node_paths=PackedStringArray("boss") instance=ExtResource("6_arb2w")]
-boss = NodePath("..")
 
 [editable path="Player_Character"]

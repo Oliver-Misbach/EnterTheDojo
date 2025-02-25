@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 			#       this would remove the need to calculate chance_per_frame
 			if randf() < chance_per_frame:
 				_dodge_crouch()
-				_reset_attack()
+				_restart_attack()
 		elif target.state_machine.current != target.state_death:
 			if state_machine.current == state_idle:
 				if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
@@ -81,11 +81,8 @@ func _physics_process(delta: float) -> void:
 					_match_crouch()
 				
 				if enemy_attack_timer.is_stopped():
-					_has_changed_crouch = false
 					_attack()
-					
-					enemy_crouch_timer.start()
-					enemy_attack_timer.start()
+					_restart_attack()
 	
 	super._physics_process(delta)
 	
@@ -94,7 +91,7 @@ func _physics_process(delta: float) -> void:
 
 
 # Prevents the enemy from crouching/uncrouching too quickly.
-func _reset_attack() -> void:
+func _restart_attack() -> void:
 	_has_changed_crouch = false
 	
 	enemy_crouch_timer.stop()
