@@ -28,7 +28,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4duf"]
-size = Vector2(256, 1e+06)
+size = Vector2(64, 4096)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5r1p"]
 size = Vector2(64, 4096)
@@ -53,6 +53,7 @@ process_mode = 3
 script = ExtResource("2_s04er")
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("world")]
+unique_name_in_owner = true
 script = ExtResource("5_q0b4x")
 world = NodePath("..")
 types = Array[PackedScene]([ExtResource("4_2xdc0"), ExtResource("5_q1qhn"), ExtResource("6_vcgl2"), ExtResource("7_obe8y"), ExtResource("8_vgjmd")])
@@ -71,7 +72,6 @@ autostart = true
 unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-visible = false
 scale = Vector2(1.161, 1.161)
 texture = ExtResource("9_pxxcl")
 centered = false
@@ -82,6 +82,7 @@ world = NodePath("..")
 metadata/_edit_group_ = true
 
 [node name="NextLevel" type="Area2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(2000, 0)
 metadata/_edit_group_ = true
 
@@ -89,7 +90,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_s4duf")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
-position = Vector2(-64, 0)
+position = Vector2(-2821, 3500)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
@@ -104,4 +105,4 @@ region_enabled = true
 region_rect = Rect2(0, 0, 128, 16384)
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
-[connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered" flags=3]
+[connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]

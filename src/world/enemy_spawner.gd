@@ -1,3 +1,4 @@
+class_name EnemySpawner
 extends Node
 
 
@@ -15,6 +16,9 @@ var boss: bool
 
 
 func _on_timer_timeout() -> void:
+	if world._player_at_next_level:
+		return
+	
 	if types.is_empty():
 		return
 	
@@ -49,6 +53,9 @@ func _on_timer_timeout() -> void:
 
 func _on_enemy_death(enemy: Enemy) -> void:
 	enemies.erase(enemy)
+	
 	if enemy is Boss:
-		var complete_timer := get_tree().create_timer(1.0)
-		Global.ok(complete_timer.timeout.connect(world.complete_level))
+		world.complete_level()
+		return
+	
+	world.try_complete_level()
