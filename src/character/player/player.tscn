@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ksdjb1tbboha"]
+[gd_scene load_steps=5 format=3 uid="uid://ksdjb1tbboha"]
 
 [ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_qn703"]
 [ext_resource type="Script" path="res://src/character/player/player.gd" id="2_ngffm"]
 [ext_resource type="Script" path="res://src/character/player/idle.gd" id="3_6pkay"]
+[ext_resource type="Script" path="res://src/character/player/death.gd" id="4_63e4w"]
 
 [node name="Player" instance=ExtResource("1_qn703")]
 script = ExtResource("2_ngffm")
@@ -28,6 +29,9 @@ fov = 30.0
 
 [node name="Idle" parent="StateMachine" index="0"]
 script = ExtResource("3_6pkay")
+
+[node name="Death" parent="StateMachine" index="3"]
+script = ExtResource("4_63e4w")
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 position = Vector2(0, -436)
