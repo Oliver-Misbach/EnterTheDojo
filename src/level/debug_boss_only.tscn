@@ -1,30 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpa3cqwsjrh5j"]
+[gd_scene load_steps=3 format=3 uid="uid://dpa3cqwsjrh5j"]
 
 [ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world/world.tscn" id="1_07ipg"]
-[ext_resource type="Texture2D" uid="uid://bh6lok01v6bfp" path="res://assets/Floor3.png" id="2_5rpwh"]
-[ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="3_207hc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ji1a"]
-size = Vector2(4096, 32)
+[ext_resource type="Texture2D" uid="uid://u56fn0gs47h0" path="res://assets/Floor1.png" id="2_8egcc"]
 
 [node name="DebugBossOnly" instance=ExtResource("1_07ipg")]
 
-[node name="Sprite2D" parent="Parallax2D" index="0"]
-texture = ExtResource("2_5rpwh")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="6"]
-position = Vector2(512, 1000)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-shape = SubResource("RectangleShape2D_7ji1a")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" index="1"]
-texture_repeat = 2
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_207hc")
-region_enabled = true
-region_rect = Rect2(0, 0, 16384, 128)
-
-[node name="Player" parent="." index="7"]
-position = Vector2(200, 956)
+[node name="Sprite2D" parent="Background" index="0"]
+texture = ExtResource("2_8egcc")

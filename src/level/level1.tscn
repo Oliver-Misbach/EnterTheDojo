@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfi5vtrehbrf6"]
+[gd_scene load_steps=4 format=3 uid="uid://cfi5vtrehbrf6"]
 
 [ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world/world.tscn" id="1_8fvjr"]
 [ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/type/blue.tscn" id="2_ad4m2"]
 [ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/type/yellow.tscn" id="3_fpwj5"]
-[ext_resource type="Texture2D" uid="uid://u56fn0gs47h0" path="res://assets/Floor1.png" id="4_kpg63"]
 
 [node name="Level 1" instance=ExtResource("1_8fvjr")]
 
-[node name="EnemySpawner" parent="." index="3"]
+[node name="EnemySpawner" parent="." index="4"]
 types = Array[PackedScene]([ExtResource("2_ad4m2"), ExtResource("3_fpwj5")])
-
-[node name="Sprite2D" parent="Background" index="0"]
-texture = ExtResource("4_kpg63")

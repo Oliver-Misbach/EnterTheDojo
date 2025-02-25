@@ -7,10 +7,11 @@ extends CharacterBody2D
 signal death()
 
 
-const SPEED = 200.0
 #const JUMP_VELOCITY = -400.0
 
 
+@export var world: World
+@export var speed := 70.0
 @export var health := 1.0
 @export var crouch_damage_multiplier := 1.3
 
@@ -59,7 +60,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func update_model_position() -> void:
-	model.position = Vector3(position.x / 64.0, -position.y / 64.0, 0.0)
+	#model.position = Vector3(position.x, 0.0, 0.0)
+	model.position = Vector3(position.x * world.model_scale, 0.0, 0.0)
 
 
 func try_damage() -> void:

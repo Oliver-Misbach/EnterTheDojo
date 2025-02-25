@@ -20,7 +20,7 @@ script = ExtResource("2_aqljf")
 dodge_style = SubResource("Resource_71lto")
 
 [node name="HurtArea" parent="." index="2"]
-position = Vector2(-28, 0)
+position = Vector2(-32, 0)
 
 [node name="Karate_Man_Rig" parent="Player_Character" index="0"]
 transform = Transform3D(7.54979e-08, 0, -1, 0, 0.884, 0, 1, 0, 7.54979e-08, 0, 0, 0)
