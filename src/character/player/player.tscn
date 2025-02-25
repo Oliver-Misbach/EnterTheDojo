@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_qn703"]
 [ext_resource type="Script" path="res://src/character/player/player.gd" id="2_ngffm"]
-[ext_resource type="Script" path="res://src/character/player/idle.gd" id="3_6pkay"]
-[ext_resource type="Script" path="res://src/character/player/death.gd" id="4_63e4w"]
+[ext_resource type="Script" path="res://src/character/player/state/idle.gd" id="3_6pkay"]
+[ext_resource type="Script" path="res://src/character/player/state/death.gd" id="4_63e4w"]
 
 [node name="Player" instance=ExtResource("1_qn703")]
 script = ExtResource("2_ngffm")

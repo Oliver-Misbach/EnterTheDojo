@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfi5vtrehbrf6"]
 
-[ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world.tscn" id="1_8fvjr"]
-[ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/blue.tscn" id="2_ad4m2"]
-[ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/yellow.tscn" id="3_fpwj5"]
+[ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world/world.tscn" id="1_8fvjr"]
+[ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/type/blue.tscn" id="2_ad4m2"]
+[ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/type/yellow.tscn" id="3_fpwj5"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="3_h2ag2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ji1a"]

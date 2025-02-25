@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bcqe81pkyl74u" path="res://src/character/enemy/enemy.tscn" id="1_c8mn7"]
 [ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="2_e2i23"]
 [ext_resource type="Script" path="res://src/character/enemy/boss/boss.gd" id="2_yx13e"]
-[ext_resource type="Script" path="res://src/character/enemy/boss/idle.gd" id="4_1ucil"]
-[ext_resource type="Script" path="res://src/character/enemy/boss/hurt.gd" id="5_jl5eq"]
+[ext_resource type="Script" path="res://src/character/enemy/boss/state/idle.gd" id="4_1ucil"]
+[ext_resource type="Script" path="res://src/character/enemy/boss/state/hurt.gd" id="5_jl5eq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cje4w"]
 resource_name = "Gi"
