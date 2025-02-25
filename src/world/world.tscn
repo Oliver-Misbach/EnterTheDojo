@@ -29,8 +29,8 @@ glow_enabled = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4duf"]
 size = Vector2(256, 1e+06)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_temcy"]
-size = Vector2(4096, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5r1p"]
+size = Vector2(64, 4096)
 
 [node name="World" type="Node"]
 script = ExtResource("1_3klmo")
@@ -61,16 +61,14 @@ one_shot = true
 autostart = true
 
 [node name="Background" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-scale = Vector2(1.076, 1.076)
+scale = Vector2(1.161, 1.161)
 texture = ExtResource("6_g7tw4")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("5_45di6")]
-position = Vector2(200, 968)
-health = 10
+position = Vector2(200, 0)
 
 [node name="NextLevel" type="Area2D" parent="."]
 position = Vector2(2000, 0)
@@ -79,20 +77,20 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
 shape = SubResource("RectangleShape2D_s4duf")
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(512, 1000)
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(-64, 0)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("RectangleShape2D_temcy")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("RectangleShape2D_w5r1p")
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+[node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
 visible = false
 texture_repeat = 2
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_q0wkl")
 region_enabled = true
-region_rect = Rect2(0, 0, 16384, 128)
+region_rect = Rect2(0, 0, 128, 16384)
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered" flags=3]

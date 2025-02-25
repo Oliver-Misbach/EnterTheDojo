@@ -8,6 +8,3 @@
 
 [node name="EnemySpawner" parent="." index="3"]
 types = Array[PackedScene]([ExtResource("2_ad4m2"), ExtResource("3_fpwj5")])
-
-[node name="Player" parent="." index="6"]
-position = Vector2(200, 956)

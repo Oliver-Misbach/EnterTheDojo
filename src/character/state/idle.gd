@@ -30,11 +30,11 @@ func _physics_update(delta: float) -> void:
 	else:
 		character.anim.play(&"walk_backward")
 	
-	if character.is_on_floor():
-		if character.crouch:
-			character.velocity.x = 0.0
-		else:
-			character.velocity.x = character.movement * Character.SPEED
+	#if character.is_on_floor():
+	if character.crouch:
+		character.velocity.x = 0.0
+	else:
+		character.velocity.x = character.movement * Character.SPEED
 	
 	_try_attack()
 

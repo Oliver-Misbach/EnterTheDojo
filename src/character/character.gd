@@ -35,30 +35,37 @@ var crouch: bool
 #@onready var debug_label: Label3D = $Player_Character/DebugLabel
 
 
+func _ready() -> void:
+	update_model_position()
+
+
 func _process(_delta: float) -> void:
-	pass
+	update_model_position()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#print(name, " physics process: ", state_machine.current.name)
 	
 	#debug_label.text = "State: %s" % state_machine.current.name
 	#if state_machine.current == state_attack:
 		#debug_label.text += "\n" + ("wind down" if state_attack.hit_timer.is_stopped() else "wind up")
 	
-	velocity += get_gravity() * delta
+	#velocity += get_gravity() * delta
 	
 	#if jump and is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 	
 	move_and_slide()
-	
+
+
+func update_model_position() -> void:
 	model.position = Vector3(position.x / 64.0, -position.y / 64.0, 0.0)
+
 
 func try_damage() -> void:
 	#print("Damage ", name, ": ", state_attack.hit_timer.is_stopped())
 	
-	# You can be damaged during idle and attack wind up.
+	# Characters can be damaged during idle and attack wind up.
 	if state_machine.current == state_idle or not state_attack.hit_timer.is_stopped():
 		damage()
 

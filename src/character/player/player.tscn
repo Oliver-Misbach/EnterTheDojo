@@ -37,7 +37,7 @@ script = ExtResource("4_63e4w")
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
-position = Vector2(0, -436)
+anchor_mode = 0
 
 [connection signal="timeout" from="StateMachine/Death/PlayerResetTimer" to="StateMachine/Death" method="_on_player_reset_timer_timeout"]
 
