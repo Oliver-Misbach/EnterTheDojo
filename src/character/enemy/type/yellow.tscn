@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="2_0c2on"]
 [ext_resource type="Script" path="res://src/character/enemy/dodge_style.gd" id="2_y050j"]
 
-[sub_resource type="Resource" id="Resource_vnxic"]
+[sub_resource type="Resource" id="Resource_tf60r"]
+resource_local_to_scene = true
 script = ExtResource("2_y050j")
 repeat_attack = 0.0
 punch_standing = 0.6
@@ -20,7 +21,7 @@ albedo_texture = ExtResource("2_0c2on")
 roughness = 0.5
 
 [node name="Enemy" instance=ExtResource("1_yff4x")]
-dodge_style = SubResource("Resource_vnxic")
+dodge_style = SubResource("Resource_tf60r")
 
 [node name="Karate_Man" parent="Player_Character/Karate_Man_Rig/Skeleton3D" index="0"]
 surface_material_override/2 = SubResource("StandardMaterial3D_cje4w")

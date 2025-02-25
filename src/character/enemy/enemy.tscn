@@ -1,13 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcqe81pkyl74u"]
+[gd_scene load_steps=7 format=3 uid="uid://bcqe81pkyl74u"]
 
 [ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_i6inj"]
 [ext_resource type="Script" path="res://src/character/enemy/enemy.gd" id="2_aqljf"]
+[ext_resource type="Script" path="res://src/character/enemy/dodge_style.gd" id="3_53gs3"]
 [ext_resource type="Script" path="res://src/character/enemy/state/attack.gd" id="3_wwe7y"]
 [ext_resource type="Script" path="res://src/character/enemy/state/death.gd" id="4_31sa2"]
 
+[sub_resource type="Resource" id="Resource_71lto"]
+resource_local_to_scene = true
+script = ExtResource("3_53gs3")
+repeat_attack = 0.0
+punch_standing = 0.0
+punch_crouch = 0.0
+kick_standing = 0.0
+kick_crouch = 0.0
+
 [node name="Enemy" instance=ExtResource("1_i6inj")]
 script = ExtResource("2_aqljf")
-dodge_style = null
+dodge_style = SubResource("Resource_71lto")
 
 [node name="HurtArea" parent="." index="2"]
 position = Vector2(-28, 0)

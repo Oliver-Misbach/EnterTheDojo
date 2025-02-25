@@ -1,16 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnko3gmvxic7q"]
+[gd_scene load_steps=4 format=3 uid="uid://dnko3gmvxic7q"]
 
 [ext_resource type="PackedScene" uid="uid://bcqe81pkyl74u" path="res://src/character/enemy/enemy.tscn" id="1_bb4ck"]
-[ext_resource type="Script" path="res://src/character/enemy/dodge_style.gd" id="2_ekxi4"]
 [ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="2_yhi1j"]
-
-[sub_resource type="Resource" id="Resource_igjck"]
-script = ExtResource("2_ekxi4")
-repeat_attack = 0.0
-punch_standing = 0.0
-punch_crouch = 0.0
-kick_standing = 0.0
-kick_crouch = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cje4w"]
 resource_name = "Gi"
@@ -20,7 +11,6 @@ albedo_texture = ExtResource("2_yhi1j")
 roughness = 0.5
 
 [node name="Enemy" instance=ExtResource("1_bb4ck")]
-dodge_style = SubResource("Resource_igjck")
 
 [node name="Karate_Man" parent="Player_Character/Karate_Man_Rig/Skeleton3D" index="0"]
 surface_material_override/2 = SubResource("StandardMaterial3D_cje4w")
