@@ -51,6 +51,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_f2bci")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.438, 0.438)
 texture = ExtResource("2_l4r3p")
 

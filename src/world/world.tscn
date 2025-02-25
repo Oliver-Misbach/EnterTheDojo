@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://csq0r4i000xch"]
+[gd_scene load_steps=17 format=3 uid="uid://csq0r4i000xch"]
 
 [ext_resource type="Script" path="res://src/world/world.gd" id="1_3klmo"]
 [ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/type/blue.tscn" id="4_2xdc0"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://w3xuec13fpgc" path="res://src/character/enemy/type/green.tscn" id="6_vcgl2"]
 [ext_resource type="PackedScene" uid="uid://b5qtj00q0awjg" path="res://src/character/enemy/type/red.tscn" id="7_obe8y"]
 [ext_resource type="PackedScene" uid="uid://c6hat4xli5ja1" path="res://src/character/enemy/type/black.tscn" id="8_vgjmd"]
+[ext_resource type="PackedScene" uid="uid://mblwsep6ogyj" path="res://src/world/interface/interface.tscn" id="10_xb44s"]
+[ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="11_q0wkl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_knbie"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,20 +29,11 @@ glow_enabled = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4duf"]
 size = Vector2(256, 1e+06)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sadtw"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0, 0, 0, 0.498039)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_temcy"]
+size = Vector2(4096, 32)
 
-[node name="World" type="Node" node_paths=PackedStringArray("player")]
+[node name="World" type="Node"]
 script = ExtResource("1_3klmo")
-player = NodePath("Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cnr5b")
@@ -49,13 +42,8 @@ environment = SubResource("Environment_cnr5b")
 transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 3, 0)
 shadow_enabled = true
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-scale = Vector2(1.076, 1.076)
-texture = ExtResource("6_g7tw4")
-centered = false
+[node name="Interface" parent="." node_paths=PackedStringArray("world") instance=ExtResource("10_xb44s")]
+world = NodePath("..")
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("world")]
 script = ExtResource("5_q0b4x")
@@ -72,6 +60,18 @@ wait_time = 100.0
 one_shot = true
 autostart = true
 
+[node name="Background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+scale = Vector2(1.076, 1.076)
+texture = ExtResource("6_g7tw4")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("5_45di6")]
+position = Vector2(200, 968)
+health = 10
+
 [node name="NextLevel" type="Area2D" parent="."]
 position = Vector2(2000, 0)
 metadata/_edit_group_ = true
@@ -79,45 +79,20 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
 shape = SubResource("RectangleShape2D_s4duf")
 
-[node name="Player" parent="." instance=ExtResource("5_45di6")]
-position = Vector2(200, 968)
-health = 10
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(512, 1000)
+metadata/_edit_group_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_temcy")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 347.0
-offset_bottom = 222.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sadtw")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Health: "
-
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-max_value = 10.0
-
-[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "A - Left
-D - Right
-E - Punch
-Q - Kick
-S - Crouch"
-
-[node name="LevelName" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+visible = false
+texture_repeat = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_q0wkl")
+region_enabled = true
+region_rect = Rect2(0, 0, 16384, 128)
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered" flags=3]
