@@ -8,10 +8,14 @@ const HIT_FRAMES := int(0.2 * 60.0)
 @export var target: Player
 
 
-@onready var enemy_attack_timer: Timer = $EnemyAttackTimer
+@onready var enemy_crouch_timer: Timer = %EnemyCrouchTimer
+@onready var enemy_attack_timer: Timer = %EnemyAttackTimer
 
 
 var last_hurt_style: Array # [punch, crouch]
+
+
+var _has_changed_crouch := false
 
 
 func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
@@ -60,15 +64,20 @@ func _physics_process(delta: float) -> void:
 			)
 			# TODO: 100% chance: delay randomly?
 			if randf() > pow(1.0 - chance, 1.0 / HIT_FRAMES):
-				# Dodge attack.
-				crouch = not target.crouch
-				#print("enemy dodging with ", crouch)
+				_dodge_crouch()
+				_reset_attack()
 		else:
-			if state_machine.current == state_idle and enemy_attack_timer.is_stopped():
-				# Match and attack.
-				crouch = target.crouch
-				#print("enemy matching with ", crouch)
-				_enemy_attack()
+			if state_machine.current == state_idle:
+				if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
+					_has_changed_crouch = true
+					_match_crouch()
+				
+				if enemy_attack_timer.is_stopped():
+					_has_changed_crouch = false
+					_attack()
+					
+					enemy_crouch_timer.start()
+					enemy_attack_timer.start()
 	
 	super._physics_process(delta)
 	
@@ -76,5 +85,27 @@ func _physics_process(delta: float) -> void:
 	#debug_label.text += "\nDodge: %d%%" % (dodge_chance * 100.0)
 
 
-func _enemy_attack() -> void:
+# Prevents the enemy from crouching/uncrouching too quickly.
+func _reset_attack() -> void:
+	_has_changed_crouch = false
+	
+	enemy_crouch_timer.stop()
+	enemy_crouch_timer.start()
+	
+	enemy_attack_timer.stop()
+	enemy_attack_timer.start()
+
+
+func _dodge_crouch() -> void:
+	crouch = not target.crouch
+	#print("enemy dodging with ", crouch)
+
+
+func _match_crouch() -> void:
+	crouch = target.crouch
+	#print("enemy matching with ", crouch)
+
+
+func _attack() -> void:
 	punch = true
+	#print("enemy attacking")

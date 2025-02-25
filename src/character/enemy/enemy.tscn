@@ -16,8 +16,16 @@ transform = Transform3D(7.54979e-08, 0, -1, 0, 0.884, 0, 1, 0, 7.54979e-08, 0, 0
 [node name="Attack" parent="StateMachine" index="1"]
 script = ExtResource("3_wwe7y")
 
-[node name="EnemyAttackTimer" type="Timer" parent="." index="5"]
+[node name="EnemyCrouchTimer" type="Timer" parent="." index="5"]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="EnemyAttackTimer" type="Timer" parent="." index="6"]
+unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
+autostart = true
 
 [editable path="Player_Character"]
