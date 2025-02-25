@@ -1,13 +1,14 @@
 # Enter The Dojo
 
-## Tasks
+## todo
 
-- [ ] Clean up and comment code once behavior is finalized.
+- [ ] Clean up and document code
 - [ ] Multiple resolution support (currently expects 16:9)
-- [ ] Save/load, last level, high score
-- [ ] Clean up state machine handling (e.g. enemy AI)
+- [x] Save/load, last level, high score
+- [ ] use state machine for enemy AI
 - [ ] UID warnings can be ignored. Should be fixed in Godot 4.4.
 - [ ] Test .blend import with Godot 4.3+
+- [ ] Sound, music
 
 # Initial Concept Document
 https://drive.google.com/drive/folders/1p2LiPm3LVRYIls0AtLyLSyJ2EqMFiVDL

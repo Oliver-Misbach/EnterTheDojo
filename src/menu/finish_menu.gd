@@ -1,11 +1,13 @@
 extends Node
 
 
-@onready var score_label: Label = $ScoreLabel
+@onready var score: Label = %Score
+@onready var high_score: Label = %HighScore
 
 
-func _process(_delta: float) -> void:
-	score_label.text = "Score: %d" % Global.state.score
+func _ready() -> void:
+	score.text = "Score: %d" % Global.encrypted.state.score
+	high_score.text = "High Score: %d" % Global.encrypted.state.score
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -18,4 +20,5 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_timer_timeout() -> void:
+	Global.reset_game_state()
 	get_tree().change_scene_to_packed(preload("res://src/menu/main_menu.tscn"))

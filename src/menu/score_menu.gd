@@ -20,9 +20,4 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-	# Load next level or finish screen.
-	Global.current_level += 1
-	if Global.current_level >= Global.levels.size():
-		get_tree().change_scene_to_packed(load("res://src/menu/finish_menu.tscn"))
-	else:
-		Global.change_level()
+	Global.change_to_level()

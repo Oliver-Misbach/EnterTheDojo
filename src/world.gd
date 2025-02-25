@@ -19,7 +19,17 @@ func _process(_delta: float) -> void:
 
 func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player:
-		Global.health_bonus = player.health * 10
-		Global.speed_bonus = int(1000.0 * point_timer.time_left / point_timer.wait_time)
-		Global.state.score += Global.health_bonus + Global.speed_bonus
-		get_tree().change_scene_to_packed(preload("res://src/menu/score_menu.tscn"))
+		complete_level()
+
+
+func complete_level() -> void:
+	Global.health_bonus = int(player.health * 100.0)
+	Global.speed_bonus = int(1000.0 * point_timer.time_left / point_timer.wait_time)
+	
+	Global.encrypted.state.level += 1
+	Global.encrypted.state.score += Global.health_bonus + Global.speed_bonus
+	
+	Global.save_enc()
+	
+	get_tree().change_scene_to_packed(preload("res://src/menu/score_menu.tscn"))
+	
