@@ -8,6 +8,8 @@ extends State
 
 
 func _enter() -> void:
+	super._enter()
+	
 	timer.start()
 	
 	character.anim.play(&"death")

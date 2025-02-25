@@ -2,6 +2,8 @@ class_name Character
 extends CharacterBody2D
 
 
+# used by EnemySpawner
+@warning_ignore("UNUSED_SIGNAL")
 signal death()
 
 
