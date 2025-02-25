@@ -17,9 +17,9 @@ func _exit() -> void:
 	pass
 
 
-func _idle_update(_delta: float) -> void:
+func _process_frame(_delta: float) -> void:
 	pass
 
 
-func _physics_update(_delta: float) -> void:
+func _physics_frame(_delta: float) -> void:
 	pass

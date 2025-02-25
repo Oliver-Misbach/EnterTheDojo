@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://csmkwv7sbo713"]
+[gd_scene load_steps=23 format=3 uid="uid://csmkwv7sbo713"]
 
 [ext_resource type="Script" path="res://src/character/character.gd" id="1_feilg"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="2_l4r3p"]
@@ -7,13 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://dwhurebebltbi" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_black.png" id="5_daxvm"]
 [ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="6_agcg2"]
 [ext_resource type="Texture2D" uid="uid://8nkd0yxej538" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_headband.png" id="7_d24hr"]
+[ext_resource type="AudioStream" uid="uid://01eanshshji2" path="res://assets/audio/block.mp3" id="8_3vxxs"]
 [ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="8_un5e1"]
 [ext_resource type="Script" path="res://src/character/state/idle.gd" id="9_cxhtl"]
+[ext_resource type="AudioStream" uid="uid://bykhd6nbfh2o6" path="res://assets/audio/duck.mp3" id="9_hyvlt"]
 [ext_resource type="Script" path="res://src/character/state/attack.gd" id="10_32dq6"]
+[ext_resource type="AudioStream" uid="uid://cpw0bdjdsptbt" path="res://assets/audio/kick.mp3" id="10_hwipk"]
+[ext_resource type="AudioStream" uid="uid://bj2hgf4excal5" path="res://assets/audio/punch.mp3" id="11_6580d"]
 [ext_resource type="Script" path="res://src/character/state/hurt.gd" id="11_f23wp"]
+[ext_resource type="Script" path="res://src/character/state/death.gd" id="12_u8qc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2bci"]
-size = Vector2(56, 56)
+size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2d0kn"]
 radius = 1.0
@@ -44,17 +49,17 @@ roughness = 0.5
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_feilg")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f2bci")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.438, 0.438)
+visible = false
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_l4r3p")
 
 [node name="HurtArea" type="Area2D" parent="."]
-position = Vector2(28, 0)
+position = Vector2(32, 0)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
@@ -134,11 +139,31 @@ surface_material_override/2 = SubResource("StandardMaterial3D_7wkj3")
 surface_material_override/3 = SubResource("StandardMaterial3D_xfpa7")
 
 [node name="AnimationPlayer" parent="Player_Character" index="1"]
+autoplay = "idle"
 playback_default_blend_time = 0.2
 
-[node name="Label3D" type="Label3D" parent="Player_Character"]
+[node name="DebugLabel" type="Label3D" parent="Player_Character"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 billboard = 2
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="SoundBlock" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("8_3vxxs")
+
+[node name="SoundDuck" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("9_hyvlt")
+
+[node name="SoundKick" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("10_hwipk")
+
+[node name="SoundPunch" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("11_6580d")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current")]
 script = ExtResource("8_un5e1")
@@ -166,8 +191,17 @@ character = NodePath("../..")
 wait_time = 0.5
 one_shot = true
 
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
+script = ExtResource("12_u8qc8")
+character = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Death"]
+wait_time = 0.9
+one_shot = true
+
 [connection signal="timeout" from="StateMachine/Attack/HitTimer" to="StateMachine/Attack" method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Hurt/Timer" to="StateMachine/Hurt" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Death/Timer" to="StateMachine/Death" method="_on_timer_timeout"]
 
 [editable path="Player_Character"]

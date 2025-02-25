@@ -1,14 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcqe81pkyl74u"]
+[gd_scene load_steps=7 format=3 uid="uid://bcqe81pkyl74u"]
 
 [ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_i6inj"]
 [ext_resource type="Script" path="res://src/character/enemy/enemy.gd" id="2_aqljf"]
-[ext_resource type="Script" uid="uid://b4jaxghp2t581" path="res://src/character/enemy/attack.gd" id="3_wwe7y"]
+[ext_resource type="Script" path="res://src/character/enemy/dodge_style.gd" id="3_53gs3"]
+[ext_resource type="Script" path="res://src/character/enemy/state/attack.gd" id="3_wwe7y"]
+[ext_resource type="Script" path="res://src/character/enemy/state/death.gd" id="4_31sa2"]
+
+[sub_resource type="Resource" id="Resource_71lto"]
+resource_local_to_scene = true
+script = ExtResource("3_53gs3")
+repeat_attack = 0.0
+punch_standing = 0.0
+punch_crouch = 0.0
+kick_standing = 0.0
+kick_crouch = 0.0
 
 [node name="Enemy" instance=ExtResource("1_i6inj")]
 script = ExtResource("2_aqljf")
+dodge_style = SubResource("Resource_71lto")
 
 [node name="HurtArea" parent="." index="2"]
-position = Vector2(-28, 0)
+position = Vector2(-32, 0)
 
 [node name="Karate_Man_Rig" parent="Player_Character" index="0"]
 transform = Transform3D(7.54979e-08, 0, -1, 0, 0.884, 0, 1, 0, 7.54979e-08, 0, 0, 0)
@@ -16,8 +28,19 @@ transform = Transform3D(7.54979e-08, 0, -1, 0, 0.884, 0, 1, 0, 7.54979e-08, 0, 0
 [node name="Attack" parent="StateMachine" index="1"]
 script = ExtResource("3_wwe7y")
 
-[node name="EnemyAttackTimer" type="Timer" parent="." index="5"]
+[node name="Death" parent="StateMachine" index="3"]
+script = ExtResource("4_31sa2")
+
+[node name="EnemyCrouchTimer" type="Timer" parent="." index="5"]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="EnemyAttackTimer" type="Timer" parent="." index="6"]
+unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
+autostart = true
 
 [editable path="Player_Character"]

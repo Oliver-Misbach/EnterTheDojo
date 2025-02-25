@@ -1,31 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfi5vtrehbrf6"]
+[gd_scene load_steps=4 format=3 uid="uid://cfi5vtrehbrf6"]
 
-[ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world.tscn" id="1_8fvjr"]
-[ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/blue.tscn" id="2_ad4m2"]
-[ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/yellow.tscn" id="3_fpwj5"]
-[ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="3_h2ag2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ji1a"]
-size = Vector2(4096, 32)
+[ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world/world.tscn" id="1_8fvjr"]
+[ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/type/blue.tscn" id="2_ad4m2"]
+[ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/type/yellow.tscn" id="3_fpwj5"]
 
 [node name="Level 1" instance=ExtResource("1_8fvjr")]
 
-[node name="EnemySpawner" parent="." index="3"]
+[node name="EnemySpawner" parent="." index="4"]
 types = Array[PackedScene]([ExtResource("2_ad4m2"), ExtResource("3_fpwj5")])
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="6"]
-position = Vector2(512, 1000)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-shape = SubResource("RectangleShape2D_7ji1a")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" index="1"]
-texture_repeat = 2
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_h2ag2")
-region_enabled = true
-region_rect = Rect2(0, 0, 16384, 128)
-
-[node name="Player" parent="." index="7"]
-position = Vector2(200, 956)

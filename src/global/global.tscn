@@ -1,10 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5c5ck0l7miqp"]
+[gd_scene load_steps=6 format=3 uid="uid://jkiebicdxmcv"]
 
 [ext_resource type="Script" path="res://src/global/global.gd" id="1_dkbtp"]
 [ext_resource type="PackedScene" uid="uid://cfi5vtrehbrf6" path="res://src/level/level1.tscn" id="2_6w0gl"]
 [ext_resource type="PackedScene" uid="uid://y0w2stynro0i" path="res://src/level/level2.tscn" id="3_hixnt"]
 [ext_resource type="PackedScene" uid="uid://guymduogr0f4" path="res://src/level/level3.tscn" id="4_ieqju"]
+[ext_resource type="AudioStream" uid="uid://cqg4nljn34n6s" path="res://assets/audio/Game_Start.mp3" id="5_doiim"]
 
 [node name="Global" type="Node"]
 script = ExtResource("1_dkbtp")
 levels = Array[PackedScene]([ExtResource("2_6w0gl"), ExtResource("3_hixnt"), ExtResource("4_ieqju")])
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="GameStart" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_doiim")
+autoplay = true

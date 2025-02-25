@@ -1,7 +1,23 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c4l5t54hq6o7l"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c4l5t54hq6o7l"]
 
 [ext_resource type="FontFile" uid="uid://fey8iwdgbh42" path="res://assets/Karate_Font.ttf" id="1_jqe0y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sadtw"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.498039)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [resource]
 default_font = ExtResource("1_jqe0y")
 default_font_size = 32
+MarginContainer/constants/margin_bottom = 8
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 8
+MarginContainer/constants/margin_top = 8
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_sadtw")
