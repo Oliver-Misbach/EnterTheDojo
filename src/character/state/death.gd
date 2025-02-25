@@ -15,6 +15,9 @@ func _enter() -> void:
 	character.anim.play(&"death")
 
 
+func _death() -> void:
+	pass
+
+
 func _on_timer_timeout() -> void:
-	character.death.emit()
-	character.process_mode = Node.PROCESS_MODE_DISABLED
+	_death()

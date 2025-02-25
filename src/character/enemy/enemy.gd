@@ -18,24 +18,30 @@ var last_hurt_style: Array # [punch, crouch]
 var _has_changed_crouch := false
 
 
+func damage() -> void:
+	super.damage()
+	
+	last_hurt_style = [target.punch, target.crouch]
+
+
 func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
 	# Note: This is overridden in boss.gd.
 	match scene_file_path:
 		#"res://src/character/enemy.tscn":
 			## Testing. Block punches and crouching.
 			#return 1.0 if is_punch or is_crouch else 0.0
-		"res://src/character/enemy/blue.tscn":
+		"res://src/character/enemy/type/blue.tscn":
 			pass # Blue: No blocking.
-		"res://src/character/enemy/yellow.tscn":
+		"res://src/character/enemy/type/yellow.tscn":
 			if is_punch:
 				return 0.6 # Yellow: 60% of punches.
-		"res://src/character/enemy/green.tscn":
+		"res://src/character/enemy/type/green.tscn":
 			if not is_punch:
 				return 0.6 # Green: 60% of kicks.
-		"res://src/character/enemy/red.tscn":
+		"res://src/character/enemy/type/red.tscn":
 			if not is_crouch:
 				return 0.8 # Red: 80% of standing attacks.
-		"res://src/character/enemy/black.tscn":
+		"res://src/character/enemy/type/black.tscn":
 			if last_hurt_style == [is_punch, is_crouch]:
 				return 1.0 # Black: 100% of same style attacks.
 	return 0.0
@@ -53,20 +59,24 @@ func _physics_process(delta: float) -> void:
 		kick = false
 	else:
 		movement = 0.0
-		# Dodge if attack winding up and player isn't attacking.
+		# Dodge if player attack winding up and enemy isn't attacking.
 		if target.state_machine.current == target.state_attack \
 				and not target.state_attack.hit_timer.is_stopped() \
 				and state_machine.current != state_attack:
-			# Dodge attacks.
+			# Probability of at least one attack over HIT_FRAMES attempts.
 			var chance := _compute_dodge_chance(
 				target.punch,
 				target.crouch,
 			)
-			# TODO: 100% chance: delay randomly?
-			if randf() > pow(1.0 - chance, 1.0 / HIT_FRAMES):
+			# chance = 1.0 - pow(1.0 - chance_per_frame, HIT_FRAMES)
+			# chance_per_frame = 1.0 - pow(1.0 - chance, 1.0 / HIT_FRAMES)
+			var chance_per_frame := 1.0 - pow(1.0 - chance, 1.0 / HIT_FRAMES)
+			# TODO: delay randomly instead of dodging instantly
+			#       this would remove the need to calculate chance_per_frame
+			if randf() < chance_per_frame:
 				_dodge_crouch()
 				_reset_attack()
-		else:
+		elif target.state_machine.current != target.state_death:
 			if state_machine.current == state_idle:
 				if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
 					_has_changed_crouch = true

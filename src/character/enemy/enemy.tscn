@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcqe81pkyl74u"]
+[gd_scene load_steps=5 format=3 uid="uid://bcqe81pkyl74u"]
 
 [ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_i6inj"]
 [ext_resource type="Script" path="res://src/character/enemy/enemy.gd" id="2_aqljf"]
 [ext_resource type="Script" path="res://src/character/enemy/state/attack.gd" id="3_wwe7y"]
+[ext_resource type="Script" path="res://src/character/enemy/state/death.gd" id="4_31sa2"]
 
 [node name="Enemy" instance=ExtResource("1_i6inj")]
 script = ExtResource("2_aqljf")
@@ -15,6 +16,9 @@ transform = Transform3D(7.54979e-08, 0, -1, 0, 0.884, 0, 1, 0, 7.54979e-08, 0, 0
 
 [node name="Attack" parent="StateMachine" index="1"]
 script = ExtResource("3_wwe7y")
+
+[node name="Death" parent="StateMachine" index="3"]
+script = ExtResource("4_31sa2")
 
 [node name="EnemyCrouchTimer" type="Timer" parent="." index="5"]
 unique_name_in_owner = true
