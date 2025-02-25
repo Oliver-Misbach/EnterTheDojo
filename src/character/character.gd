@@ -27,6 +27,11 @@ var crouch: bool
 @onready var model: Node3D = $Player_Character
 @onready var anim: AnimationPlayer = $Player_Character/AnimationPlayer
 
+@onready var sound_block: AudioStreamPlayer = %SoundBlock
+@onready var sound_duck: AudioStreamPlayer = %SoundDuck
+@onready var sound_kick: AudioStreamPlayer = %SoundKick
+@onready var sound_punch: AudioStreamPlayer = %SoundPunch
+
 @onready var state_machine: StateMachine = $StateMachine
 @onready var state_idle: State = $StateMachine/Idle
 @onready var state_attack: State = $StateMachine/Attack
@@ -64,12 +69,12 @@ func update_model_position() -> void:
 	model.position = Vector3(position.x * world.model_scale, 0.0, 0.0)
 
 
-func try_damage() -> void:
-	#print("Damage ", name, ": ", state_attack.hit_timer.is_stopped())
-	
-	# Characters can be damaged during idle and attack wind up.
-	if state_machine.current == state_idle or not state_attack.hit_timer.is_stopped():
-		damage()
+func can_damage() -> bool:
+	if state_machine.current == state_idle:
+		return true
+	if not state_attack.hit_timer.is_stopped():
+		return true
+	return false
 
 
 func damage() -> void:

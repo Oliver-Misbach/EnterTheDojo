@@ -1,14 +1,16 @@
 # Enter The Dojo
 
-## todo
+# todo
 
 - [ ] Clean up and document code
+  - [ ] use state machine for enemy AI
 - [ ] Multiple resolution support (currently expects 16:9)
 - [x] Save/load, last level, high score
-- [ ] use state machine for enemy AI
 - [ ] UID warnings can be ignored. Should be fixed in Godot 4.4.
 - [ ] Test .blend import with Godot 4.3+
-- [ ] Sound, music
+- [x] Sound
+- [ ] Music
+- [ ] Punch and hit should be separate sounds in case a punch misses
 
 # Initial Concept Document
 https://drive.google.com/drive/folders/1p2LiPm3LVRYIls0AtLyLSyJ2EqMFiVDL

@@ -102,7 +102,11 @@ func _restart_attack() -> void:
 
 
 func _dodge_crouch() -> void:
-	crouch = not target.crouch
+	var new_crouch := not target.crouch
+	if crouch != new_crouch:
+		sound_block.play()
+	
+	crouch = new_crouch
 	#print("enemy dodging with ", crouch)
 
 

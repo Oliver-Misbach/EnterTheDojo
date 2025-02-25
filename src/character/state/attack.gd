@@ -8,6 +8,7 @@ extends State
 @onready var timer: Timer = $Timer
 
 
+var _punch: bool
 var _crouch: bool
 
 
@@ -15,13 +16,18 @@ func _enter() -> void:
 	#print("Attack state: ", character.punch, "; ", character.crouch)
 	super._enter()
 	
+	_punch = character.punch
 	_crouch = character.crouch
 	
 	# Fix same animation not repeating.
 	character.anim.stop()
 	#character.anim.seek(0.0)
 	
-	if character.punch:
+	if _punch:
+		# TODO: punch and hit should be separate sounds in case a punch misses
+		if _test_hurt_area() != null:
+			character.sound_punch.play()
+		
 		hit_timer.start(0.2) # Punch hit time: 200ms
 		if _crouch:
 			timer.start(0.5) # Punch crouch: 500ms
@@ -46,13 +52,29 @@ func _exit() -> void:
 	timer.stop()
 
 
-func _on_hit_timer_timeout() -> void:
+func _hit(body: Character) -> void:
+	if not _punch:
+		character.sound_kick.play()
+	
+	body.damage()
+
+
+func _test_hurt_area() -> Character:
 	for body in character.hurt_area.get_overlapping_bodies():
 		if body != character and body is Character:
 			#print(character.name, " try hurt... ", body.name, "; ", character.crouch, ", ", body.crouch)
-			if _crouch == body.crouch:
-				body.try_damage()
-			break
+			if _crouch != body.crouch:
+				continue
+			if not body.can_damage():
+				continue
+			return body
+	return null
+
+
+func _on_hit_timer_timeout() -> void:
+	var body := _test_hurt_area()
+	if body != null:
+		_hit(body)
 
 
 func _on_timer_timeout() -> void:

@@ -4,6 +4,8 @@ extends State
 @export var character: Character
 
 
+var _last_crouch: bool
+
 
 func _enter() -> void:
 	super._enter()
@@ -27,6 +29,10 @@ func _physics_frame(delta: float) -> void:
 		character.velocity.x = 0.0
 	else:
 		character.velocity.x = character.movement * character.speed
+	
+	if character.crouch and not _last_crouch:
+		character.sound_duck.play()
+	_last_crouch = character.crouch
 	
 	_try_attack()
 
