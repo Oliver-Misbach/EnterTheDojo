@@ -3,7 +3,7 @@
 # todo
 
 - [ ] Clean up and document code
-  - [ ] use state machine for enemy AI
+  - [ ] use state machine for enemy behavior and some logic in character.gd
 - [ ] Multiple resolution support (currently expects 16:9)
 - [x] Save/load, last level, high score
 - [ ] UID warnings can be ignored. Should be fixed in Godot 4.4.
