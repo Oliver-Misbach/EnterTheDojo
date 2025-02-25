@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8so6f73lvass"]
+[gd_scene load_steps=2 format=3 uid="uid://c8so6f73lvass"]
 
 [ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world/world.tscn" id="1_w30c4"]
-[ext_resource type="Texture2D" uid="uid://u56fn0gs47h0" path="res://assets/Floor1.png" id="2_sj7iw"]
 
 [node name="DebugEmpty" instance=ExtResource("1_w30c4")]
 
-[node name="EnemySpawner" parent="." index="3"]
+[node name="EnemySpawner" parent="." index="4"]
 max_enemies = 0
-
-[node name="Sprite2D" parent="Background" index="0"]
-texture = ExtResource("2_sj7iw")

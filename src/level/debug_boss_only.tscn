@@ -1,9 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpa3cqwsjrh5j"]
+[gd_scene load_steps=2 format=3 uid="uid://dpa3cqwsjrh5j"]
 
 [ext_resource type="PackedScene" uid="uid://csq0r4i000xch" path="res://src/world/world.tscn" id="1_07ipg"]
-[ext_resource type="Texture2D" uid="uid://u56fn0gs47h0" path="res://assets/Floor1.png" id="2_8egcc"]
 
 [node name="DebugBossOnly" instance=ExtResource("1_07ipg")]
-
-[node name="Sprite2D" parent="Background" index="0"]
-texture = ExtResource("2_8egcc")

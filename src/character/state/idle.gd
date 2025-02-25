@@ -17,9 +17,25 @@ func _exit() -> void:
 	character.velocity.x = 0.0
 
 
-func _physics_update(delta: float) -> void:
-	super._physics_update(delta)
+func _process_frame(delta: float) -> void:
+	super._process_frame(delta)
 	
+	_update_animation()
+
+
+func _physics_frame(delta: float) -> void:
+	super._physics_frame(delta)
+	
+	#if character.is_on_floor():
+	if character.crouch:
+		character.velocity.x = 0.0
+	else:
+		character.velocity.x = character.movement * character.speed
+	
+	_try_attack()
+
+
+func _update_animation() -> void:
 	if character.crouch:
 		character.anim.play(&"idle_crouch")
 	elif is_zero_approx(character.velocity.x):
@@ -29,14 +45,6 @@ func _physics_update(delta: float) -> void:
 		character.anim.play(&"walk_forward")
 	else:
 		character.anim.play(&"walk_backward")
-	
-	#if character.is_on_floor():
-	if character.crouch:
-		character.velocity.x = 0.0
-	else:
-		character.velocity.x = character.movement * Character.SPEED
-	
-	_try_attack()
 
 
 func _try_attack() -> void:
