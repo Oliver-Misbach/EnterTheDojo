@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 35 34.999998"
+   version="1.1"
+   id="svg552"
+   sodipodi:docname="s_twitch.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   width="35"
+   height="35"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs556" />
+  <sodipodi:namedview
+     id="namedview554"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="20.85965"
+     inkscape:cx="24.712783"
+     inkscape:cy="24.209419"
+     inkscape:window-width="2494"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg552" />
+  <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+  <path
+     d="m 26.608128,7.270756 h -2.618571 v 7.42267 h 2.611805 z M 19.42228,7.236924 H 16.810475 V 14.66636 H 19.42228 Z M 8.3119596,0.26759943 1.7824466,6.4520295 V 28.726804 h 7.8354153 v 6.18443 l 6.5295121,-6.18443 h 5.230378 L 33.137641,17.589417 V 0.26759943 Z M 30.525836,16.357944 l -5.22361,4.94619 h -5.230377 l -4.574042,4.330455 V 21.304134 H 9.6178619 V 2.7440781 H 30.525836 Z"
+     id="path550"
+     style="fill:#6a696f;fill-opacity:1;stroke-width:0.0676634" />
+</svg>

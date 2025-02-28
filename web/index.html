@@ -7,53 +7,127 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 	<link data-n-head="ssr" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;display=swap">
 	<style>
+		/* Mobile */
+		@media (max-width: 992px) {
+			.banner { height: 350px; margin-top: 0px !important; background: url(banner.webp); background-color: rgba(0, 0, 0, 0.5); background-repeat: no-repeat; background-size: cover; }
+			.karateman { height: 250px; float: right; margin-top: -100px; margin-right: -20px; }
+			.intro { font-size: 20px; color: #ffffff; font-weight: bold;}
+			.dojo { width: 300px; margin-top: -15px; }
+			iframe { width: 100%; }
+			.download { padding: 5px !important; }
+		}
+
+		/* Desktop */
+		@media (min-width: 992px) {
+			.banner { height: 650px; padding-left: 125px !important; margin-top: 0px !important; background: url(banner.webp); background-repeat: no-repeat; background-size: cover; }
+			.karateman { height: 750px; float: right; margin-top: -300px; }
+			.intro { -webkit-text-stroke: 1px black; font-size: 40px; text-transform: uppercase; color: #ffffff; font-weight: bold;}
+			.dojo { width: 700px; }
+		}
+		.navbar-nav { font-size: 18px; font-weight: bold; gap: 30px; }
+
 		.section { padding: 50px; margin-top: 30px; margin-bottom: 30px;}
 	</style>
 </head>
 <body style="font-family: Montserrat, Sans-serif;">
-	<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #E5DFA3 !important;">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: auto;">
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Download</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Reviews</a></li>
+					<li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+					<li class="nav-item"><a class="nav-link" href="#download">DOWNLOAD</a></li>
+					<li class="nav-item"><a class="nav-link" href="#reviews">REVIEWS</a></li>
+					<li class="nav-item"><a class="nav-link" href="#screen">SCREEN SHOTS</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 	<!-- banner -->
-	<div class="section" style="height: 400px; margin-top: 0px; background: url(banner.png); background-repeat: no-repeat; background-size: cover;">
+	<div class="section banner">
+			<img src="EnterTheDojo.svg" class="dojo">
+			<p class="intro" style="margin-top: 30px;">
+				Unleash the Warrior Within<br />
+				Victory is Earned, Not Given
+			</p>
+			<p>
+				<button class="btn btn-primary btn-lg" style="margin-top: 20px;">Download Now</button>
+			</p>
+		<img src="karateman.svg" class="karateman">
 	</div>
 
 	<!-- Screen shots -->
-	<div class="section">
-		<h2>Screen Shots</h2>
+	<div id="about" class="section">
+		<h1>ENTER THE DOJO</h1>
+		<p>The ultimate destination for adrenaline-pumping martial arts action! Step into the dojo and unleash your skills in a fast-paced, action-packed karate video game that brings the thrill of combat to your fingertips. Whether you're a seasoned black belt or a beginner looking to master powerful techniques, our game offers dynamic fights, stunning visuals, and immersive gameplay. Train, fight, and rise through the ranks to become the ultimate karate champion. Are you ready to test your strength and strategy? The battle begins now!</p>
+
+		<div style="text-align: center; margin-top: 50px;">
+			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LhcYJUKzPvw?si=43ruw-BwRDqc6JDC&amp;controls=0&amp;start=162"
+				title="YouTube video player"
+				frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				referrerpolicy="strict-origin-when-cross-origin"
+				allowfullscreen>
+			</iframe>
+		</div>
 	</div>
 
 	<!-- Download from Steam -->
-	<div class="section" style="background-color: #661f3a; color: #ffffff;">
-		<h2>Downlaod from Steam</h2>
+	<div id="download" class="section download" style="background-color: #407999; color: #ffffff;">
+		<div class="container">
+			<div class="row align-items-start">
+			  <div class="col text-center">
+				<img class="img-fluid" src="steam.svg" style="width: 400px;">
+			</div>
+			  <div class="col" style="font-size: 18px;">
+				<p>Download Enter the Dojo today and experience the thrill of real martial arts combat like never before! With stunning graphics, smooth controls, and a deep fighting system, this game lets you master powerful techniques, challenge fierce opponents, and rise through the ranks to become a true karate champion. Whether you prefer solo training, intense tournaments, or online battles against players worldwide, there’s always a new challenge waiting. Don’t miss out—hone your skills, prove your strength, and dominate the dojo. Are you ready to fight? Download now and unleash your inner warrior!</p>
+			</div>
+			</div>
+		</div>
+		<p style="text-align: center; margin-top: 30px;">
+			<button class="btn btn-light btn-lg"><img src="download.svg" height="50px"></button>
+		</p>
 	</div>
 
 	<!-- Reviews -->
-	<div class="section">
-		<h2>Reviews</h2>
+	<div id="reviews" class="section" style="background-color: #ececec; margin-top: -30px; margin-bottom: -30px; padding: 70px;">
+		<h3>⭐️⭐️⭐️⭐️⭐️ Best Karate Game Ever!</h3>
+		<p>"I've played a lot of fighting games, but **Ultimate Karate Showdown** takes it to a whole new level! The combos are smooth, the moves feel authentic, and the graphics are absolutely stunning. Whether I'm training solo or battling online, every fight keeps me on the edge of my seat. A must-play for any martial arts fan!"
+			<br />– Alex R.
+		</p>
+
+		<h3>⭐️⭐️⭐️⭐️⭐️ Feels Like a Real Tournament!</h3>
+		<p>"This game is INSANE! The animations and sound effects make every punch and kick feel so real. I love customizing my fighter and unlocking new moves as I progress. The online mode is super competitive, and I can’t stop playing! If you love action and strategy, this is the game for you."
+			<br />– Jordan M.
+		</p>
+
+		<h3>⭐️⭐️⭐️⭐️⭐️ Addictive and So Much Fun!</h3>
+		<p>"I downloaded this game just to try it out, and now I can’t put it down! The controls are easy to learn but take skill to master, which makes every battle exciting. The different fighting styles and techniques make each match unique. This is hands down the best karate game out there!"
+			<br />– Chris L.
+		</p>
 	</div>
 
 	<!-- dark section -->
-	<div class="section" style="background-color: #04373A; margin-bottom: 0px; color: #ffffff;">
-		<h2>Dark Section</h2>
+	<div id="screen" class="section" style="background-color: #04373A; margin-bottom: 0px; color: #ffffff;">
+		<h2>Screen Shots</h2>
+		<p>Highlighting various character poses.</p>
 	</div>
 
 	<footer class="section" style="background-color: #222121; margin-top: 0px; margin-bottom: 0px; color: #ffffff; border-color: #808080; border-width: 0px; border-top-width: 1px; border-style: solid;">
-		<h2>Footer</h2>
-		<p style="color: #91BF9F">Oliver Misbach, Copyright &copy; 2024</p>
+		<p style="color: #6a696fff">Copyright &copy; 2024 Oliver Misbach</p>
+		<div style="display: flex; justify-content: center; gap: 15px; margin-top: 50px;">
+			<a ><img src="s_discord.svg"></a>
+			<a ><img src="s_facebook.svg"></a>
+			<a ><img src="s_tiktok.svg"></a>
+			<a ><img src="s_twitch.svg"></a>
+			<a ><img src="s_insta.svg"></a>
+			<a ><img src="s_twitter.svg"></a>
+			<a ><img src="s_youtube.svg"></a>
+			<a ><img src="steam_.svg"></a>
+		</div>
 	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
