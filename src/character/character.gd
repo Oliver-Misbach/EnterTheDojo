@@ -2,11 +2,18 @@ class_name Character
 extends CharacterBody2D
 
 
-const SPEED = 200.0
+# used by EnemySpawner
+@warning_ignore("UNUSED_SIGNAL")
+signal death()
+
+
 #const JUMP_VELOCITY = -400.0
 
 
-@export var health := 1
+@export var world: World
+@export var speed := 70.0
+@export var health := 1.0
+@export var crouch_damage_multiplier := 1.3
 
 
 var movement: float
@@ -19,38 +26,64 @@ var crouch: bool
 @onready var hurt_area: Area2D = $HurtArea
 @onready var model: Node3D = $Player_Character
 @onready var anim: AnimationPlayer = $Player_Character/AnimationPlayer
+
+@onready var sound_block: AudioStreamPlayer = %SoundBlock
+@onready var sound_duck: AudioStreamPlayer = %SoundDuck
+@onready var sound_kick: AudioStreamPlayer = %SoundKick
+@onready var sound_punch: AudioStreamPlayer = %SoundPunch
+
 @onready var state_machine: StateMachine = $StateMachine
-# TODO: Decouple state machine completely.
 @onready var state_idle: State = $StateMachine/Idle
 @onready var state_attack: State = $StateMachine/Attack
 @onready var state_hurt: State = $StateMachine/Hurt
-@onready var debug_label: Label3D = $Player_Character/Label3D
+@onready var state_death: State = $StateMachine/Death
+
+#@onready var debug_label: Label3D = $Player_Character/DebugLabel
+
+
+func _ready() -> void:
+	update_model_position()
 
 
 func _process(_delta: float) -> void:
-	pass
+	update_model_position()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#print(name, " physics process: ", state_machine.current.name)
 	
-	# For some reason, not visible when used in _process.
-	debug_label.text = "State: %s" % state_machine.current.name
-	if state_machine.current == state_attack:
-		debug_label.text += "\n" + ("wind down" if state_attack.hit_timer.is_stopped() else "wind up")
+	#debug_label.text = "State: %s" % state_machine.current.name
+	#if state_machine.current == state_attack:
+		#debug_label.text += "\n" + ("wind down" if state_attack.hit_timer.is_stopped() else "wind up")
 	
-	velocity += get_gravity() * delta
+	#velocity += get_gravity() * delta
 	
 	#if jump and is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 	
 	move_and_slide()
-	
-	model.position = Vector3(position.x / 64.0, -position.y / 64.0, 0.0)
+
+
+func update_model_position() -> void:
+	#model.position = Vector3(position.x, 0.0, 0.0)
+	model.position = Vector3(position.x * world.model_scale, 0.0, 0.0)
+
+
+func can_damage() -> bool:
+	if state_machine.current == state_idle:
+		return true
+	if not state_attack.hit_timer.is_stopped():
+		return true
+	return false
+
 
 func damage() -> void:
-	#print("Damage ", name, ": ", state_attack.hit_timer.is_stopped())
+	if crouch:
+		health -= crouch_damage_multiplier
+	else:
+		health -= 1.0
 	
-	# You can be damaged during wind up.
-	if state_machine.current == state_idle or not state_attack.hit_timer.is_stopped():
+	if health <= 0.0:
+		state_machine.current = state_death
+	else:
 		state_machine.current = state_hurt

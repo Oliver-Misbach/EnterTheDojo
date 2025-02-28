@@ -4,20 +4,40 @@ extends State
 @export var character: Character
 
 
+var _last_crouch: bool
+
 
 func _enter() -> void:
 	super._enter()
+	
 	_try_attack()
 
 
 func _exit() -> void:
 	super._exit()
+	
 	character.velocity.x = 0.0
 
 
-func _physics_update(delta: float) -> void:
-	super._physics_update(delta)
+func _physics_frame(delta: float) -> void:
+	super._physics_frame(delta)
 	
+	_update_animation()
+	
+	#if character.is_on_floor():
+	if character.crouch:
+		character.velocity.x = 0.0
+	else:
+		character.velocity.x = character.movement * character.speed
+	
+	if character.crouch and not _last_crouch:
+		character.sound_duck.play()
+	_last_crouch = character.crouch
+	
+	_try_attack()
+
+
+func _update_animation() -> void:
 	if character.crouch:
 		character.anim.play(&"idle_crouch")
 	elif is_zero_approx(character.velocity.x):
@@ -27,14 +47,6 @@ func _physics_update(delta: float) -> void:
 		character.anim.play(&"walk_forward")
 	else:
 		character.anim.play(&"walk_backward")
-	
-	if character.is_on_floor():
-		if character.crouch:
-			character.velocity.x = 0.0
-		else:
-			character.velocity.x = character.movement * Character.SPEED
-	
-	_try_attack()
 
 
 func _try_attack() -> void:

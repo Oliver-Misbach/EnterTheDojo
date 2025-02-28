@@ -1,3 +1,4 @@
+class_name EnemySpawner
 extends Node
 
 
@@ -5,6 +6,10 @@ extends Node
 @export var types: Array[PackedScene]
 @export var spawn_distance := 300.0
 @export var max_enemies := 1
+
+
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var interval_min := 1.0
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var interval_max := 3.0
 
 
 @onready var timer: Timer = $Timer
@@ -15,10 +20,13 @@ var boss: bool
 
 
 func _on_timer_timeout() -> void:
+	if world._player_at_next_level:
+		return
+	
 	if types.is_empty():
 		return
 	
-	timer.start(randf_range(1.0, 3.0))
+	timer.start(randf_range(interval_min, interval_max))
 	
 	if enemies.size() >= max_enemies:
 		return
@@ -38,9 +46,20 @@ func _on_timer_timeout() -> void:
 		]
 	
 	var enemy: Enemy = types.pick_random().instantiate()
+	enemy.world = world
 	enemy.target = world.player
 	enemy.position = world.player.position + Vector2.RIGHT * spawn_distance
 	add_child(enemy)
 	
 	enemies.push_back(enemy)
-	enemy.tree_exiting.connect(enemies.erase.bind(enemy))
+	enemy.death.connect(_on_enemy_death.bind(enemy))
+
+
+func _on_enemy_death(enemy: Enemy) -> void:
+	enemies.erase(enemy)
+	
+	if enemy is Boss:
+		world.complete_level()
+		return
+	
+	world.try_complete_level()

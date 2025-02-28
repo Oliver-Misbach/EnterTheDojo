@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BossCombo" load_steps=5 format=3 uid="uid://cpaap3ftu6nv2"]
+
+[ext_resource type="Script" path="res://src/character/enemy/boss/combo/item.gd" id="1_q6wwl"]
+[ext_resource type="Script" path="res://src/character/enemy/boss/combo/combo.gd" id="2_g04vn"]
+
+[sub_resource type="Resource" id="Resource_jckwb"]
+script = ExtResource("1_q6wwl")
+punch = false
+crouch = true
+
+[sub_resource type="Resource" id="Resource_28bwb"]
+script = ExtResource("1_q6wwl")
+punch = true
+crouch = false
+
+[resource]
+script = ExtResource("2_g04vn")
+items = Array[ExtResource("1_q6wwl")]([SubResource("Resource_jckwb"), SubResource("Resource_28bwb")])

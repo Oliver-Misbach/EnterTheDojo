@@ -19,11 +19,11 @@ extends Node
 
 
 func _process(delta: float) -> void:
-	current._idle_update(delta)
+	current._process_frame(delta)
 
 
 func _physics_process(delta: float) -> void:
-	current._physics_update(delta)
+	current._physics_frame(delta)
 
 
 func _set_state(state: State) -> void:

@@ -2,50 +2,51 @@ class_name Boss
 extends Enemy
 
 
-var combo_queue: Array
+@export var combo_types: Array[BossCombo]
+@export var dodge_chance := 0.3
+@export var repeat_dodge_chance := 1.0
+@export var dodge_after_repeats := 3
+
+
+var combo_queue: Array[BossComboItem]
 var last_crouch: bool
 var crouch_repeats: int
 
 
 func _compute_dodge_chance(_is_punch: bool, is_crouch: bool) -> float:
-	if crouch_repeats >= 3 and last_crouch == is_crouch:
-		return 1.0 # Block after same crouch used 3 times in a row.
-	return 0.3 # Block 30%
+	if crouch_repeats >= dodge_after_repeats and last_crouch == is_crouch:
+		return repeat_dodge_chance
+	return dodge_chance
 
 
-func _process(delta: float) -> void:
-	super._process(delta)
-	$CanvasLayer/ProgressBar.value = health
+func _restart_attack() -> void:
+	enemy_crouch_timer.wait_time = randf_range(1.0, 3.0)
+	enemy_attack_timer.wait_time = enemy_crouch_timer.wait_time + 0.5
+	super._restart_attack()
 
 
 func _enemy_attack() -> void:
 	#print("Boss enemy attack... ", punch, ", ", crouch)
 	
-	# [[[is_punch, is_crouch], ...] ...]
-	combo_queue = [
-		# punch, kick, punch
-		[[true, false], [false, false], [true, false]],
-		# crouch kick, punch
-		[[false, true], [true, false]],
-		# punch, punch
-		[[true, false], [true, false]],
-		# crouch kick, crouch kick
-		[[false, true], [false, true]],
-		# kick, crouch punch
-		[[false, false], [true, true]],
-	].pick_random()
-	print("[Boss] ", combo_queue.map(func(move): return ["Punch" if move[0] else "Kick", "Crouch" if move[1] else "Standing"]))
+	var combo: BossCombo = combo_types.pick_random()
+	combo_queue = combo.items.duplicate()
+	
+	print("[Boss] ", combo_queue.map(func(move): return [
+		"Punch" if move.punch else "Kick",
+		"Crouch" if move.crouch else "Standing",
+	]))
+	
 	next_combo_move()
 
 
 func next_combo_move() -> void:
-	var move = combo_queue.pop_front()
+	var move: BossComboItem = combo_queue.pop_front()
 	if move != null:
-		if move[0]:
+		if move.punch:
 			punch = true
 		else:
 			kick = true
-		crouch = move[1]
+		crouch = move.crouch
 	#print("[Boss] Next move: ", punch, "; ", kick, "; ", crouch)
 
 

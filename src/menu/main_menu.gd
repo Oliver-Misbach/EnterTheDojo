@@ -7,6 +7,4 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventKey:
 		if event.pressed:
-			Global.state = GameState.new()
-			Global.current_level = 0
-			Global.change_level()
+			Global.change_to_level()
