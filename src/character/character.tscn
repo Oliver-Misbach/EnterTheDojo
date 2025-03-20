@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://csmkwv7sbo713"]
 
-[ext_resource type="Script" path="res://src/character/character.gd" id="1_feilg"]
+[ext_resource type="Script" uid="uid://c8b1xms1laseo" path="res://src/character/character.gd" id="1_feilg"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="2_l4r3p"]
 [ext_resource type="PackedScene" uid="uid://mnj15h0sy3t8" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character.glb" id="3_f6hel"]
 [ext_resource type="Texture2D" uid="uid://begp75ina37qx" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_skin.png" id="4_rubme"]
@@ -8,14 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="6_agcg2"]
 [ext_resource type="Texture2D" uid="uid://8nkd0yxej538" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_headband.png" id="7_d24hr"]
 [ext_resource type="AudioStream" uid="uid://01eanshshji2" path="res://assets/audio/block.mp3" id="8_3vxxs"]
-[ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="8_un5e1"]
-[ext_resource type="Script" path="res://src/character/state/idle.gd" id="9_cxhtl"]
+[ext_resource type="Script" uid="uid://buwm32xarhxku" path="res://src/state_machine/state_machine.gd" id="8_un5e1"]
+[ext_resource type="Script" uid="uid://daot074svxlkc" path="res://src/character/state/idle.gd" id="9_cxhtl"]
 [ext_resource type="AudioStream" uid="uid://bykhd6nbfh2o6" path="res://assets/audio/duck.mp3" id="9_hyvlt"]
-[ext_resource type="Script" path="res://src/character/state/attack.gd" id="10_32dq6"]
+[ext_resource type="Script" uid="uid://bqg5g0sectjd7" path="res://src/character/state/attack.gd" id="10_32dq6"]
 [ext_resource type="AudioStream" uid="uid://cpw0bdjdsptbt" path="res://assets/audio/kick.mp3" id="10_hwipk"]
-[ext_resource type="AudioStream" uid="uid://bj2hgf4excal5" path="res://assets/audio/punch.mp3" id="11_6580d"]
-[ext_resource type="Script" path="res://src/character/state/hurt.gd" id="11_f23wp"]
-[ext_resource type="Script" path="res://src/character/state/death.gd" id="12_u8qc8"]
+[ext_resource type="Script" uid="uid://dqsw4igbetl5m" path="res://src/character/state/hurt.gd" id="11_f23wp"]
+[ext_resource type="Script" uid="uid://dhkt61iuno86t" path="res://src/character/state/death.gd" id="12_u8qc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2bci"]
 size = Vector2(64, 64)
@@ -46,6 +45,9 @@ resource_name = "Headband"
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("7_d24hr")
 roughness = 0.5
+
+[sub_resource type="Resource" id="Resource_6hfyb"]
+metadata/__load_path__ = "res://assets/audio/punch.mp3"
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_feilg")
@@ -163,7 +165,7 @@ stream = ExtResource("10_hwipk")
 
 [node name="SoundPunch" type="AudioStreamPlayer" parent="Sounds"]
 unique_name_in_owner = true
-stream = ExtResource("11_6580d")
+stream = SubResource("Resource_6hfyb")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current")]
 script = ExtResource("8_un5e1")

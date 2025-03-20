@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6hat4xli5ja1"]
 
 [ext_resource type="PackedScene" uid="uid://bcqe81pkyl74u" path="res://src/character/enemy/enemy.tscn" id="1_3rg68"]
-[ext_resource type="Script" path="res://src/character/enemy/dodge_style.gd" id="2_qqgyb"]
+[ext_resource type="Script" uid="uid://bentbxl7vt7u0" path="res://src/character/enemy/dodge_style.gd" id="2_qqgyb"]
 [ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="2_tumr2"]
 
 [sub_resource type="Resource" id="Resource_2uc6g"]
