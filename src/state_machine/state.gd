@@ -2,8 +2,8 @@ class_name State
 extends Node
 
 
-@warning_ignore("UNUSED_SIGNAL")
-signal state_changed(state: State)
+#@warning_ignore("UNUSED_SIGNAL")
+#signal state_changed(state: State)
 
 
 var is_active: bool

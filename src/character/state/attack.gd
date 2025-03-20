@@ -79,4 +79,5 @@ func _on_hit_timer_timeout() -> void:
 
 
 func _on_timer_timeout() -> void:
-	state_changed.emit(character.state_idle)
+	#state_changed.emit(character.state_idle)
+	character.state_machine.current = character.state_idle

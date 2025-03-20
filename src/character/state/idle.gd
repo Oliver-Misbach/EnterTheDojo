@@ -51,4 +51,5 @@ func _update_animation() -> void:
 
 func _try_attack() -> void:
 	if character.punch or character.kick:
-		state_changed.emit(character.state_attack)
+		#state_changed.emit(character.state_attack)
+		character.state_machine.current = character.state_attack
