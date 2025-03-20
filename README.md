@@ -1,16 +1,19 @@
 # Enter The Dojo
 
-# todo
+todo
+
+- [ ] Multiple resolution support (currently expects 16:9)
+- [ ] Music
+- [x] Sound
+- [x] Save/load, last level, high score
+- [x] UID warnings can be ignored. Should be fixed in Godot 4.4.
+- [x] Punch and hit should be separate sounds in case a punch misses
+
+technical
 
 - [ ] Clean up and document code
   - [ ] use state machine for enemy behavior and some logic in character.gd
-- [ ] Multiple resolution support (currently expects 16:9)
-- [x] Save/load, last level, high score
-- [ ] UID warnings can be ignored. Should be fixed in Godot 4.4.
 - [ ] Test .blend import with Godot 4.3+
-- [x] Sound
-- [ ] Music
-- [ ] Punch and hit should be separate sounds in case a punch misses
 
 # Initial Concept Document
 https://drive.google.com/drive/folders/1p2LiPm3LVRYIls0AtLyLSyJ2EqMFiVDL
