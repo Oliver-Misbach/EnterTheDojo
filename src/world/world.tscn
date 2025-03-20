@@ -55,9 +55,10 @@ world = NodePath("..")
 stream = ExtResource("3_7xrbd")
 autoplay = true
 
-[node name="Debug" type="Node" parent="."]
+[node name="Debug" type="Node" parent="." node_paths=PackedStringArray("world")]
 process_mode = 3
 script = ExtResource("2_s04er")
+world = NodePath("..")
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("world")]
 unique_name_in_owner = true
