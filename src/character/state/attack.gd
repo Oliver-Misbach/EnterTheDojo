@@ -4,8 +4,8 @@ extends State
 @export var character: Character
 
 
-@onready var hit_timer: Timer = $HitTimer
-@onready var timer: Timer = $Timer
+@onready var hit_timer: Timer = %HitTimer
+@onready var timer: Timer = %Timer
 
 
 var _punch: bool
@@ -27,20 +27,20 @@ func _enter() -> void:
 	if _punch:
 		character.sound_punch_swing.play()
 		
-		hit_timer.start(0.2) # Punch hit time: 200ms
+		hit_timer.start(character.time_punch_hit)
 		if _crouch:
-			timer.start(0.5) # Punch crouch: 500ms
+			timer.start(character.time_punch_crouch)
 			character.anim.play(&"punch_crouch")
 		else:
-			timer.start(0.4) # Punch standing: 400ms
+			timer.start(character.time_punch_standing)
 			character.anim.play(&"punch_standing")
 	else:
-		hit_timer.start(0.3) # Kick hit time: 300ms
+		hit_timer.start(character.time_kick_hit)
 		if _crouch:
-			timer.start(0.8) # Kick crouch: 800ms
+			timer.start(character.time_kick_crouch)
 			character.anim.play(&"kick_crouch")
 		else:
-			timer.start(0.667) # Kick standing: 667ms
+			timer.start(character.time_kick_standing)
 			character.anim.play(&"kick_standing")
 
 

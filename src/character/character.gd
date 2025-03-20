@@ -15,12 +15,15 @@ signal death()
 @export var health := 1.0
 @export var crouch_damage_multiplier := 1.3
 
-
-var movement: float
-var punch: bool
-var kick: bool
-#var jump: bool
-var crouch: bool
+## Set to animation timings.
+## TODO: Could be auto-detected, but we may want the game to work without animations (e.g. serverside).
+@export_group("Time", "time_")
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_punch_hit := 0.2       # | 200ms | Punch hit      |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_punch_standing := 0.4  # | 400ms | Punch standing |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_punch_crouch := 0.5    # | 500ms | Punch crouch   |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_kick_hit := 0.3        # | 300ms | Kick hit       |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_kick_standing := 0.667 # | 667ms | Kick standing  |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_kick_crouch := 0.8     # | 800ms | Kick crouch    |
 
 
 @onready var hurt_area: Area2D = $HurtArea
@@ -40,6 +43,13 @@ var crouch: bool
 @onready var state_death: State = $StateMachine/Death
 
 #@onready var debug_label: Label3D = $Player_Character/DebugLabel
+
+
+var movement: float
+var punch: bool
+var kick: bool
+#var jump: bool
+var crouch: bool
 
 
 func _ready() -> void:

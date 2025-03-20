@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://itjfo1pj1in4"]
+
+[ext_resource type="Script" uid="uid://bqg5g0sectjd7" path="res://src/character/state/attack.gd" id="1_h85xp"]
+
+[node name="Attack" type="Node"]
+script = ExtResource("1_h85xp")
+
+[node name="HitTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

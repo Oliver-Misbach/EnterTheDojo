@@ -11,12 +11,12 @@
 [ext_resource type="Script" uid="uid://buwm32xarhxku" path="res://src/state_machine/state_machine.gd" id="8_un5e1"]
 [ext_resource type="Script" uid="uid://daot074svxlkc" path="res://src/character/state/idle.gd" id="9_cxhtl"]
 [ext_resource type="AudioStream" uid="uid://bykhd6nbfh2o6" path="res://assets/audio/duck.mp3" id="9_hyvlt"]
-[ext_resource type="Script" uid="uid://bqg5g0sectjd7" path="res://src/character/state/attack.gd" id="10_32dq6"]
 [ext_resource type="AudioStream" uid="uid://cpw0bdjdsptbt" path="res://assets/audio/kick.mp3" id="10_hwipk"]
 [ext_resource type="Script" uid="uid://dqsw4igbetl5m" path="res://src/character/state/hurt.gd" id="11_f23wp"]
 [ext_resource type="AudioStream" uid="uid://cjw8tieabc53m" path="res://assets/audio/swing.mp3" id="11_ih6im"]
 [ext_resource type="AudioStream" uid="uid://duvjuwoarryi0" path="res://assets/audio/hit.mp3" id="12_7l6p6"]
 [ext_resource type="Script" uid="uid://dhkt61iuno86t" path="res://src/character/state/death.gd" id="12_u8qc8"]
+[ext_resource type="PackedScene" uid="uid://itjfo1pj1in4" path="res://src/character/state/attack.tscn" id="15_7l6p6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2bci"]
 size = Vector2(64, 64)
@@ -178,15 +178,8 @@ current = NodePath("Idle")
 script = ExtResource("9_cxhtl")
 character = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
-script = ExtResource("10_32dq6")
+[node name="Attack" parent="StateMachine" node_paths=PackedStringArray("character") instance=ExtResource("15_7l6p6")]
 character = NodePath("../..")
-
-[node name="HitTimer" type="Timer" parent="StateMachine/Attack"]
-one_shot = true
-
-[node name="Timer" type="Timer" parent="StateMachine/Attack"]
-one_shot = true
 
 [node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
 script = ExtResource("11_f23wp")
@@ -204,8 +197,6 @@ character = NodePath("../..")
 wait_time = 0.9
 one_shot = true
 
-[connection signal="timeout" from="StateMachine/Attack/HitTimer" to="StateMachine/Attack" method="_on_hit_timer_timeout"]
-[connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Hurt/Timer" to="StateMachine/Hurt" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Death/Timer" to="StateMachine/Death" method="_on_timer_timeout"]
 
