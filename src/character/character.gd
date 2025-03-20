@@ -27,10 +27,11 @@ var crouch: bool
 @onready var model: Node3D = $Player_Character
 @onready var anim: AnimationPlayer = $Player_Character/AnimationPlayer
 
-@onready var sound_block: AudioStreamPlayer = %SoundBlock
-@onready var sound_duck: AudioStreamPlayer = %SoundDuck
-@onready var sound_kick: AudioStreamPlayer = %SoundKick
-@onready var sound_punch: AudioStreamPlayer = %SoundPunch
+@onready var sound_block: AudioStreamPlayer = %Block
+@onready var sound_duck: AudioStreamPlayer = %Duck
+@onready var sound_kick: AudioStreamPlayer = %Kick
+@onready var sound_punch_swing: AudioStreamPlayer = %PunchSwing
+@onready var sound_punch_hit: AudioStreamPlayer = %PunchHit
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var state_idle: State = $StateMachine/Idle

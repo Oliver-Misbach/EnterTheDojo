@@ -16,6 +16,7 @@ func _enter() -> void:
 	#print("Attack state: ", character.punch, "; ", character.crouch)
 	super._enter()
 	
+	# Input is not affected by the state machine. Save this attack's input for later.
 	_punch = character.punch
 	_crouch = character.crouch
 	
@@ -24,9 +25,7 @@ func _enter() -> void:
 	#character.anim.seek(0.0)
 	
 	if _punch:
-		# TODO: punch and hit should be separate sounds in case a punch misses
-		if _test_hurt_area() != null:
-			character.sound_punch.play()
+		character.sound_punch_swing.play()
 		
 		hit_timer.start(0.2) # Punch hit time: 200ms
 		if _crouch:
@@ -53,7 +52,9 @@ func _exit() -> void:
 
 
 func _hit(body: Character) -> void:
-	if not _punch:
+	if _punch:
+		character.sound_punch_hit.play()
+	else:
 		character.sound_kick.play()
 	
 	body.damage()
