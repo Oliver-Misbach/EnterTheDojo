@@ -8,8 +8,8 @@ extends State
 @onready var timer: Timer = %Timer
 
 
-var _punch: bool
-var _crouch: bool
+var punch: bool
+var crouch: bool
 
 
 func _enter() -> void:
@@ -17,18 +17,18 @@ func _enter() -> void:
 	super._enter()
 	
 	# Input is not affected by the state machine. Save this attack's input for later.
-	_punch = character.punch
-	_crouch = character.crouch
+	punch = character.punch
+	crouch = character.crouch
 	
 	# Fix same animation not repeating.
 	character.anim.stop()
 	#character.anim.seek(0.0)
 	
-	if _punch:
+	if punch:
 		character.sound_punch_swing.play()
 		
 		hit_timer.start(character.time_punch_hit)
-		if _crouch:
+		if crouch:
 			timer.start(character.time_punch_crouch)
 			character.anim.play(&"punch_crouch")
 		else:
@@ -36,7 +36,7 @@ func _enter() -> void:
 			character.anim.play(&"punch_standing")
 	else:
 		hit_timer.start(character.time_kick_hit)
-		if _crouch:
+		if crouch:
 			timer.start(character.time_kick_crouch)
 			character.anim.play(&"kick_crouch")
 		else:
@@ -52,19 +52,19 @@ func _exit() -> void:
 
 
 func _hit(body: Character) -> void:
-	if _punch:
+	if punch:
 		character.sound_punch_hit.play()
 	else:
 		character.sound_kick.play()
 	
-	body.damage()
+	body.damage(punch, crouch)
 
 
 func _test_hurt_area() -> Character:
 	for body in character.hurt_area.get_overlapping_bodies():
 		if body != character and body is Character:
 			#print(character.name, " try hurt... ", body.name, "; ", character.crouch, ", ", body.crouch)
-			if _crouch != body.crouch:
+			if crouch != body.crouch:
 				continue
 			if not body.can_damage():
 				continue

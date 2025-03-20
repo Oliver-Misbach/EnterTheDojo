@@ -13,16 +13,8 @@ const HIT_FRAMES := int(0.2 * 60.0)
 @onready var enemy_attack_timer: Timer = %EnemyAttackTimer
 
 
-var last_hurt_style: Array # [punch, crouch]
-
 
 var _has_changed_crouch := false
-
-
-func damage() -> void:
-	super.damage()
-	
-	last_hurt_style = [target.punch, target.crouch]
 
 
 func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
@@ -38,9 +30,6 @@ func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
 			chance = dodge_style.punch_standing
 		[true, true]:
 			chance = dodge_style.punch_crouch
-	
-	if last_hurt_style == [is_punch, is_crouch]:
-		chance = maxf(chance, dodge_style.repeat_attack)
 	
 	return chance
 

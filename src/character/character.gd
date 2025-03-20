@@ -87,8 +87,8 @@ func can_damage() -> bool:
 	return false
 
 
-func damage() -> void:
-	if crouch:
+func damage(_punch: bool, _crouch: bool) -> void:
+	if _crouch:
 		health -= crouch_damage_multiplier
 	else:
 		health -= 1.0
@@ -96,6 +96,8 @@ func damage() -> void:
 	if health <= 0.0:
 		kill()
 	else:
+		state_hurt.punch = _punch
+		state_hurt.crouch = _crouch
 		state_machine.current = state_hurt
 
 

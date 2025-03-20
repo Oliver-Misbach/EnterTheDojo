@@ -7,6 +7,10 @@ extends State
 @onready var timer: Timer = $Timer
 
 
+var punch: bool
+var crouch: bool
+
+
 func _enter() -> void:
 	super._enter()
 	
