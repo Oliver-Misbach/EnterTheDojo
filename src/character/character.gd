@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 
 # used by EnemySpawner
-@warning_ignore("UNUSED_SIGNAL")
 signal death()
 
 
@@ -95,6 +94,11 @@ func damage() -> void:
 		health -= 1.0
 	
 	if health <= 0.0:
-		state_machine.current = state_death
+		kill()
 	else:
 		state_machine.current = state_hurt
+
+
+func kill() -> void:
+	death.emit()
+	state_machine.current = state_death

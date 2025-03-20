@@ -4,8 +4,12 @@ extends "res://src/character/state/death.gd"
 @onready var player_reset_timer: Timer = $PlayerResetTimer
 
 
-func _death() -> void:
-	super._death()
+#func _death() -> void:
+	#super._death()
+
+
+func _enter() -> void:
+	super._enter()
 	
 	player_reset_timer.start()
 

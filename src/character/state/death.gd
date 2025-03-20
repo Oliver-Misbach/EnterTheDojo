@@ -10,14 +10,14 @@ extends State
 func _enter() -> void:
 	super._enter()
 	
-	timer.start()
+	#timer.start()
 	
 	character.anim.play(&"death")
 
 
-func _death() -> void:
-	pass
+#func _death() -> void:
+	#pass
 
 
-func _on_timer_timeout() -> void:
-	_death()
+#func _on_timer_timeout() -> void:
+	#_death()
