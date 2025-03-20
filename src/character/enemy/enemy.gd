@@ -96,7 +96,7 @@ func _dodge() -> void:
 	
 	state_machine.current = state_enemy_dodge
 	
-	print_debug("enemy dodging")
+	#print_debug("enemy dodging")
 
 
 func _match_crouch() -> void:
