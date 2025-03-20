@@ -20,5 +20,5 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_timer_timeout() -> void:
-	Global.reset_game_state()
+	Global.finalize_game()
 	get_tree().change_scene_to_packed(preload("res://src/menu/main_menu.tscn"))

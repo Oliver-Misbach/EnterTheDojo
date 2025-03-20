@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2aj5tgumrbpo"]
 
-[ext_resource type="Script" path="res://src/menu/finish_menu.gd" id="1_i4egr"]
+[ext_resource type="Script" uid="uid://dtk50ja12sdkn" path="res://src/menu/finish_menu.gd" id="1_i4egr"]
 [ext_resource type="Texture2D" uid="uid://cf5ldu0x3txm1" path="res://assets/FinishScreen.png" id="2_s1duf"]
 
 [node name="FinishMenu" type="Node"]

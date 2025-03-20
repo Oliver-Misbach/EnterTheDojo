@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 
 # used by EnemySpawner
-@warning_ignore("UNUSED_SIGNAL")
 signal death()
 
 
@@ -15,22 +14,26 @@ signal death()
 @export var health := 1.0
 @export var crouch_damage_multiplier := 1.3
 
-
-var movement: float
-var punch: bool
-var kick: bool
-#var jump: bool
-var crouch: bool
+## Set to animation timings.
+## TODO: Could be auto-detected, but we may want the game to work without animations (e.g. serverside).
+@export_group("Time", "time_")
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_punch_hit := 0.2       # | 200ms | Punch hit      |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_punch_standing := 0.4  # | 400ms | Punch standing |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_punch_crouch := 0.5    # | 500ms | Punch crouch   |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_kick_hit := 0.3        # | 300ms | Kick hit       |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_kick_standing := 0.667 # | 667ms | Kick standing  |
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_kick_crouch := 0.8     # | 800ms | Kick crouch    |
 
 
 @onready var hurt_area: Area2D = $HurtArea
 @onready var model: Node3D = $Player_Character
 @onready var anim: AnimationPlayer = $Player_Character/AnimationPlayer
 
-@onready var sound_block: AudioStreamPlayer = %SoundBlock
-@onready var sound_duck: AudioStreamPlayer = %SoundDuck
-@onready var sound_kick: AudioStreamPlayer = %SoundKick
-@onready var sound_punch: AudioStreamPlayer = %SoundPunch
+@onready var sound_block: AudioStreamPlayer = %Block
+@onready var sound_duck: AudioStreamPlayer = %Duck
+@onready var sound_kick: AudioStreamPlayer = %Kick
+@onready var sound_punch_swing: AudioStreamPlayer = %PunchSwing
+@onready var sound_punch_hit: AudioStreamPlayer = %PunchHit
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var state_idle: State = $StateMachine/Idle
@@ -39,6 +42,13 @@ var crouch: bool
 @onready var state_death: State = $StateMachine/Death
 
 #@onready var debug_label: Label3D = $Player_Character/DebugLabel
+
+
+var movement: float
+var punch: bool
+var kick: bool
+#var jump: bool
+var crouch: bool
 
 
 func _ready() -> void:
@@ -77,13 +87,20 @@ func can_damage() -> bool:
 	return false
 
 
-func damage() -> void:
-	if crouch:
+func damage(_punch: bool, _crouch: bool) -> void:
+	if _crouch:
 		health -= crouch_damage_multiplier
 	else:
 		health -= 1.0
 	
 	if health <= 0.0:
-		state_machine.current = state_death
+		kill()
 	else:
+		state_hurt.punch = _punch
+		state_hurt.crouch = _crouch
 		state_machine.current = state_hurt
+
+
+func kill() -> void:
+	death.emit()
+	state_machine.current = state_death

@@ -20,7 +20,7 @@ var boss: bool
 
 
 func _on_timer_timeout() -> void:
-	if world._player_at_next_level:
+	if world.player_at_next_level:
 		return
 	
 	if types.is_empty():
@@ -59,7 +59,6 @@ func _on_enemy_death(enemy: Enemy) -> void:
 	enemies.erase(enemy)
 	
 	if enemy is Boss:
-		world.complete_level()
-		return
+		world.player_at_next_level = true
 	
 	world.try_complete_level()

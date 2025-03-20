@@ -7,6 +7,10 @@ extends State
 @onready var timer: Timer = $Timer
 
 
+var punch: bool
+var crouch: bool
+
+
 func _enter() -> void:
 	super._enter()
 	
@@ -19,4 +23,5 @@ func _enter() -> void:
 
 
 func _on_timer_timeout() -> void:
-	state_changed.emit(character.state_idle)
+	#state_changed.emit(character.state_idle)
+	character.state_machine.current = character.state_idle

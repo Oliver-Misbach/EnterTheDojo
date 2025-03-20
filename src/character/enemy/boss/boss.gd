@@ -9,13 +9,15 @@ extends Enemy
 
 
 var combo_queue: Array[BossComboItem]
-var last_crouch: bool
-var crouch_repeats: int
+
+var last_attack_style: BossComboItem
+var attack_style_repeats: int
 
 
 func _compute_dodge_chance(_is_punch: bool, is_crouch: bool) -> float:
-	if crouch_repeats >= dodge_after_repeats and last_crouch == is_crouch:
-		return repeat_dodge_chance
+	if last_attack_style != null and last_attack_style.crouch == is_crouch:
+		if attack_style_repeats >= dodge_after_repeats:
+			return repeat_dodge_chance
 	return dodge_chance
 
 

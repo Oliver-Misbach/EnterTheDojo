@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dr5i6cxu3i8mm"]
 
-[ext_resource type="Script" path="res://src/character/enemy/boss/interface.gd" id="1_46hh4"]
+[ext_resource type="Script" uid="uid://b3ykx1vbhhuxy" path="res://src/character/enemy/boss/interface.gd" id="1_46hh4"]
 
 [node name="Interface" type="CanvasLayer"]
 script = ExtResource("1_46hh4")
