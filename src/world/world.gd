@@ -13,7 +13,7 @@ extends Node
 @onready var next_level: Area2D = %NextLevel
 
 
-var _player_at_next_level := false
+var player_at_next_level := false
 
 
 func _ready() -> void:
@@ -25,12 +25,12 @@ func _ready() -> void:
 func try_complete_level() -> void:
 	if not enemy_spawner.enemies.is_empty():
 		return
-	if not _player_at_next_level:
+	if not player_at_next_level:
 		return
-	complete_level()
+	complete_level(true)
 
 
-func complete_level() -> void:
+func complete_level(wait_for_timer := false) -> void:
 	Global.health_bonus = int(player.health * 100.0)
 	Global.speed_bonus = int(1000.0 * point_timer.time_left / point_timer.wait_time)
 	
@@ -39,12 +39,13 @@ func complete_level() -> void:
 	
 	Global.save_enc()
 	
-	await get_tree().create_timer(1.0).timeout
+	if wait_for_timer:
+		await get_tree().create_timer(1.0).timeout
 	
 	get_tree().change_scene_to_packed(preload("res://src/menu/score_menu.tscn"))
 
 
 func _on_next_level_body_entered(body: Node2D) -> void:
 	if body == player:
-		_player_at_next_level = true
+		player_at_next_level = true
 		try_complete_level()
