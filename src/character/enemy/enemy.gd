@@ -12,9 +12,10 @@ const HIT_FRAMES := int(0.2 * 60.0)
 @onready var enemy_crouch_timer: Timer = %EnemyCrouchTimer
 @onready var enemy_attack_timer: Timer = %EnemyAttackTimer
 
+@onready var state_enemy_dodge: StateEnemyDodge = $StateMachine/EnemyDodge
 
 
-var _has_changed_crouch := false
+#var _has_changed_crouch := false
 
 
 func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
@@ -44,12 +45,11 @@ func _physics_process(delta: float) -> void:
 		crouch = false
 		punch = false
 		kick = false
-	else:
+	elif state_machine.current == state_idle:
 		movement = 0.0
 		# Dodge if player attack winding up and enemy isn't attacking.
 		if target.state_machine.current == target.state_attack \
-				and not target.state_attack.hit_timer.is_stopped() \
-				and state_machine.current != state_attack:
+				and not target.state_attack.hit_timer.is_stopped():
 			# Probability of at least one attack over HIT_FRAMES attempts.
 			var chance := _compute_dodge_chance(
 				target.punch,
@@ -61,17 +61,17 @@ func _physics_process(delta: float) -> void:
 			# TODO: delay randomly instead of dodging instantly
 			#       this would remove the need to calculate chance_per_frame
 			if randf() < chance_per_frame:
-				_dodge_crouch()
+				_dodge()
 				_restart_attack()
 		elif target.state_machine.current != target.state_death:
-			if state_machine.current == state_idle:
-				if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
-					_has_changed_crouch = true
-					_match_crouch()
-				
-				if enemy_attack_timer.is_stopped():
-					_attack()
-					_restart_attack()
+			#if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
+			if enemy_crouch_timer.is_stopped():
+				#_has_changed_crouch = true
+				_match_crouch()
+			
+			if enemy_attack_timer.is_stopped():
+				_attack()
+				_restart_attack()
 	
 	super._physics_process(delta)
 	
@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 
 # Prevents the enemy from crouching/uncrouching too quickly.
 func _restart_attack() -> void:
-	_has_changed_crouch = false
+	#_has_changed_crouch = false
 	
 	enemy_crouch_timer.stop()
 	enemy_crouch_timer.start()
@@ -90,13 +90,13 @@ func _restart_attack() -> void:
 	enemy_attack_timer.start()
 
 
-func _dodge_crouch() -> void:
-	var new_crouch := not target.crouch
-	if crouch != new_crouch:
-		sound_block.play()
+func _dodge() -> void:
+	if target.crouch != crouch:
+		return
 	
-	crouch = new_crouch
-	#print("enemy dodging with ", crouch)
+	state_machine.current = state_enemy_dodge
+	
+	print_debug("enemy dodging")
 
 
 func _match_crouch() -> void:

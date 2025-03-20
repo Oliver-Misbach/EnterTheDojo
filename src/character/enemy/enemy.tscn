@@ -1,15 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcqe81pkyl74u"]
+[gd_scene load_steps=8 format=3 uid="uid://bcqe81pkyl74u"]
 
 [ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_i6inj"]
 [ext_resource type="Script" uid="uid://dkcq5t5dqou4h" path="res://src/character/enemy/enemy.gd" id="2_aqljf"]
 [ext_resource type="Script" uid="uid://bentbxl7vt7u0" path="res://src/character/enemy/dodge_style.gd" id="3_53gs3"]
 [ext_resource type="Script" uid="uid://bxrakmw44xu6k" path="res://src/character/enemy/state/attack.gd" id="3_wwe7y"]
 [ext_resource type="Script" uid="uid://bvsnhom2ci143" path="res://src/character/enemy/state/death.gd" id="4_31sa2"]
+[ext_resource type="Script" uid="uid://lipc0ftlxisg" path="res://src/character/enemy/state/enemy_dodge.gd" id="6_i1jhg"]
 
 [sub_resource type="Resource" id="Resource_71lto"]
 resource_local_to_scene = true
 script = ExtResource("3_53gs3")
-repeat_attack = 0.0
 punch_standing = 0.0
 punch_crouch = 0.0
 kick_standing = 0.0
@@ -25,11 +25,67 @@ position = Vector2(-32, 0)
 [node name="Karate_Man_Rig" parent="Player_Character" index="0"]
 transform = Transform3D(7.54979e-08, 0, -1, 0, 0.884, 0, 1, 0, 7.54979e-08, 0, 0, 0)
 
-[node name="Attack" parent="StateMachine" index="1"]
-script = ExtResource("3_wwe7y")
-
-[node name="Death" parent="StateMachine" index="3"]
-script = ExtResource("4_31sa2")
+[node name="Skeleton3D" parent="Player_Character/Karate_Man_Rig" index="0"]
+bones/1/position = Vector3(0.486158, -0.0226358, -0.998511)
+bones/1/rotation = Quaternion(0.409336, -7.78776e-15, 0.912384, -3.25311e-07)
+bones/2/position = Vector3(0.148737, 0.368603, -1.07991)
+bones/2/rotation = Quaternion(-0.409336, 1.69311e-15, 0.912384, -1.63445e-15)
+bones/3/position = Vector3(0.190629, -0.454318, -0.122106)
+bones/3/rotation = Quaternion(0.999839, 1.00162e-15, -0.0179412, -2.48313e-07)
+bones/4/position = Vector3(-0.166915, 0.214167, -0.122105)
+bones/4/rotation = Quaternion(0.999839, 2.2208e-16, 0.0179408, -2.48313e-07)
+bones/5/position = Vector3(0.666782, 0.0216652, -0.401995)
+bones/5/rotation = Quaternion(-3.86871e-16, 0.016635, -1.28273e-17, 0.999862)
+bones/6/position = Vector3(0.00682307, 0.530284, -0.338917)
+bones/6/rotation = Quaternion(1.98655e-07, -0.0166347, -3.30501e-09, 0.999862)
+bones/7/position = Vector3(0.398698, -0.57954, -0.352823)
+bones/7/rotation = Quaternion(0.390549, -0.194111, 0.80584, 0.400518)
+bones/8/position = Vector3(-0.47389, 0.320248, -0.795577)
+bones/8/rotation = Quaternion(-0.390549, 0.194111, 0.80584, 0.400519)
+bones/9/position = Vector3(-0.0565877, -0.121212, -0.454228)
+bones/9/rotation = Quaternion(-0.600096, 0.344001, -0.363826, 0.623842)
+bones/10/rotation = Quaternion(0.0874675, -0.000776295, 0.00620042, 0.996148)
+bones/11/rotation = Quaternion(0.0515554, 0.00180577, 0.0206537, 0.998455)
+bones/12/rotation = Quaternion(0.0623229, -0.131168, 0.0347817, 0.988788)
+bones/13/rotation = Quaternion(0.0111604, 0.00897168, 0.0230433, 0.999632)
+bones/14/rotation = Quaternion(0.627815, 0.482471, 0.562641, -0.237709)
+bones/15/rotation = Quaternion(-0.0220734, 0.612819, -0.354228, 0.706036)
+bones/16/rotation = Quaternion(0.802306, 0.0175117, -0.0125233, 0.596524)
+bones/17/rotation = Quaternion(0.222391, -0.199207, -0.0476513, 0.953199)
+bones/18/rotation = Quaternion(0.0111622, 0.00987636, -0.659764, 0.751325)
+bones/19/rotation = Quaternion(1.8953e-07, -3.43443e-07, -0.634314, 0.773076)
+bones/20/rotation = Quaternion(-5.24636e-07, 8.15467e-07, -0.643023, 0.765847)
+bones/21/rotation = Quaternion(0.00704697, -0.0732666, -0.501332, 0.862118)
+bones/22/rotation = Quaternion(-0.625151, 0.0062356, -0.0446231, 0.779202)
+bones/23/rotation = Quaternion(0.713946, -0.435914, -0.427221, -0.343136)
+bones/24/rotation = Quaternion(0.168592, -0.629165, 0.286447, 0.702622)
+bones/25/rotation = Quaternion(0.810403, -0.0171876, 0.0126498, 0.585484)
+bones/26/rotation = Quaternion(0.0383813, 0.0404922, -0.22487, 0.97279)
+bones/27/rotation = Quaternion(0.0083663, -0.0147732, 0.564276, 0.825412)
+bones/28/rotation = Quaternion(1.93177e-07, 3.69348e-07, 0.634314, 0.773075)
+bones/29/rotation = Quaternion(-4.8691e-07, -8.19707e-07, 0.643023, 0.765847)
+bones/30/rotation = Quaternion(0.00704694, 0.0732666, 0.501332, 0.862118)
+bones/31/rotation = Quaternion(-0.625151, -0.0062356, 0.0446232, 0.779202)
+bones/32/rotation = Quaternion(0.809011, 0.324868, 0.127574, 0.472955)
+bones/32/scale = Vector3(1, 1, 1.00002)
+bones/33/rotation = Quaternion(0.840235, 0.000541766, 0.0139788, 0.542042)
+bones/33/scale = Vector3(1, 0.999983, 1.00002)
+bones/34/rotation = Quaternion(-0.754009, 0.216792, 0.348329, 0.512971)
+bones/34/scale = Vector3(1.00001, 0.999996, 1)
+bones/35/rotation = Quaternion(0.043032, 0.936373, -0.347492, -0.024581)
+bones/36/rotation = Quaternion(0.706999, -0.389989, 0.172402, 0.564215)
+bones/36/scale = Vector3(0.999999, 1, 1.00002)
+bones/37/rotation = Quaternion(0.865192, -0.000500952, -0.0143941, 0.501233)
+bones/37/scale = Vector3(0.999999, 0.999982, 1.00002)
+bones/38/rotation = Quaternion(-0.643161, 0.11927, -0.209886, 0.726682)
+bones/38/scale = Vector3(0.999997, 0.999996, 1.00001)
+bones/39/rotation = Quaternion(-0.0430321, 0.936373, -0.347492, 0.024581)
+bones/40/rotation = Quaternion(-0.529375, -0.396972, -0.616752, 0.42637)
+bones/41/rotation = Quaternion(-0.358863, 0.000171995, -0.000299427, 0.93339)
+bones/42/rotation = Quaternion(-0.205818, 0.00015019, -0.000132903, 0.97859)
+bones/43/rotation = Quaternion(-0.529375, 0.396972, 0.616752, 0.42637)
+bones/44/rotation = Quaternion(-0.358863, -0.000172061, 0.000299511, 0.93339)
+bones/45/rotation = Quaternion(-0.205818, -0.000150181, 0.000132892, 0.97859)
 
 [node name="EnemyCrouchTimer" type="Timer" parent="." index="5"]
 unique_name_in_owner = true
@@ -42,5 +98,21 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="Attack" parent="StateMachine" index="1"]
+script = ExtResource("3_wwe7y")
+
+[node name="Death" parent="StateMachine" index="3"]
+script = ExtResource("4_31sa2")
+
+[node name="EnemyDodge" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("character")]
+script = ExtResource("6_i1jhg")
+character = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/EnemyDodge" index="0"]
+wait_time = 0.7
+one_shot = true
+
+[connection signal="timeout" from="StateMachine/EnemyDodge/Timer" to="StateMachine/EnemyDodge" method="_on_timer_timeout"]
 
 [editable path="Player_Character"]
