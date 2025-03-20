@@ -39,22 +39,6 @@ script = ExtResource("1_3klmo")
 background_scroll = 3.7
 player = NodePath("Player")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_cnr5b")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 3, 0)
-shadow_enabled = true
-
-[node name="Interface" parent="." node_paths=PackedStringArray("world") instance=ExtResource("10_xb44s")]
-world = NodePath("..")
-
-[node name="Sounds" type="Node" parent="."]
-
-[node name="FloorIntro" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("3_7xrbd")
-autoplay = true
-
 [node name="Debug" type="Node" parent="." node_paths=PackedStringArray("world")]
 process_mode = 3
 script = ExtResource("2_s04er")
@@ -70,11 +54,27 @@ types = Array[PackedScene]([ExtResource("4_2xdc0"), ExtResource("5_q1qhn"), ExtR
 one_shot = true
 autostart = true
 
+[node name="Interface" parent="." node_paths=PackedStringArray("world") instance=ExtResource("10_xb44s")]
+world = NodePath("..")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="FloorIntro" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_7xrbd")
+autoplay = true
+
 [node name="PointTimer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 100.0
 one_shot = true
 autostart = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cnr5b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 3, 0)
+shadow_enabled = true
 
 [node name="Background" type="Parallax2D" parent="."]
 unique_name_in_owner = true
@@ -98,7 +98,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_s4duf")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
-position = Vector2(-2821, 3500)
+position = Vector2(-64, 0)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
