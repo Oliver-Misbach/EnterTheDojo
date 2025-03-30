@@ -62,6 +62,7 @@ world = NodePath("..")
 [node name="FloorIntro" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_7xrbd")
 autoplay = true
+parameters/looping = true
 
 [node name="PointTimer" type="Timer" parent="."]
 process_callback = 0
