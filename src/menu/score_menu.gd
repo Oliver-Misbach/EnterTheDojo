@@ -5,19 +5,19 @@ extends Node
 @onready var speed_bonus: Label = $CenterContainer/TextureRect/SpeedBonus
 
 
+func _ready() -> void:
+	health_bonus.text = str(Global.health_bonus)
+	speed_bonus.text = str(Global.speed_bonus)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_echo():
 		return
 	
 	if event is InputEventKey:
 		if event.pressed:
-			_on_timer_timeout()
+			change_to_level()
 
 
-func _ready() -> void:
-	health_bonus.text = str(Global.health_bonus)
-	speed_bonus.text = str(Global.speed_bonus)
-
-
-func _on_timer_timeout() -> void:
+func change_to_level() -> void:
 	Global.change_to_level()
