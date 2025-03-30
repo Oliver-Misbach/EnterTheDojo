@@ -4,7 +4,7 @@ extends Node
 @onready var high_score: Label = %HighScore
 
 
-func _process(_delta: float) -> void:
+func _ready() -> void:
 	high_score.text = "High score: %d" % Global.encrypted.high_score
 
 

@@ -7,7 +7,7 @@ extends Node
 
 func _ready() -> void:
 	score.text = "Score: %d" % Global.encrypted.state.score
-	high_score.text = "High Score: %d" % Global.encrypted.state.score
+	high_score.text = "High Score: %d" % Global.encrypted.high_score
 
 
 func _unhandled_input(event: InputEvent) -> void:
