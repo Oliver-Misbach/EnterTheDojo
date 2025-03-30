@@ -15,6 +15,9 @@ const HIT_FRAMES := int(0.2 * 60.0)
 @onready var state_enemy_dodge: StateEnemyDodge = $StateMachine/EnemyDodge
 
 
+var last_hurt_style: Array # [punch, crouch]
+
+
 #var _has_changed_crouch := false
 
 
@@ -31,6 +34,9 @@ func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
 			chance = dodge_style.punch_standing
 		[true, true]:
 			chance = dodge_style.punch_crouch
+	
+	if last_hurt_style == [is_punch, is_crouch]:
+		chance = maxf(chance, dodge_style.repeat_attack)
 	
 	return chance
 
