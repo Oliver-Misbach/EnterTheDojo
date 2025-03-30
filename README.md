@@ -1,6 +1,6 @@
 # Enter The Dojo
 
-todo
+## todo
 
 - [ ] Multiple resolution support (currently expects 16:9)
 - [ ] Music
@@ -9,11 +9,16 @@ todo
 - [x] UID warnings can be ignored. Should be fixed in Godot 4.4.
 - [x] Punch and hit should be separate sounds in case a punch misses
 
-technical
+## technical
 
 - [ ] Clean up and document code
   - [ ] use state machine for enemy behavior and some logic in character.gd
 - [ ] Test .blend import with Godot 4.3+
+
+## maintainence
+
+To work around negative scale (mirroring) causing lighting issues on character, override its materials and reset `transparency/cull_mode` to `Back`.
+Alternatively, change the cull mode of the materials in Blender.
 
 # Initial Concept Document
 https://drive.google.com/drive/folders/1p2LiPm3LVRYIls0AtLyLSyJ2EqMFiVDL

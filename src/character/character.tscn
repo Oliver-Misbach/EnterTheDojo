@@ -1,12 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://csmkwv7sbo713"]
+[gd_scene load_steps=16 format=3 uid="uid://csmkwv7sbo713"]
 
 [ext_resource type="Script" uid="uid://c8b1xms1laseo" path="res://src/character/character.gd" id="1_feilg"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="2_l4r3p"]
-[ext_resource type="PackedScene" uid="uid://mnj15h0sy3t8" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character.glb" id="3_f6hel"]
-[ext_resource type="Texture2D" uid="uid://begp75ina37qx" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_skin.png" id="4_rubme"]
-[ext_resource type="Texture2D" uid="uid://dwhurebebltbi" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_black.png" id="5_daxvm"]
-[ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="6_agcg2"]
-[ext_resource type="Texture2D" uid="uid://8nkd0yxej538" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_headband.png" id="7_d24hr"]
+[ext_resource type="PackedScene" uid="uid://cosbijlro2mfm" path="res://assets/3D Assets/Character Models/Player Character Model/model.tscn" id="3_omsti"]
 [ext_resource type="AudioStream" uid="uid://01eanshshji2" path="res://assets/audio/block.mp3" id="8_3vxxs"]
 [ext_resource type="Script" uid="uid://buwm32xarhxku" path="res://src/state_machine/state_machine.gd" id="8_un5e1"]
 [ext_resource type="Script" uid="uid://daot074svxlkc" path="res://src/character/state/idle.gd" id="9_cxhtl"]
@@ -23,30 +19,6 @@ size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2d0kn"]
 radius = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7576j"]
-resource_name = "Skin"
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_rubme")
-roughness = 0.4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhpjx"]
-resource_name = "Black"
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("5_daxvm")
-roughness = 0.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wkj3"]
-resource_name = "Gi"
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("6_agcg2")
-roughness = 0.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfpa7"]
-resource_name = "Headband"
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("7_d24hr")
-roughness = 0.5
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_feilg")
@@ -66,87 +38,7 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
 shape = SubResource("CircleShape2D_2d0kn")
 
-[node name="Player_Character" parent="." instance=ExtResource("3_f6hel")]
-
-[node name="Karate_Man_Rig" parent="Player_Character" index="0"]
-transform = Transform3D(4.37114e-08, 0, 1, 0, 0.884, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-
-[node name="Skeleton3D" parent="Player_Character/Karate_Man_Rig" index="0"]
-bones/1/position = Vector3(0.360484, -0.0162808, -1.44048)
-bones/1/rotation = Quaternion(0.409336, -7.78776e-15, 0.912384, -3.25311e-07)
-bones/2/position = Vector3(0.0513269, 0.368594, -1.4588)
-bones/2/rotation = Quaternion(-0.409336, 1.69311e-15, 0.912384, -1.63445e-15)
-bones/3/position = Vector3(0.190629, -0.454318, -0.122106)
-bones/3/rotation = Quaternion(0.999839, 7.79543e-16, -0.0179412, -2.48313e-07)
-bones/4/position = Vector3(-0.166915, 0.214167, -0.122105)
-bones/4/rotation = Quaternion(0.999839, 2.2208e-16, 0.0179408, -2.48313e-07)
-bones/5/position = Vector3(0.666782, 0.0216652, -0.401995)
-bones/5/rotation = Quaternion(-3.86871e-16, 0.016635, -1.28273e-17, 0.999862)
-bones/6/position = Vector3(0.00682307, 0.530284, -0.338917)
-bones/6/rotation = Quaternion(1.98655e-07, -0.0166347, -3.30501e-09, 0.999862)
-bones/7/position = Vector3(0.34781, -0.57954, -0.785086)
-bones/7/rotation = Quaternion(0.436128, 1.07222e-14, 0.899885, -3.46603e-07)
-bones/8/position = Vector3(-0.236476, 0.320247, -0.98298)
-bones/8/rotation = Quaternion(-0.436128, -1.56636e-15, 0.899885, 1.39187e-15)
-bones/9/position = Vector3(-0.0565878, -0.161472, -0.832062)
-bones/9/rotation = Quaternion(-0.600096, 0.344001, -0.363826, 0.623842)
-bones/10/rotation = Quaternion(0.0874675, -0.000776302, 0.00620042, 0.996148)
-bones/11/rotation = Quaternion(0.0515554, 0.00180578, 0.0206537, 0.998455)
-bones/12/rotation = Quaternion(0.062323, -0.131168, 0.0347817, 0.988788)
-bones/13/rotation = Quaternion(0.0111604, 0.00897168, 0.0230433, 0.999632)
-bones/14/rotation = Quaternion(0.627815, 0.482471, 0.562641, -0.237709)
-bones/15/rotation = Quaternion(0.0275593, 0.614998, -0.482856, 0.62279)
-bones/16/rotation = Quaternion(0.876179, 0.0141375, -0.0136764, 0.481585)
-bones/17/rotation = Quaternion(-0.0230749, -0.0949753, 0.00632219, 0.995192)
-bones/18/rotation = Quaternion(0.0111622, 0.00987635, -0.659764, 0.751325)
-bones/19/rotation = Quaternion(2.11214e-07, -3.31698e-07, -0.634314, 0.773076)
-bones/20/rotation = Quaternion(-5.24332e-07, 8.19115e-07, -0.643023, 0.765847)
-bones/21/rotation = Quaternion(0.00704697, -0.0732666, -0.501332, 0.862118)
-bones/22/rotation = Quaternion(-0.625151, 0.0062356, -0.0446231, 0.779202)
-bones/23/rotation = Quaternion(0.713946, -0.435914, -0.427221, -0.343136)
-bones/24/rotation = Quaternion(-0.0749898, -0.486842, 0.32049, 0.809103)
-bones/25/rotation = Quaternion(0.835327, -0.0161273, 0.013039, 0.549362)
-bones/26/rotation = Quaternion(0.114153, 0.035043, 0.0529069, 0.991434)
-bones/27/rotation = Quaternion(0.0083663, -0.0147731, 0.564276, 0.825412)
-bones/28/rotation = Quaternion(1.96792e-07, 3.34713e-07, 0.634314, 0.773075)
-bones/29/rotation = Quaternion(-4.96638e-07, -8.34603e-07, 0.643023, 0.765847)
-bones/30/rotation = Quaternion(0.00704694, 0.0732666, 0.501332, 0.862118)
-bones/31/rotation = Quaternion(-0.625151, -0.00623561, 0.0446232, 0.779202)
-bones/32/rotation = Quaternion(0.948459, 0.167285, 0.0896635, 0.253776)
-bones/32/scale = Vector3(1, 1, 1.00001)
-bones/33/rotation = Quaternion(0.459415, 0.000887773, 0.00764334, 0.888189)
-bones/33/scale = Vector3(0.999999, 0.999998, 1)
-bones/34/rotation = Quaternion(-0.621685, 0.0707016, 0.224013, 0.747213)
-bones/34/scale = Vector3(1.00001, 0.999996, 1)
-bones/35/rotation = Quaternion(0.0430321, 0.936373, -0.347492, -0.024581)
-bones/36/rotation = Quaternion(0.879534, -0.223072, 0.281757, 0.311885)
-bones/36/scale = Vector3(1, 1, 1.00001)
-bones/37/rotation = Quaternion(0.451499, -0.000891784, -0.00751168, 0.89224)
-bones/37/scale = Vector3(1, 0.999998, 1)
-bones/38/rotation = Quaternion(-0.487056, 0.186081, -0.0999489, 0.847444)
-bones/38/scale = Vector3(0.999997, 1, 1)
-bones/39/rotation = Quaternion(-0.0430321, 0.936373, -0.347492, 0.024581)
-bones/40/rotation = Quaternion(-0.529375, -0.396972, -0.616752, 0.42637)
-bones/41/rotation = Quaternion(-0.358863, 0.000172011, -0.000299416, 0.93339)
-bones/42/rotation = Quaternion(-0.205818, 0.000150174, -0.000132912, 0.97859)
-bones/43/rotation = Quaternion(-0.529375, 0.396972, 0.616752, 0.42637)
-bones/44/rotation = Quaternion(-0.358863, -0.000172057, 0.000299523, 0.93339)
-bones/45/rotation = Quaternion(-0.205818, -0.000150209, 0.000132898, 0.97859)
-
-[node name="Karate_Man" parent="Player_Character/Karate_Man_Rig/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_7576j")
-surface_material_override/1 = SubResource("StandardMaterial3D_dhpjx")
-surface_material_override/2 = SubResource("StandardMaterial3D_7wkj3")
-surface_material_override/3 = SubResource("StandardMaterial3D_xfpa7")
-
-[node name="AnimationPlayer" parent="Player_Character" index="1"]
-autoplay = "idle"
-playback_default_blend_time = 0.2
-
-[node name="DebugLabel" type="Label3D" parent="Player_Character"]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-billboard = 2
+[node name="Player_Character" parent="." instance=ExtResource("3_omsti")]
 
 [node name="Sounds" type="Node" parent="."]
 
