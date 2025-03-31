@@ -7,7 +7,7 @@ extends Node
 
 func _ready() -> void:
 	score.text = "Score: %d" % Global.encrypted.state.score
-	high_score.text = "High Score: %d" % Global.encrypted.state.score
+	high_score.text = "High Score: %d" % Global.encrypted.high_score
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -16,9 +16,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventKey:
 		if event.pressed:
-			_on_timer_timeout()
+			finalize_game()
 
 
-func _on_timer_timeout() -> void:
+func finalize_game() -> void:
 	Global.finalize_game()
 	get_tree().change_scene_to_packed(preload("res://src/menu/main_menu.tscn"))

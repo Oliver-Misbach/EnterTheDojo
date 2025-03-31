@@ -18,7 +18,7 @@ script = ExtResource("1_5whog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 355.0
-offset_bottom = 139.0
+offset_bottom = 102.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -44,9 +44,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 max_value = 10.0
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="LevelName" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true

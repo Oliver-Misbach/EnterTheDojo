@@ -63,6 +63,5 @@ theme_override_font_sizes/font_size = 64
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="finalize_game"]

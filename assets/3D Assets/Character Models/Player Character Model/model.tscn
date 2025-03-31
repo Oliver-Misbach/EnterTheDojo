@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=3 uid="uid://cosbijlro2mfm"]
+
+[ext_resource type="PackedScene" uid="uid://mnj15h0sy3t8" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character.glb" id="1_5k6s8"]
+[ext_resource type="Texture2D" uid="uid://begp75ina37qx" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_skin.png" id="2_fguop"]
+[ext_resource type="Texture2D" uid="uid://dwhurebebltbi" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_black.png" id="3_rhq61"]
+[ext_resource type="Texture2D" uid="uid://djbcisd3bjcvs" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png" id="4_f32lx"]
+[ext_resource type="Texture2D" uid="uid://8nkd0yxej538" path="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_headband.png" id="5_riet2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vn46"]
+resource_name = "Skin"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_fguop")
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jk5ei"]
+resource_name = "Black"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_rhq61")
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4blxh"]
+resource_name = "Gi"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_f32lx")
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1sgd"]
+resource_name = "Headband"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_riet2")
+roughness = 0.5
+
+[node name="Player_Character" instance=ExtResource("1_5k6s8")]
+
+[node name="Karate_Man" parent="Karate_Man_Rig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3vn46")
+surface_material_override/1 = SubResource("StandardMaterial3D_jk5ei")
+surface_material_override/2 = SubResource("StandardMaterial3D_4blxh")
+surface_material_override/3 = SubResource("StandardMaterial3D_m1sgd")
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "idle"
+playback_default_blend_time = 0.2
