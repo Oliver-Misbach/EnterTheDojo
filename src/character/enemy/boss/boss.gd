@@ -21,12 +21,6 @@ func _compute_dodge_chance(_is_punch: bool, is_crouch: bool) -> float:
 	return dodge_chance
 
 
-func _restart_attack() -> void:
-	enemy_crouch_timer.wait_time = randf_range(1.0, 3.0)
-	enemy_attack_timer.wait_time = enemy_crouch_timer.wait_time + 0.5
-	super._restart_attack()
-
-
 func _enemy_attack() -> void:
 	#print("Boss enemy attack... ", punch, ", ", crouch)
 	

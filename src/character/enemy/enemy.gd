@@ -8,6 +8,9 @@ const HIT_FRAMES := int(0.2 * 60.0)
 @export var target: Player
 @export var dodge_style: DodgeStyle
 
+@export var attack_interval := Curve.new()
+
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_crouch_attack := 0.5
 
 @onready var enemy_crouch_timer: Timer = %EnemyCrouchTimer
 @onready var enemy_attack_timer: Timer = %EnemyAttackTimer
@@ -90,6 +93,11 @@ func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
 
 func _restart_attack() -> void:
 	#_has_changed_crouch = false
+	
+	var time := attack_interval.sample(randf())
+	
+	enemy_crouch_timer.wait_time = time
+	enemy_attack_timer.wait_time = time + time_crouch_attack
 	
 	enemy_crouch_timer.stop()
 	enemy_crouch_timer.start()

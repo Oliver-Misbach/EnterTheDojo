@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcqe81pkyl74u"]
+[gd_scene load_steps=10 format=3 uid="uid://bcqe81pkyl74u"]
 
 [ext_resource type="PackedScene" uid="uid://csmkwv7sbo713" path="res://src/character/character.tscn" id="1_i6inj"]
 [ext_resource type="Script" uid="uid://dkcq5t5dqou4h" path="res://src/character/enemy/enemy.gd" id="2_aqljf"]
@@ -17,9 +17,17 @@ punch_crouch = 0.0
 kick_standing = 0.0
 kick_crouch = 0.0
 
+[sub_resource type="Curve" id="Curve_r0odl"]
+resource_local_to_scene = true
+_limits = [1.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Enemy" instance=ExtResource("1_i6inj")]
 script = ExtResource("2_aqljf")
 dodge_style = SubResource("Resource_r0odl")
+attack_interval = SubResource("Curve_r0odl")
+time_crouch_attack = 0.5
 
 [node name="EnemyCrouchTimer" type="Timer" parent="." index="0"]
 unique_name_in_owner = true
