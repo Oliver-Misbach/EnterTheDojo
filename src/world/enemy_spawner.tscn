@@ -1,0 +1,25 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt4nc6f00ly7e"]
+
+[ext_resource type="Script" uid="uid://dq178axjpqm7w" path="res://src/world/enemy_spawner.gd" id="1_iffu7"]
+[ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/type/blue.tscn" id="2_bu8j7"]
+[ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/type/yellow.tscn" id="3_neoma"]
+[ext_resource type="PackedScene" uid="uid://w3xuec13fpgc" path="res://src/character/enemy/type/green.tscn" id="4_ixsr4"]
+[ext_resource type="PackedScene" uid="uid://b5qtj00q0awjg" path="res://src/character/enemy/type/red.tscn" id="5_5ue80"]
+[ext_resource type="PackedScene" uid="uid://c6hat4xli5ja1" path="res://src/character/enemy/type/black.tscn" id="6_cf3vi"]
+
+[sub_resource type="Curve" id="Curve_iffu7"]
+_limits = [1.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 4), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="EnemySpawner" type="Node"]
+script = ExtResource("1_iffu7")
+types = Array[PackedScene]([ExtResource("2_bu8j7"), ExtResource("3_neoma"), ExtResource("4_ixsr4"), ExtResource("5_5ue80"), ExtResource("6_cf3vi")])
+spawn_interval = SubResource("Curve_iffu7")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

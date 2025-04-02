@@ -1,15 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://csq0r4i000xch"]
+[gd_scene load_steps=14 format=3 uid="uid://csq0r4i000xch"]
 
 [ext_resource type="Script" uid="uid://73b06xqrccq1" path="res://src/world/world.gd" id="1_3klmo"]
 [ext_resource type="Script" uid="uid://33gkwf8c0l03" path="res://src/world/debug.gd" id="2_s04er"]
 [ext_resource type="AudioStream" uid="uid://cxs3ff6jewjin" path="res://assets/audio/Floor_Intro.mp3" id="3_7xrbd"]
-[ext_resource type="PackedScene" uid="uid://dnko3gmvxic7q" path="res://src/character/enemy/type/blue.tscn" id="4_2xdc0"]
+[ext_resource type="PackedScene" uid="uid://dt4nc6f00ly7e" path="res://src/world/enemy_spawner.tscn" id="3_wg6dd"]
 [ext_resource type="PackedScene" uid="uid://ksdjb1tbboha" path="res://src/character/player/player.tscn" id="5_45di6"]
-[ext_resource type="Script" uid="uid://dq178axjpqm7w" path="res://src/world/enemy_spawner.gd" id="5_q0b4x"]
-[ext_resource type="PackedScene" uid="uid://cefe5cykhb2an" path="res://src/character/enemy/type/yellow.tscn" id="5_q1qhn"]
-[ext_resource type="PackedScene" uid="uid://w3xuec13fpgc" path="res://src/character/enemy/type/green.tscn" id="6_vcgl2"]
-[ext_resource type="PackedScene" uid="uid://b5qtj00q0awjg" path="res://src/character/enemy/type/red.tscn" id="7_obe8y"]
-[ext_resource type="PackedScene" uid="uid://c6hat4xli5ja1" path="res://src/character/enemy/type/black.tscn" id="8_vgjmd"]
 [ext_resource type="Texture2D" uid="uid://u56fn0gs47h0" path="res://assets/Floor1.png" id="9_pxxcl"]
 [ext_resource type="PackedScene" uid="uid://mblwsep6ogyj" path="res://src/world/interface/interface.tscn" id="10_xb44s"]
 [ext_resource type="Texture2D" uid="uid://cbveomv0sowod" path="res://src/icon.svg" id="11_q0wkl"]
@@ -44,15 +39,9 @@ process_mode = 3
 script = ExtResource("2_s04er")
 world = NodePath("..")
 
-[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("world")]
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_wg6dd")]
 unique_name_in_owner = true
-script = ExtResource("5_q0b4x")
 world = NodePath("..")
-types = Array[PackedScene]([ExtResource("4_2xdc0"), ExtResource("5_q1qhn"), ExtResource("6_vcgl2"), ExtResource("7_obe8y"), ExtResource("8_vgjmd")])
-
-[node name="Timer" type="Timer" parent="EnemySpawner"]
-one_shot = true
-autostart = true
 
 [node name="Interface" parent="." node_paths=PackedStringArray("world") instance=ExtResource("10_xb44s")]
 world = NodePath("..")
@@ -112,5 +101,4 @@ texture = ExtResource("11_q0wkl")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 16384)
 
-[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]

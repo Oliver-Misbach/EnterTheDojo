@@ -11,8 +11,7 @@ extends Node
 @export_custom(PROPERTY_HINT_NONE, "suffix:s") var interval_min := 1.0
 @export_custom(PROPERTY_HINT_NONE, "suffix:s") var interval_max := 3.0
 
-
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = %Timer
 
 
 var enemies: Array[Enemy]
