@@ -24,7 +24,6 @@ func _enter() -> void:
 	character.anim.stop()
 	#character.anim.seek(0.0)
 	
-	character.sound_swing.stop()
 	character.sound_swing.play()
 	
 	if punch:
