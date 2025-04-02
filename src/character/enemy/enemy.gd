@@ -23,7 +23,7 @@ var last_hurt_style: Array # [punch, crouch]
 
 
 # Prevents the enemy from crouching/uncrouching too quickly.
-#var _has_changed_crouch := false
+var _has_changed_crouch := false
 
 
 func _enter_tree() -> void:
@@ -60,9 +60,8 @@ func _physics_process(delta: float) -> void:
 				_dodge()
 				_restart_attack()
 		elif target.state_machine.current != target.state_death:
-			#if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
-			if enemy_crouch_timer.is_stopped():
-				#_has_changed_crouch = true
+			if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
+				_has_changed_crouch = true
 				_match_crouch()
 			
 			if enemy_attack_timer.is_stopped():
@@ -96,7 +95,7 @@ func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
 
 
 func _restart_attack() -> void:
-	#_has_changed_crouch = false
+	_has_changed_crouch = false
 	
 	var time := attack_interval.sample(randf())
 	
