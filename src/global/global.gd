@@ -3,6 +3,9 @@ extends Node
 
 @export var levels: Array[PackedScene]
 
+@export_group("Debug", "debug_")
+@export var debug_time_scale := 1.0
+
 
 var encrypted := Encrypted.new()
 
@@ -19,8 +22,8 @@ func _exit_tree() -> void:
 	save_enc()
 
 
-#func _ready() -> void:
-	#Engine.time_scale = 0.2
+func _ready() -> void:
+	Engine.time_scale = debug_time_scale
 
 
 func load_enc() -> void:
