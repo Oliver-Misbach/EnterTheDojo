@@ -38,6 +38,7 @@ combo_types = Array[ExtResource("3_a1thx")]([ExtResource("4_53mqb"), ExtResource
 dodge_chance = 0.3
 repeat_dodge_chance = 1.0
 dodge_after_repeats = 3
+time_combo_move = 0.5
 dodge_style = SubResource("Resource_6sq2e")
 health = 10.0
 

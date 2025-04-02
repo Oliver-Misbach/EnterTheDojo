@@ -12,11 +12,12 @@ const HIT_FRAMES := int(0.2 * 60.0)
 
 @export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_crouch_attack := 0.5
 
-@onready var enemy_crouch_timer: Timer = %EnemyCrouchTimer
-@onready var enemy_attack_timer: Timer = %EnemyAttackTimer
 
 @onready var state_enemy_dodge: StateEnemyDodge = $StateMachine/EnemyDodge
 
+
+var enemy_crouch_timer: Timer
+var enemy_attack_timer: Timer
 
 var last_hurt_style: Array # [punch, crouch]
 
@@ -25,6 +26,9 @@ var last_hurt_style: Array # [punch, crouch]
 #var _has_changed_crouch := false
 
 
+func _enter_tree() -> void:
+	enemy_crouch_timer = %EnemyCrouchTimer
+	enemy_attack_timer = %EnemyAttackTimer
 
 
 func _physics_process(delta: float) -> void:
