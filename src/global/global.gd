@@ -47,7 +47,3 @@ func finalize_game() -> void:
 	encrypted.high_score = maxi(encrypted.high_score, encrypted.state.score)
 	encrypted.state = GameState.new()
 	save_enc()
-
-
-func ok(status: int, message := "error") -> void:
-	assert(status == OK, "%s: %d" % [message, status])
