@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgvns2h8ilclv"]
+[gd_scene load_steps=18 format=3 uid="uid://cgvns2h8ilclv"]
 
 [ext_resource type="PackedScene" uid="uid://bcqe81pkyl74u" path="res://src/character/enemy/enemy.tscn" id="1_c8mn7"]
 [ext_resource type="Script" uid="uid://dscwmthuan6kb" path="res://src/character/enemy/boss/boss.gd" id="2_04r6m"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dr5i6cxu3i8mm" path="res://src/character/enemy/boss/interface.tscn" id="6_arb2w"]
 [ext_resource type="Resource" uid="uid://ben86pv3e85uk" path="res://src/character/enemy/boss/combo/type/kc_kc.tres" id="7_kikcv"]
 [ext_resource type="Resource" uid="uid://srd8q7sbri86" path="res://src/character/enemy/boss/combo/type/ks_pc.tres" id="8_pkukm"]
+[ext_resource type="AudioStream" uid="uid://cjw8tieabc53m" path="res://assets/audio/swing.mp3" id="13_0c456"]
+[ext_resource type="AudioStream" uid="uid://duvjuwoarryi0" path="res://assets/audio/hit.mp3" id="14_l1kra"]
 
 [sub_resource type="Resource" id="Resource_6sq2e"]
 resource_local_to_scene = true
@@ -47,6 +49,14 @@ script = ExtResource("4_1ucil")
 
 [node name="Hurt" parent="StateMachine" index="3"]
 script = ExtResource("5_jl5eq")
+
+[node name="PunchSwing" type="AudioStreamPlayer" parent="Sounds" index="3"]
+unique_name_in_owner = true
+stream = ExtResource("13_0c456")
+
+[node name="PunchHit" type="AudioStreamPlayer" parent="Sounds" index="4"]
+unique_name_in_owner = true
+stream = ExtResource("14_l1kra")
 
 [node name="Sprite2D" parent="." index="6"]
 scale = Vector2(0.438, 0.438)

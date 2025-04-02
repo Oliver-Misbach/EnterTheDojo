@@ -31,9 +31,9 @@ signal death()
 
 @onready var sound_block: AudioStreamPlayer = %Block
 @onready var sound_duck: AudioStreamPlayer = %Duck
+@onready var sound_swing: AudioStreamPlayer = %Swing
+@onready var sound_punch: AudioStreamPlayer = %Punch
 @onready var sound_kick: AudioStreamPlayer = %Kick
-@onready var sound_punch_swing: AudioStreamPlayer = %PunchSwing
-@onready var sound_punch_hit: AudioStreamPlayer = %PunchHit
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var state_idle: State = $StateMachine/Idle
