@@ -18,27 +18,10 @@ const HIT_FRAMES := int(0.2 * 60.0)
 var last_hurt_style: Array # [punch, crouch]
 
 
+# Prevents the enemy from crouching/uncrouching too quickly.
 #var _has_changed_crouch := false
 
 
-func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
-	# Note: This is overridden in boss.gd.
-	
-	var chance: float
-	match [is_punch, is_crouch]:
-		[false, false]:
-			chance = dodge_style.kick_standing
-		[false, true]:
-			chance = dodge_style.kick_crouch
-		[true, false]:
-			chance = dodge_style.punch_standing
-		[true, true]:
-			chance = dodge_style.punch_crouch
-	
-	if last_hurt_style == [is_punch, is_crouch]:
-		chance = maxf(chance, dodge_style.repeat_attack)
-	
-	return chance
 
 
 func _physics_process(delta: float) -> void:
@@ -85,7 +68,26 @@ func _physics_process(delta: float) -> void:
 	#debug_label.text += "\nDodge: %d%%" % (dodge_chance * 100.0)
 
 
-# Prevents the enemy from crouching/uncrouching too quickly.
+func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
+	# Note: This is overridden in boss.gd.
+	
+	var chance: float
+	match [is_punch, is_crouch]:
+		[false, false]:
+			chance = dodge_style.kick_standing
+		[false, true]:
+			chance = dodge_style.kick_crouch
+		[true, false]:
+			chance = dodge_style.punch_standing
+		[true, true]:
+			chance = dodge_style.punch_crouch
+	
+	if last_hurt_style == [is_punch, is_crouch]:
+		chance = maxf(chance, dodge_style.repeat_attack)
+	
+	return chance
+
+
 func _restart_attack() -> void:
 	#_has_changed_crouch = false
 	

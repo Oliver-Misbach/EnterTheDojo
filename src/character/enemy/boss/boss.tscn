@@ -42,16 +42,16 @@ health = 10.0
 [node name="Interface" parent="." index="0" node_paths=PackedStringArray("boss") instance=ExtResource("6_arb2w")]
 boss = NodePath("..")
 
-[node name="Sprite2D" parent="." index="2"]
+[node name="Idle" parent="StateMachine" index="1"]
+script = ExtResource("4_1ucil")
+
+[node name="Hurt" parent="StateMachine" index="3"]
+script = ExtResource("5_jl5eq")
+
+[node name="Sprite2D" parent="." index="6"]
 scale = Vector2(0.438, 0.438)
 
 [node name="Karate_Man" parent="Player_Character/Karate_Man_Rig/Skeleton3D" index="0"]
 surface_material_override/2 = SubResource("StandardMaterial3D_cje4w")
-
-[node name="Idle" parent="StateMachine" index="0"]
-script = ExtResource("4_1ucil")
-
-[node name="Hurt" parent="StateMachine" index="2"]
-script = ExtResource("5_jl5eq")
 
 [editable path="Player_Character"]
