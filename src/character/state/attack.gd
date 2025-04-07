@@ -24,9 +24,9 @@ func _enter() -> void:
 	character.anim.stop()
 	#character.anim.seek(0.0)
 	
+	character.sound_swing.play()
+	
 	if punch:
-		character.sound_punch_swing.play()
-		
 		hit_timer.start(character.time_punch_hit)
 		if crouch:
 			timer.start(character.time_punch_crouch)
@@ -53,7 +53,7 @@ func _exit() -> void:
 
 func _hit(body: Character) -> void:
 	if punch:
-		character.sound_punch_hit.play()
+		character.sound_punch.play()
 	else:
 		character.sound_kick.play()
 	

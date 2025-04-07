@@ -1,6 +1,16 @@
 extends Node
 
 
+@export var time_scale := 1.0
+
+
+func _ready() -> void:
+	if not OS.is_debug_build():
+		return
+	
+	Engine.time_scale = time_scale
+
+
 func _input(event: InputEvent) -> void:
 	if not OS.is_debug_build():
 		return

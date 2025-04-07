@@ -19,10 +19,6 @@ func _exit_tree() -> void:
 	save_enc()
 
 
-#func _ready() -> void:
-	#Engine.time_scale = 0.2
-
-
 func load_enc() -> void:
 	var data := SaveLoad.load_enc()
 	print_debug("global: load: %s" % data)
@@ -47,7 +43,3 @@ func finalize_game() -> void:
 	encrypted.high_score = maxi(encrypted.high_score, encrypted.state.score)
 	encrypted.state = GameState.new()
 	save_enc()
-
-
-func ok(status: int, message := "error") -> void:
-	assert(status == OK, "%s: %d" % [message, status])

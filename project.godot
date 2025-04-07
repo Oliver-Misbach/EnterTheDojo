@@ -17,8 +17,9 @@ config/icon="res://src/icon.svg"
 
 [autoload]
 
-SaveLoad="*res://src/global/save_load.gd"
+G="*res://src/global/g.gd"
 Global="*res://src/global/global.tscn"
+SaveLoad="*res://src/global/save_load.gd"
 
 [config]
 

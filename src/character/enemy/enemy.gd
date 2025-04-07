@@ -8,37 +8,27 @@ const HIT_FRAMES := int(0.2 * 60.0)
 @export var target: Player
 @export var dodge_style: DodgeStyle
 
+@export var attack_interval := Curve.new()
 
-@onready var enemy_crouch_timer: Timer = %EnemyCrouchTimer
-@onready var enemy_attack_timer: Timer = %EnemyAttackTimer
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var time_crouch_attack := 0.5
+
 
 @onready var state_enemy_dodge: StateEnemyDodge = $StateMachine/EnemyDodge
 
 
+var enemy_crouch_timer: Timer
+var enemy_attack_timer: Timer
+
 var last_hurt_style: Array # [punch, crouch]
 
 
-#var _has_changed_crouch := false
+# Prevents the enemy from crouching/uncrouching too quickly.
+var _has_changed_crouch := false
 
 
-func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
-	# Note: This is overridden in boss.gd.
-	
-	var chance: float
-	match [is_punch, is_crouch]:
-		[false, false]:
-			chance = dodge_style.kick_standing
-		[false, true]:
-			chance = dodge_style.kick_crouch
-		[true, false]:
-			chance = dodge_style.punch_standing
-		[true, true]:
-			chance = dodge_style.punch_crouch
-	
-	if last_hurt_style == [is_punch, is_crouch]:
-		chance = maxf(chance, dodge_style.repeat_attack)
-	
-	return chance
+func _enter_tree() -> void:
+	enemy_crouch_timer = %EnemyCrouchTimer
+	enemy_attack_timer = %EnemyAttackTimer
 
 
 func _physics_process(delta: float) -> void:
@@ -70,9 +60,8 @@ func _physics_process(delta: float) -> void:
 				_dodge()
 				_restart_attack()
 		elif target.state_machine.current != target.state_death:
-			#if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
-			if enemy_crouch_timer.is_stopped():
-				#_has_changed_crouch = true
+			if enemy_crouch_timer.is_stopped() and not _has_changed_crouch:
+				_has_changed_crouch = true
 				_match_crouch()
 			
 			if enemy_attack_timer.is_stopped():
@@ -85,9 +74,33 @@ func _physics_process(delta: float) -> void:
 	#debug_label.text += "\nDodge: %d%%" % (dodge_chance * 100.0)
 
 
-# Prevents the enemy from crouching/uncrouching too quickly.
+func _compute_dodge_chance(is_punch: bool, is_crouch: bool) -> float:
+	# Note: This is overridden in boss.gd.
+	
+	var chance: float
+	match [is_punch, is_crouch]:
+		[false, false]:
+			chance = dodge_style.kick_standing
+		[false, true]:
+			chance = dodge_style.kick_crouch
+		[true, false]:
+			chance = dodge_style.punch_standing
+		[true, true]:
+			chance = dodge_style.punch_crouch
+	
+	if last_hurt_style == [is_punch, is_crouch]:
+		chance = maxf(chance, dodge_style.repeat_attack)
+	
+	return chance
+
+
 func _restart_attack() -> void:
-	#_has_changed_crouch = false
+	_has_changed_crouch = false
+	
+	var time := attack_interval.sample(randf())
+	
+	enemy_crouch_timer.wait_time = time
+	enemy_attack_timer.wait_time = time + time_crouch_attack
 	
 	enemy_crouch_timer.stop()
 	enemy_crouch_timer.start()

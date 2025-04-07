@@ -17,7 +17,7 @@ var _enc := ConfigFile.new()
 func load_enc() -> Dictionary:
 	var err := _enc.load_encrypted_pass(PATH_BIN, _password)
 	if err != ERR_FILE_NOT_FOUND:
-		Global.ok(err, "config: load enc")
+		G.ok(err, "config: load enc")
 	
 	var value: Dictionary = _enc.get_value(&"", &"data", {})
 	return value
@@ -27,4 +27,4 @@ func save_enc(dict: Dictionary) -> void:
 	_enc.set_value(&"", &"data", dict)
 	
 	var err := _enc.save_encrypted_pass(PATH_BIN, _password)
-	Global.ok(err, "config: save enc")
+	G.ok(err, "config: save enc")

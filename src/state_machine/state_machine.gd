@@ -15,7 +15,7 @@ extends Node
 			current.is_active = false
 			current._exit()
 		current = value
-		#Global.ok(state.state_changed.connect(_set_state))
+		#G.ok(state.state_changed.connect(_set_state))
 		value.is_active = true
 		value._enter()
 

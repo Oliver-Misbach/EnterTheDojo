@@ -11,12 +11,12 @@
 script = ExtResource("1_dkbtp")
 levels = Array[PackedScene]([ExtResource("2_6w0gl"), ExtResource("3_hixnt"), ExtResource("4_ieqju")])
 
+[node name="Debug" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("6_nvct0")
+
 [node name="Sounds" type="Node" parent="."]
 
 [node name="GameStart" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("5_doiim")
 autoplay = true
-
-[node name="Debug" type="Node" parent="."]
-process_mode = 3
-script = ExtResource("6_nvct0")

@@ -7,12 +7,6 @@ extends State
 var _last_crouch: bool
 
 
-func _enter() -> void:
-	super._enter()
-	
-	_try_attack()
-
-
 func _exit() -> void:
 	super._exit()
 	

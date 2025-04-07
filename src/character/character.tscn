@@ -23,45 +23,6 @@ radius = 1.0
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_feilg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_f2bci")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_l4r3p")
-
-[node name="HurtArea" type="Area2D" parent="."]
-position = Vector2(32, 0)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
-shape = SubResource("CircleShape2D_2d0kn")
-
-[node name="Player_Character" parent="." instance=ExtResource("3_omsti")]
-
-[node name="Sounds" type="Node" parent="."]
-
-[node name="Block" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("8_3vxxs")
-
-[node name="Duck" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("9_hyvlt")
-
-[node name="Kick" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("10_hwipk")
-
-[node name="PunchSwing" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("11_ih6im")
-
-[node name="PunchHit" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("12_7l6p6")
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current")]
 script = ExtResource("8_un5e1")
 current = NodePath("Idle")
@@ -88,6 +49,45 @@ character = NodePath("../..")
 [node name="Timer" type="Timer" parent="StateMachine/Death"]
 wait_time = 0.9
 one_shot = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Block" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("8_3vxxs")
+
+[node name="Duck" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("9_hyvlt")
+
+[node name="Swing" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("11_ih6im")
+
+[node name="Punch" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("12_7l6p6")
+
+[node name="Kick" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("10_hwipk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f2bci")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_l4r3p")
+
+[node name="HurtArea" type="Area2D" parent="."]
+position = Vector2(32, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("CircleShape2D_2d0kn")
+
+[node name="Player_Character" parent="." instance=ExtResource("3_omsti")]
 
 [connection signal="timeout" from="StateMachine/Hurt/Timer" to="StateMachine/Hurt" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Death/Timer" to="StateMachine/Death" method="_on_timer_timeout"]

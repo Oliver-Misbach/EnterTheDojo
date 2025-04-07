@@ -27,7 +27,4 @@ health = 2.0
 [node name="Karate_Man" parent="Player_Character/Karate_Man_Rig/Skeleton3D" index="0"]
 surface_material_override/2 = SubResource("StandardMaterial3D_cje4w")
 
-[node name="Timer" parent="StateMachine/Hurt" index="0"]
-wait_time = 1.0
-
 [editable path="Player_Character"]

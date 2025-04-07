@@ -7,12 +7,10 @@ extends Node
 @export var spawn_distance := 300.0
 @export var max_enemies := 1
 
-
-@export_custom(PROPERTY_HINT_NONE, "suffix:s") var interval_min := 1.0
-@export_custom(PROPERTY_HINT_NONE, "suffix:s") var interval_max := 3.0
+@export var spawn_interval := Curve.new()
 
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = %Timer
 
 
 var enemies: Array[Enemy]
@@ -26,7 +24,7 @@ func _on_timer_timeout() -> void:
 	if types.is_empty():
 		return
 	
-	timer.start(randf_range(interval_min, interval_max))
+	timer.start(spawn_interval.sample(randf()))
 	
 	if enemies.size() >= max_enemies:
 		return
