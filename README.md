@@ -5,12 +5,16 @@ Whether you're a seasoned black belt or a beginner looking to master powerful te
 
 Are you ready to test your strength and strategy? The battle begins now!
 
-* Game idea, design, and animations by Oliver C. Misbach. Game development by Nathan Franke *
+*Game idea, design, and animations by Oliver C. Misbach. Game development by Nathan Franke*
 
-** Download and Play Enter The Dojo on Steam **
+**Download and Play Enter The Dojo on Steam**
+
 <a href="https://store.steampowered.com/app/3603340/Enter_the_Dojo/"><img src="web/download.svg" alt="Steam" width="150"/></a>
 
-** Special thanks to the Godot Engine **
+
+**Special thanks to the Godot Engine**
+
 <a href="https://godotengine.org/"><img src="web/godot.svg" alt="Godot" width="150"/></a>
+
 
 <a href="https://creativecommons.org/licenses/by/4.0/"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by.svg" alt="Creative Commons" width="80"/></a>
