@@ -1,4 +1,15 @@
 scratch/
+web/.vercel
+NOTES.md
+
+# Steam SDK
+Steam/SteamSDK/content
+Steam/SteamSDK/linux32
+Steam/SteamSDK/linux64
+Steam/SteamSDK/output
+Steam/SteamSDK/package
+Steam/SteamSDK/public
+Steam/SteamSDK/siteserverui
 
 # Godot 4+ specific ignores
 .godot/

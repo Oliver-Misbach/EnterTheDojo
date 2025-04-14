@@ -27,6 +27,35 @@
 		.navbar-nav { font-size: 18px; font-weight: bold; gap: 30px; }
 
 		.section { padding: 50px; margin-top: 30px; margin-bottom: 30px;}
+
+		/* Animator */
+		.sprite-container {
+			width: 512px; /* Width of a single frame */
+			height: 512px; /* Height of the sprite */
+			overflow: hidden;
+		}
+		.sprite {
+			width: 16383px; /* Total width of the sprite with all frames */
+			height: 512px;
+			background: url('animator/sprite_standkick.webp') no-repeat;
+		}
+		.action-btn {
+			border-style: none;
+			background-color: inherit;
+		}
+		.form-range::-webkit-slider-thumb {
+			border-radius: 50px !important;
+		}
+		.form-range::-moz-range-thumb {
+			border-radius: 50px !important;
+		}
+
+		.form-range::-ms-thumb {
+			border-radius: 50px !important;
+		}
+
+		/* Screenshots */
+		.screenshot { height: 200px; margin-right: 20px; margin-bottom: 20px; }
 	</style>
 </head>
 <body style="font-family: Montserrat, Sans-serif;">
@@ -39,6 +68,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: auto;">
 					<li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
 					<li class="nav-item"><a class="nav-link" href="#download">DOWNLOAD</a></li>
+					<li class="nav-item"><a class="nav-link" href="#animator">ANIMATIONS</a></li>
 					<li class="nav-item"><a class="nav-link" href="#reviews">REVIEWS</a></li>
 					<li class="nav-item"><a class="nav-link" href="#screen">SCREEN SHOTS</a></li>
 				</ul>
@@ -54,21 +84,21 @@
 				Victory is Earned, Not Given
 			</p>
 			<p>
-				<button class="btn btn-primary btn-lg" style="margin-top: 20px;">Download Now</button>
+				<a class="btn btn-primary btn-lg" href="https://store.steampowered.com/app/3603340/Enter_the_Dojo/" style="margin-top: 20px;">Download Now</a>
 			</p>
 		<img src="karateman.svg" class="karateman">
 	</div>
 
-	<!-- Screen shots -->
+	<!-- About -->
 	<div id="about" class="section">
 		<h1>ENTER THE DOJO</h1>
 		<p>The ultimate destination for adrenaline-pumping martial arts action! Step into the dojo and unleash your skills in a fast-paced, action-packed karate video game that brings the thrill of combat to your fingertips. Whether you're a seasoned black belt or a beginner looking to master powerful techniques, our game offers dynamic fights, stunning visuals, and immersive gameplay. Train, fight, and rise through the ranks to become the ultimate karate champion. Are you ready to test your strength and strategy? The battle begins now!</p>
 
 		<div style="text-align: center; margin-top: 50px;">
-			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LhcYJUKzPvw?si=43ruw-BwRDqc6JDC&amp;controls=0&amp;start=162"
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/q0dH2fBqPlQ?si=GzdHtdN5TmTpyqaH"
 				title="YouTube video player"
 				frameborder="0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 				referrerpolicy="strict-origin-when-cross-origin"
 				allowfullscreen>
 			</iframe>
@@ -88,32 +118,67 @@
 			</div>
 		</div>
 		<p style="text-align: center; margin-top: 30px;">
-			<button class="btn btn-light btn-lg"><img src="download.svg" height="50px"></button>
+			<a class="btn btn-light btn-lg" href="https://store.steampowered.com/app/3603340/Enter_the_Dojo/"><img src="download.svg" height="50px"></a>
 		</p>
+	</div>
+
+	<!-- Animator -->
+	<div id="animator" class="section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<h3>Animation Sequencer</h3>
+		<p>Select an action and use the slider to see the animation sequence.</p>
+		<div id="action-buttons">
+			<button class="action-btn" data-value="sprite_standkick.webp" data-frames="30" data-title="Standing Kick">
+				<img src="animator/kick.png" alt="Stand Kick">
+			</button>
+			<button class="action-btn" data-value="sprite_standpunch.webp" data-frames="15" data-title="Standing Punch">
+				<img src="animator/punch.png" alt="Stand Punch">
+			</button>
+		</div>
+		<div class="sprite-container">
+			<div class="sprite" id="sprite"></div>
+		</div>
+		<div class="title" style="font-size: 20px;">Standing Kick</div>
+		<div style="width: 350px;">
+			<input class="form-range" style="width: 100%; text-align: center; border: solid 8px #e5e5e5; border-radius: 8px; height: 8px; outline: none; -webkit-appearance: none;" type="range" id="slider" min="0" max="30" step="1" value="0">
+		</div>
+	</div>
+
+	<!-- Screen Shots -->
+	<div id="screen" class="section" style="background-color: #04373A; padding-top: 100px; padding-bottom: 140px; margin-bottom: 0px; color: #ffffff;">
+		<h2 style="margin-bottom: 40px;">In-game Screen Shots</h2>
+		<img src="screenshot1.png" class="img-fluid screenshot">
+		<img src="screenshot2.png" class="img-fluid screenshot">
+		<img src="screenshot3.png" class="img-fluid screenshot">
+		<img src="screenshot4.png" class="img-fluid screenshot">
 	</div>
 
 	<!-- Reviews -->
 	<div id="reviews" class="section" style="background-color: #ececec; margin-top: -30px; margin-bottom: -30px; padding: 70px;">
-		<h3>⭐️⭐️⭐️⭐️⭐️ Best Karate Game Ever!</h3>
-		<p>"I've played a lot of fighting games, but **Ultimate Karate Showdown** takes it to a whole new level! The combos are smooth, the moves feel authentic, and the graphics are absolutely stunning. Whether I'm training solo or battling online, every fight keeps me on the edge of my seat. A must-play for any martial arts fan!"
+		<h3>⭐️⭐️⭐️⭐️⭐️ Fun retro game</h3>
+		<p>"Fun game, takes me back to the 80's. Reminds me of the arcade game, Kung Fu :-)"
 			<br />– Alex R.
 		</p>
 
-		<h3>⭐️⭐️⭐️⭐️⭐️ Feels Like a Real Tournament!</h3>
-		<p>"This game is INSANE! The animations and sound effects make every punch and kick feel so real. I love customizing my fighter and unlocking new moves as I progress. The online mode is super competitive, and I can’t stop playing! If you love action and strategy, this is the game for you."
+		<h3>⭐️⭐️⭐️⭐️⭐️ Simple and compelling game</h3>
+		<p>"I like the 3d characters in a 2d side-scroller."
 			<br />– Jordan M.
 		</p>
 
-		<h3>⭐️⭐️⭐️⭐️⭐️ Addictive and So Much Fun!</h3>
-		<p>"I downloaded this game just to try it out, and now I can’t put it down! The controls are easy to learn but take skill to master, which makes every battle exciting. The different fighting styles and techniques make each match unique. This is hands down the best karate game out there!"
+		<h3>⭐️⭐️⭐️⭐️⭐️ Clean and well done</h3>
+		<p>"Clean graphics, great physics, and superb character animation"
 			<br />– Chris L.
 		</p>
 	</div>
 
-	<!-- dark section -->
-	<div id="screen" class="section" style="background-color: #04373A; margin-bottom: 0px; color: #ffffff;">
-		<h2>Screen Shots</h2>
-		<p>Highlighting various character poses.</p>
+	<!-- Godot -->
+	<div id="animator" class="section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<h3>Special Thank you to Godot</h3>
+		<p>This game would not be possible without the Godot Engine. Thanks to all who contribute and maintain Godot.</p>
+		<div style="text-align: center; margin-top: 50px;">
+			<a href="https://godotengine.org/" target="_blank">
+				<img src="godot.svg" style="width: 400px;">
+			</a>
+		</div>
 	</div>
 
 	<footer class="section" style="background-color: #222121; margin-top: 0px; margin-bottom: 0px; color: #ffffff; border-color: #808080; border-width: 0px; border-top-width: 1px; border-style: solid;">
@@ -130,5 +195,29 @@
 		</div>
 	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		// Animator
+		const slider = document.getElementById('slider');
+		const sprite = document.getElementById('sprite');
+		const frameWidth = 512; // Width of a single frame
+
+		slider.addEventListener('input', () => {
+			const frameIndex = slider.value;
+			sprite.style.backgroundPosition = `-${frameIndex * frameWidth}px 0`;
+		});
+
+		document.querySelectorAll('.action-btn').forEach(button => {
+			button.addEventListener('click', function() {
+				const action = "animator/" + this.getAttribute('data-value');
+				const frames = this.getAttribute('data-frames');
+				const title = this.getAttribute('data-title');
+				sprite.style.background = `url('${action}') no-repeat`;
+				slider.max = frames;
+				slider.value = 8;
+				document.querySelector('.title').innerHTML = title;
+			});
+    	});		
+	</script>
 </body>
 </html>

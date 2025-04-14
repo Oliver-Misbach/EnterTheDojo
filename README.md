@@ -1,61 +1,16 @@
 # Enter The Dojo
+The ultimate destination for adrenaline-pumping martial arts action! Step into the dojo and unleash your skills in a fast-paced, action-packed karate video game that brings the thrill of combat to your fingertips.
 
-## todo
+Whether you're a seasoned black belt or a beginner looking to master powerful techniques, our game offers dynamic fights, stunning visuals, and immersive game-play. Train, fight, and rise through the ranks to become the ultimate karate champion.
 
-- [ ] Multiple resolution support (currently expects 16:9)
-- [ ] Music
-- [x] Sound
-- [x] Save/load, last level, high score
-- [x] UID warnings can be ignored. Should be fixed in Godot 4.4.
-- [x] Punch and hit should be separate sounds in case a punch misses
+Are you ready to test your strength and strategy? The battle begins now!
 
-## technical
+## Download and Play Enter The Dojo on Steam
+[![Steam](web/download.svg)](https://store.steampowered.com/app/3603340/Enter_the_Dojo/)
 
-- [ ] Clean up and document code
-  - [ ] use state machine for enemy behavior and some logic in character.gd
-- [ ] Test .blend import with Godot 4.3+
+## Special thanks to the Godot Engine.
+[![Godot](web/godot.svg)](https://godotengine.org/)
 
-## maintainence
+[![CreativeCommons](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-To work around negative scale (mirroring) causing lighting issues on character, override its materials and reset `transparency/cull_mode` to `Back`.
-Alternatively, change the cull mode of the materials in Blender.
 
-# Initial Concept Document
-https://drive.google.com/drive/folders/1p2LiPm3LVRYIls0AtLyLSyJ2EqMFiVDL
-
-# Game Design Spec for Fiverr
-https://docs.google.com/document/d/1JcSItWMWWNV5nrL4Jk8UwQNZl1oSIU_S52EaGwrYfWM/edit?tab=t.0
-
-# Project Tracking
-https://app.clickup.com/9011382639/v/l/8chxjbf-371
-
-# Royalty-free sound effects
-https://pixabay.com/sound-effects/search/
-https://mixkit.co/free-sound-effects/game/
-
-# Listing game on Steam
-https://partner.steamgames.com/steamdirect
-
-# Website Design Ideas
-- www.yachtclubgames.com/games/cyber-shadow/
-- stardewvalley.net
-- drinkboxstudios.com
-
-- wildboystudios.com
-- thunderlotusgames.com
-- teamcherry.com.au
-- supergiantgames.com
-- playdead.com
-- oddworld.com
-- playtonicgames.com
-- re-logic.com
-- orithegame.com/moon-studios
-
-# Color Scheme: Legendary Samurai
-https://www.schemecolor.com/legendary-samurai.php
-Rich Black #04373A
-Red #661f3a
-Aztec Gold #C09554
-Pale Goldenrod #E5DFA3
-Eton Blue #91BF9F
-Deep Aquamarine #378673

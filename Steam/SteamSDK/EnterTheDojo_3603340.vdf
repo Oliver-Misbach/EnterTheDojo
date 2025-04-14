@@ -1,0 +1,42 @@
+"AppBuild"
+{
+	"AppID" "3603340"
+	"Desc" "Beta Build" // internal description for this build
+
+	"ContentRoot" "content\" // root content folder, relative to location of this file
+	"BuildOutput" "output\" // build output folder for build logs and build cache files
+
+	"Depots"
+	{
+		"3603341" // Windows DepotID
+		{
+			"FileMapping"
+			{
+				"LocalPath" "EnterTheDojo_v0.1.x86_64" // Enter "*" to include all files from contentroot folder
+				"DepotPath" "." // mapped into the root of the depot
+				"recursive" "0" // include all subfolders
+			}
+		}
+
+		"3603342" // Linux DepotID
+		{
+			"FileMapping"
+			{
+				"LocalPath" "EnterTheDojo_v0.1_Windows.exe"
+				"DepotPath" "."
+				"recursive" "0"
+			}
+		}
+
+		"3603343" // Mac DepotID
+		{
+			"FileMapping"
+			{
+				"LocalPath" "EnterTheDojo_v0.1.dmg" // Enter "*" to include all files from contentroot folder
+				"DepotPath" "."
+				"recursive" "0"
+			}
+		}
+
+	}
+}
