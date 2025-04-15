@@ -1,8 +1,11 @@
 scratch/
 web/.vercel
 NOTES.md
+web/*.import
+web/animator/*.import
 
 # Steam SDK
+Steam/*.import
 Steam/SteamSDK/content
 Steam/SteamSDK/linux32
 Steam/SteamSDK/linux64
