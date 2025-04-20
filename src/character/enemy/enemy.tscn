@@ -31,13 +31,11 @@ time_crouch_attack = 0.5
 
 [node name="EnemyCrouchTimer" type="Timer" parent="." index="0"]
 unique_name_in_owner = true
-wait_time = 1.5
 one_shot = true
 autostart = true
 
 [node name="EnemyAttackTimer" type="Timer" parent="." index="1"]
 unique_name_in_owner = true
-wait_time = 2.0
 one_shot = true
 autostart = true
 

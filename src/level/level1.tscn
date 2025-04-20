@@ -8,3 +8,6 @@
 
 [node name="EnemySpawner" parent="." index="1"]
 types = Array[PackedScene]([ExtResource("2_ad4m2"), ExtResource("3_fpwj5")])
+
+[node name="Player" parent="." index="8" node_paths=PackedStringArray("world")]
+world = NodePath("")
