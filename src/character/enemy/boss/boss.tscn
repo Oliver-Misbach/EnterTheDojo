@@ -47,6 +47,7 @@ dodge_after_repeats = 3
 time_combo_move = 0.5
 dodge_style = SubResource("Resource_6sq2e")
 attack_interval = SubResource("Curve_0c456")
+speed = 75.0
 health = 10.0
 
 [node name="Interface" parent="." index="0" node_paths=PackedStringArray("boss") instance=ExtResource("6_arb2w")]

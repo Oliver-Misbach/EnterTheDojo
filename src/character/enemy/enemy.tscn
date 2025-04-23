@@ -27,15 +27,17 @@ point_count = 2
 script = ExtResource("2_aqljf")
 dodge_style = SubResource("Resource_r0odl")
 attack_interval = SubResource("Curve_r0odl")
-time_crouch_attack = 0.5
+time_crouch_attack = 0.3
 
 [node name="EnemyCrouchTimer" type="Timer" parent="." index="0"]
 unique_name_in_owner = true
+wait_time = 0.1
 one_shot = true
 autostart = true
 
 [node name="EnemyAttackTimer" type="Timer" parent="." index="1"]
 unique_name_in_owner = true
+wait_time = 0.1
 one_shot = true
 autostart = true
 
