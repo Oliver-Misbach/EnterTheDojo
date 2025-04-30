@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://mblwsep6ogyj"]
+[gd_scene load_steps=4 format=3 uid="uid://mblwsep6ogyj"]
 
 [ext_resource type="Script" uid="uid://dv4g48r2yab6h" path="res://src/world/interface/interface.gd" id="1_5whog"]
+[ext_resource type="Script" uid="uid://cki6e00xnm2ah" path="res://src/world/interface/Debug_Menu.gd" id="2_pn484"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sadtw"]
 content_margin_left = 8.0
@@ -53,8 +54,8 @@ layout_mode = 2
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -477.0
-offset_right = 321.0
+offset_top = -320.0
+offset_right = 351.0
 grow_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer2"]
@@ -71,10 +72,24 @@ E - Punch
 Q - Kick
 S - Crouch
 
-Debug
+ESC - Pause/Resume"
+vertical_alignment = 2
+
+[node name="DebugMenu" type="MarginContainer" parent="."]
+visible = false
+offset_top = 540.49
+offset_right = 321.0
+offset_bottom = 761.49
+script = ExtResource("2_pn484")
+
+[node name="PanelContainer" type="PanelContainer" parent="DebugMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugMenu/PanelContainer"]
+layout_mode = 2
+text = "Debug
 
 F3 - Next Level
 F4 - Kill
 F5 - Reload
-F7 - Pause/Resume"
-vertical_alignment = 2
+F7 - Show/hide debug"
