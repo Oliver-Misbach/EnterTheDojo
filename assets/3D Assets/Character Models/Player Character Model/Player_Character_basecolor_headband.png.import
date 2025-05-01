@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://8nkd0yxej538"
 path.s3tc="res://.godot/imported/Player_Character_basecolor_headband.png-09c601b5f1f0f3a9ab87725a9ecd500e.s3tc.ctex"
+path.etc2="res://.godot/imported/Player_Character_basecolor_headband.png-09c601b5f1f0f3a9ab87725a9ecd500e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_headband.png"
-dest_files=["res://.godot/imported/Player_Character_basecolor_headband.png-09c601b5f1f0f3a9ab87725a9ecd500e.s3tc.ctex"]
+dest_files=["res://.godot/imported/Player_Character_basecolor_headband.png-09c601b5f1f0f3a9ab87725a9ecd500e.s3tc.ctex", "res://.godot/imported/Player_Character_basecolor_headband.png-09c601b5f1f0f3a9ab87725a9ecd500e.etc2.ctex"]
 
 [params]
 

@@ -15,7 +15,13 @@
 			.dojo { width: 300px; margin-top: -15px; }
 			iframe { width: 100%; }
 			.download { padding: 5px !important; }
-		}
+
+			/* Animator */
+			.sprite-container {
+				transform: scale(0.5) !important; /* Adjust the scale factor as needed */
+				transform-origin: center center !important; /* Optional: anchor the scaling */
+			}
+		}	
 
 		/* Desktop */
 		@media (min-width: 992px) {
@@ -25,7 +31,6 @@
 			.dojo { width: 700px; }
 		}
 		.navbar-nav { font-size: 18px; font-weight: bold; gap: 30px; }
-
 		.section { padding: 50px; margin-top: 30px; margin-bottom: 30px;}
 
 		/* Animator */
@@ -39,20 +44,11 @@
 			height: 512px;
 			background: url('animator/sprite_standkick.webp') no-repeat;
 		}
-		.action-btn {
-			border-style: none;
-			background-color: inherit;
-		}
-		.form-range::-webkit-slider-thumb {
-			border-radius: 50px !important;
-		}
-		.form-range::-moz-range-thumb {
-			border-radius: 50px !important;
-		}
+		.action-btn { border-style: none; background-color: inherit; }
+		.form-range::-webkit-slider-thumb { border-radius: 50px !important; }
+		.form-range::-moz-range-thumb { border-radius: 50px !important; }
+		.form-range::-ms-thumb { border-radius: 50px !important; }
 
-		.form-range::-ms-thumb {
-			border-radius: 50px !important;
-		}
 
 		/* Screenshots */
 		.screenshot { height: 200px; margin-right: 20px; margin-bottom: 20px; }
@@ -138,8 +134,8 @@
 			<div class="sprite" id="sprite"></div>
 		</div>
 		<div class="title" style="font-size: 20px;">Standing Kick</div>
-		<div style="width: 350px;">
-			<input class="form-range" style="width: 100%; text-align: center; border: solid 8px #e5e5e5; border-radius: 8px; height: 8px; outline: none; -webkit-appearance: none;" type="range" id="slider" min="0" max="30" step="1" value="0">
+		<div style="width: 300px;">
+			<input class="form-range" style="text-align: center; border: solid 8px #e5e5e5; border-radius: 8px; height: 8px; outline: none; -webkit-appearance: none;" type="range" id="slider" min="0" max="30" step="1" value="0">
 		</div>
 	</div>
 
@@ -171,19 +167,19 @@
 	</div>
 
 	<!-- Godot -->
-	<div id="animator" class="section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+	<div id="godot" class="section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 		<h3>Special Thank you to Godot</h3>
 		<p>This game would not be possible without the Godot Engine. Thanks to all who contribute and maintain Godot.</p>
 		<div style="text-align: center; margin-top: 50px;">
 			<a href="https://godotengine.org/" target="_blank">
-				<img src="godot.svg" style="width: 400px;">
+				<img class="img img-fluid" src="godot.svg" style="width: 400px;">
 			</a>
 		</div>
 	</div>
 
 	<footer class="section" style="background-color: #222121; margin-top: 0px; margin-bottom: 0px; color: #ffffff; border-color: #808080; border-width: 0px; border-top-width: 1px; border-style: solid;">
 		<p style="color: #6a696fff">Copyright &copy; 2024 Oliver Misbach</p>
-		<div style="display: flex; justify-content: center; gap: 15px; margin-top: 50px;">
+		<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 50px;">
 			<a ><img src="s_discord.svg"></a>
 			<a ><img src="s_facebook.svg"></a>
 			<a ><img src="s_tiktok.svg"></a>
