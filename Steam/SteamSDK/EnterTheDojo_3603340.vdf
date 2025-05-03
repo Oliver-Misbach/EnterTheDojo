@@ -32,7 +32,7 @@
 		{
 			"FileMapping"
 			{
-				"LocalPath" "EnterTheDojo_v0.1.dmg" // Enter "*" to include all files from contentroot folder
+				"LocalPath" "EnterTheDojo_v1.0.dmg" // Enter "*" to include all files from contentroot folder
 				"DepotPath" "."
 				"recursive" "0"
 			}
