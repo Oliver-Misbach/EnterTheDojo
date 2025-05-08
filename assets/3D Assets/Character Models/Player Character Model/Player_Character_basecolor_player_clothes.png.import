@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://djbcisd3bjcvs"
 path.s3tc="res://.godot/imported/Player_Character_basecolor_player_clothes.png-2a18f9714c228b399f569b2a5b3d0da9.s3tc.ctex"
+path.etc2="res://.godot/imported/Player_Character_basecolor_player_clothes.png-2a18f9714c228b399f569b2a5b3d0da9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D Assets/Character Models/Player Character Model/Player_Character_basecolor_player_clothes.png"
-dest_files=["res://.godot/imported/Player_Character_basecolor_player_clothes.png-2a18f9714c228b399f569b2a5b3d0da9.s3tc.ctex"]
+dest_files=["res://.godot/imported/Player_Character_basecolor_player_clothes.png-2a18f9714c228b399f569b2a5b3d0da9.s3tc.ctex", "res://.godot/imported/Player_Character_basecolor_player_clothes.png-2a18f9714c228b399f569b2a5b3d0da9.etc2.ctex"]
 
 [params]
 

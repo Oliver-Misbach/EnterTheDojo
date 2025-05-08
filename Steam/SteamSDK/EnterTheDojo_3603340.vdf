@@ -8,21 +8,21 @@
 
 	"Depots"
 	{
-		"3603341" // Windows DepotID
+		"3603341" // Linux
 		{
 			"FileMapping"
 			{
-				"LocalPath" "EnterTheDojo_v0.1.x86_64" // Enter "*" to include all files from contentroot folder
+				"LocalPath" "EnterTheDojo_v1.0.x86_64" // Enter "*" to include all files from contentroot folder
 				"DepotPath" "." // mapped into the root of the depot
 				"recursive" "0" // include all subfolders
 			}
 		}
 
-		"3603342" // Linux DepotID
+		"3603342" // Windows
 		{
 			"FileMapping"
 			{
-				"LocalPath" "EnterTheDojo_v0.1_Windows.exe"
+				"LocalPath" "EnterTheDojo_v1.0.exe"
 				"DepotPath" "."
 				"recursive" "0"
 			}
@@ -32,7 +32,7 @@
 		{
 			"FileMapping"
 			{
-				"LocalPath" "EnterTheDojo_v0.1.dmg" // Enter "*" to include all files from contentroot folder
+				"LocalPath" "EnterTheDojo_v1.0.dmg" // Enter "*" to include all files from contentroot folder
 				"DepotPath" "."
 				"recursive" "0"
 			}

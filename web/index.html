@@ -9,23 +9,26 @@
 	<style>
 		/* Mobile */
 		@media (max-width: 992px) {
-			.banner { height: 350px; margin-top: 0px !important; background: url(banner.webp); background-color: rgba(0, 0, 0, 0.5); background-repeat: no-repeat; background-size: cover; }
-			.karateman { height: 250px; float: right; margin-top: -100px; margin-right: -20px; }
+			.banner { padding: 30px !important; height: 350px; margin-top: 0px !important; background: url(banner.webp); background-color: rgba(0, 0, 0, 0.5); background-repeat: no-repeat; background-size: cover; }
+			.karateman { height: 275px; float: right; margin-top: -70px; margin-right: -30px; }
 			.intro { font-size: 20px; color: #ffffff; font-weight: bold;}
 			.dojo { width: 300px; margin-top: -15px; }
 			iframe { width: 100%; }
-			.download { padding: 5px !important; }
-		}
-
+			/* Animator */
+			.sprite-container {
+				transform: scale(0.5) !important; /* Adjust the scale factor as needed */
+				transform-origin: center center !important; /* Optional: anchor the scaling */
+			}
+		}	
 		/* Desktop */
 		@media (min-width: 992px) {
 			.banner { height: 650px; padding-left: 125px !important; margin-top: 0px !important; background: url(banner.webp); background-repeat: no-repeat; background-size: cover; }
 			.karateman { height: 750px; float: right; margin-top: -300px; }
 			.intro { -webkit-text-stroke: 1px black; font-size: 40px; text-transform: uppercase; color: #ffffff; font-weight: bold;}
 			.dojo { width: 700px; }
+			.topDownloadBtn { padding: 0.75rem 1.25rem; font-size: 1.25rem; }
 		}
 		.navbar-nav { font-size: 18px; font-weight: bold; gap: 30px; }
-
 		.section { padding: 50px; margin-top: 30px; margin-bottom: 30px;}
 
 		/* Animator */
@@ -39,20 +42,11 @@
 			height: 512px;
 			background: url('animator/sprite_standkick.webp') no-repeat;
 		}
-		.action-btn {
-			border-style: none;
-			background-color: inherit;
-		}
-		.form-range::-webkit-slider-thumb {
-			border-radius: 50px !important;
-		}
-		.form-range::-moz-range-thumb {
-			border-radius: 50px !important;
-		}
+		.action-btn { border-style: none; background-color: inherit; }
+		.form-range::-webkit-slider-thumb { border-radius: 50px !important; }
+		.form-range::-moz-range-thumb { border-radius: 50px !important; }
+		.form-range::-ms-thumb { border-radius: 50px !important; }
 
-		.form-range::-ms-thumb {
-			border-radius: 50px !important;
-		}
 
 		/* Screenshots */
 		.screenshot { height: 200px; margin-right: 20px; margin-bottom: 20px; }
@@ -78,13 +72,13 @@
 
 	<!-- banner -->
 	<div class="section banner">
-			<img src="EnterTheDojo.svg" class="dojo">
+			<img src="EnterTheDojo_path.svg" class="dojo img-fluid">
 			<p class="intro" style="margin-top: 30px;">
 				Unleash the Warrior Within<br />
 				Victory is Earned, Not Given
 			</p>
 			<p>
-				<a class="btn btn-primary btn-lg" href="https://store.steampowered.com/app/3603340/Enter_the_Dojo/" style="margin-top: 20px;">Download Now</a>
+				<a class="btn btn-primary topDownloadBtn" href="https://store.steampowered.com/app/3603340/Enter_the_Dojo/">Download Now</a>
 			</p>
 		<img src="karateman.svg" class="karateman">
 	</div>
@@ -109,10 +103,10 @@
 	<div id="download" class="section download" style="background-color: #407999; color: #ffffff;">
 		<div class="container">
 			<div class="row align-items-start">
-			  <div class="col text-center">
+			  <div class="col-12 col-md-6 text-center">
 				<img class="img-fluid" src="steam.svg" style="width: 400px;">
 			</div>
-			  <div class="col" style="font-size: 18px;">
+			  <div class="col-12 col-md-6" style="font-size: 18px;">
 				<p>Download Enter the Dojo today and experience the thrill of real martial arts combat like never before! With stunning graphics, smooth controls, and a deep fighting system, this game lets you master powerful techniques, challenge fierce opponents, and rise through the ranks to become a true karate champion. Whether you prefer solo training, intense tournaments, or online battles against players worldwide, there’s always a new challenge waiting. Don’t miss out—hone your skills, prove your strength, and dominate the dojo. Are you ready to fight? Download now and unleash your inner warrior!</p>
 			</div>
 			</div>
@@ -138,14 +132,14 @@
 			<div class="sprite" id="sprite"></div>
 		</div>
 		<div class="title" style="font-size: 20px;">Standing Kick</div>
-		<div style="width: 350px;">
-			<input class="form-range" style="width: 100%; text-align: center; border: solid 8px #e5e5e5; border-radius: 8px; height: 8px; outline: none; -webkit-appearance: none;" type="range" id="slider" min="0" max="30" step="1" value="0">
+		<div style="width: 300px;">
+			<input class="form-range" style="text-align: center; border: solid 8px #e5e5e5; border-radius: 8px; height: 8px; outline: none; -webkit-appearance: none;" type="range" id="slider" min="0" max="30" step="1" value="0">
 		</div>
 	</div>
 
 	<!-- Screen Shots -->
 	<div id="screen" class="section" style="background-color: #04373A; padding-top: 100px; padding-bottom: 140px; margin-bottom: 0px; color: #ffffff;">
-		<h2 style="margin-bottom: 40px;">In-game Screen Shots</h2>
+		<h2 style="margin-bottom: 40px;">Screen Shots</h2>
 		<img src="screenshot1.png" class="img-fluid screenshot">
 		<img src="screenshot2.png" class="img-fluid screenshot">
 		<img src="screenshot3.png" class="img-fluid screenshot">
@@ -154,36 +148,39 @@
 
 	<!-- Reviews -->
 	<div id="reviews" class="section" style="background-color: #ececec; margin-top: -30px; margin-bottom: -30px; padding: 70px;">
-		<h3>⭐️⭐️⭐️⭐️⭐️ Fun retro game</h3>
+		<h3>Fun retro game</h3>
+		<h3>⭐️⭐️⭐️⭐️⭐️</h3>
 		<p>"Fun game, takes me back to the 80's. Reminds me of the arcade game, Kung Fu :-)"
 			<br />– Alex R.
 		</p>
 
-		<h3>⭐️⭐️⭐️⭐️⭐️ Simple and compelling game</h3>
+		<h3>Simple and compelling game</h3>
+		<h3>⭐️⭐️⭐️⭐️⭐️</h3>
 		<p>"I like the 3d characters in a 2d side-scroller."
 			<br />– Jordan M.
 		</p>
 
-		<h3>⭐️⭐️⭐️⭐️⭐️ Clean and well done</h3>
+		<h3>Clean and well done</h3>
+		<h3>⭐️⭐️⭐️⭐️⭐️</h3>
 		<p>"Clean graphics, great physics, and superb character animation"
 			<br />– Chris L.
 		</p>
 	</div>
 
 	<!-- Godot -->
-	<div id="animator" class="section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-		<h3>Special Thank you to Godot</h3>
+	<div id="godot" class="section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<h3>Special Thanks to Godot</h3>
 		<p>This game would not be possible without the Godot Engine. Thanks to all who contribute and maintain Godot.</p>
 		<div style="text-align: center; margin-top: 50px;">
 			<a href="https://godotengine.org/" target="_blank">
-				<img src="godot.svg" style="width: 400px;">
+				<img class="img img-fluid" src="godot.svg" style="width: 400px;">
 			</a>
 		</div>
 	</div>
 
 	<footer class="section" style="background-color: #222121; margin-top: 0px; margin-bottom: 0px; color: #ffffff; border-color: #808080; border-width: 0px; border-top-width: 1px; border-style: solid;">
 		<p style="color: #6a696fff">Copyright &copy; 2024 Oliver Misbach</p>
-		<div style="display: flex; justify-content: center; gap: 15px; margin-top: 50px;">
+		<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 50px;">
 			<a ><img src="s_discord.svg"></a>
 			<a ><img src="s_facebook.svg"></a>
 			<a ><img src="s_tiktok.svg"></a>
